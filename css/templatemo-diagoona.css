@@ -332,3 +332,25 @@ textarea {
     .tm-service-img { margin-right: 0; }
     .tm-service-img-r { margin-left: 0; }
 }
+
+/* ===== Custom background + cleanup ===== */
+
+/* Remove the rotating background photos */
+.backstretch { display: none !important; }
+
+/* Hide the dots that used to switch between photos */
+.tm-bg-controls-wrapper { display: none !important; }
+
+/* Calm cream background — two-tone diagonal */
+body {
+    background-color: #F7F3EC !important;
+    background-image: none !important;
+}
+.tm-bg-left  { background-color: #EDE6D8 !important; background-image: none !important; } /* slightly deeper cream */
+.tm-bg-right { background-color: #F7F3EC !important; background-image: none !important; } /* lighter cream */
+
+/* The logo text was light (built for the old dark photo background) —
+   darken it so it shows up against cream */
+.tm-sitename { color: #2B4469 !important; }   /* navy */
+.tm-slogon  { color: #B87333 !important; }    /* warm amber */
+.tm-logo    { color: #2B4469 !important; }    /* the book icon */
