@@ -661,3 +661,33 @@ section.book-band #my-cal-inline-free-discovery-call{
 .chip .lbl{ white-space:nowrap; }
 .brandbar a{ white-space:nowrap; }
 .foot-col a{ white-space:nowrap; }
+
+/* ============================================================
+   MOBILE FIX PASS  (appended — wins the cascade)
+   1) Horizontal overflow: kills the tan strip / sideways scroll
+   2) Wordmark: match footer logo to the nav logo on mobile
+   ============================================================ */
+
+/* (1) ROOT CAUSE — the hero glow used inset:-12%, bleeding ~23px
+   past the right edge on phones. Keep the glow but stop it from
+   bleeding sideways past the screen. */
+.hero-visual{ overflow: visible; }            /* (the glow lives here) */
+.hero-visual::before{ left: 0; right: 0; }    /* glow no longer pokes out the sides; still bleeds top/bottom */
+
+/* (1) SAFETY NET — clip any future horizontal bleed at the page
+   level. `clip` (not `hidden`) keeps the sticky nav working. */
+html{ overflow-x: clip; }
+body{ overflow-x: clip; }
+
+/* (2) WORDMARK CONSISTENCY — the footer mark/word had no mobile
+   sizes, so it stayed big (50px / 29px) while the nav shrank.
+   Match the footer to the nav so the top logo is never smaller
+   than the bottom one. */
+@media (max-width: 760px){
+  .foot-mark{ height: 46px; }
+  .foot-word{ font-size: 23px; }
+}
+@media (max-width: 520px){
+  .foot-mark{ height: 42px; }
+  .foot-word{ font-size: 21px; }
+}
