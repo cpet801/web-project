@@ -106,7 +106,7 @@ nav { position: sticky; top: 0; z-index: 100; background: rgba(247,243,236,.9); 
 .chip-2 { top: 20px; right: -26px; animation: float2 6.5s ease-in-out infinite; }
 @keyframes float1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
 @keyframes float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
-@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 3.2rem; } .hero-visual { height: 320px; margin-top: 8px; } }
+@media (max-width: 1000px) { .hero-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 3.2rem; } .hero-visual { height: 320px; margin-top: 8px; } }
 
 /* INTERIOR PAGE HERO */
 .page-hero { padding: 88px 0 8px; text-align: center; }
@@ -544,6 +544,8 @@ footer::after{ content:''; display:block; height:6px; background:linear-gradient
 .trot-mark{ font-family:'Fraunces',Georgia,serif; font-optical-sizing:auto; font-variation-settings:"wght" 640,"SOFT" 10,"WONK" 1; font-size:4rem; line-height:.4; height:34px; color:var(--gold-deep); }
 .trot-stage{ transition:opacity .5s ease; min-height:170px; }
 .trot-stage.fade{ opacity:0; }
+.trot-item{ display:none; }
+.trot-item.on{ display:block; }
 .trot-quote{ font-family:'Fraunces',Georgia,serif; font-optical-sizing:auto; font-variation-settings:"wght" 460,"SOFT" 10,"WONK" 1; font-style:italic; font-size:1.7rem; line-height:1.4; color:var(--deep); margin:6px auto 22px; max-width:34ch; text-wrap:balance; }
 .trot-meta{ display:flex; align-items:center; justify-content:center; gap:12px; }
 .trot-name{ font-size:14px; font-weight:700; color:var(--deep); letter-spacing:.3px; }
