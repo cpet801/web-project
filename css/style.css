@@ -17,7 +17,7 @@
   --on-deep-mute: #9DA7B1;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; color-scheme: only light; }
 body {
   background: var(--paper); color: var(--text);
   font-family: 'Public Sans', system-ui, sans-serif;
@@ -651,3 +651,7 @@ section.book-band #my-cal-inline-free-discovery-call{
   padding-top:44px;   /* shifts the calendar DOWN inside the frame — raise to push it lower, lower to raise it */
 }
 @media (max-width:620px){ section.book-band{ padding:30px 0 44px; } }
+
+
+/* testimonial level pill: white text on the solid level colour (overrides the old outline style) */
+.lvl-pill.a1,.lvl-pill.a2,.lvl-pill.b1,.lvl-pill.b2,.lvl-pill.c1,.lvl-pill.c2{ color:#fff; }
