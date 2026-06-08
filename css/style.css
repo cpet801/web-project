@@ -655,3 +655,9 @@ section.book-band #my-cal-inline-free-discovery-call{
 
 /* testimonial level pill: white text on the solid level colour (overrides the old outline style) */
 .lvl-pill.a1,.lvl-pill.a2,.lvl-pill.b1,.lvl-pill.b2,.lvl-pill.c1,.lvl-pill.c2{ color:#fff; }
+
+/* hero chips, brand-bar number, footer links: stop wrapping/clipping */
+.chip{ white-space:nowrap; }
+.chip .lbl{ white-space:nowrap; }
+.brandbar a{ white-space:nowrap; }
+.foot-col a{ white-space:nowrap; }
