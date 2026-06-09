@@ -25,6 +25,24 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+  /* level-test only — typed-answer field + submit button (uses existing site tokens) */
+  .quiz-input{ width:100%; padding:16px 20px; border:1.5px solid var(--border); border-radius:12px;
+    background:var(--paper); color:var(--deep); font-size:16px; font-family:'Public Sans',sans-serif;
+    line-height:1.4; transition:border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+  .quiz-input::placeholder{ color:var(--muted); }
+  .quiz-input:focus{ outline:none; border-color:var(--caramel); background:#fff;
+    box-shadow:0 0 0 3px color-mix(in srgb, var(--caramel) 22%, transparent); }
+  .quiz-input:disabled{ opacity:.7; }
+  .quiz-submit{ align-self:flex-start; background:var(--caramel); color:#fff; border:0; border-radius:9px;
+    padding:13px 30px; font-size:15px; font-weight:600; font-family:'Public Sans',sans-serif; cursor:pointer;
+    box-shadow:0 6px 18px rgba(184,115,51,.28); transition:transform .2s ease, background .2s ease, box-shadow .2s ease; }
+  .quiz-submit:hover{ background:var(--caramel-dark); transform:translateY(-2px); box-shadow:0 10px 26px rgba(184,115,51,.36); }
+  .quiz-submit:disabled{ opacity:.6; cursor:default; transform:none; box-shadow:none; }
+  .quiz-status{ font-size:13px; color:var(--muted); min-height:18px; }
+  .quiz-input.shake{ animation:quizShake .35s; border-color:var(--caramel); }
+  @keyframes quizShake{ 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+</style>
 </head>
 <body>
 
@@ -60,7 +78,7 @@
   <div class="wrap">
     <p class="kicker">Level Check</p>
     <h1 class="wonk">Find your English level</h1>
-    <p>Twelve quick questions, about five minutes. Pick the best option for each — there are no trick questions.</p>
+    <p>Eighteen questions, about 10–15 minutes, working from easy to advanced. Pick the best option — or type your answer — for each.</p>
     <hr class="dash center">
   </div>
 </header>
@@ -110,20 +128,38 @@
 
 <script>
 (function(){
+  /* === LIVE AI GRADING =================================================
+     Leave this null and the two open-ended typed questions are graded by a
+     lenient local check on the live site (perfectly fine — Jana confirms the
+     real level on the call). To turn on true AI grading in production:
+       1. Deploy the included Cloudflare Worker (see grader-worker.js).
+       2. Paste its URL here, e.g.
+            const GRADER_ENDPOINT = "https://em-grader.YOURNAME.workers.dev";
+     The Claude preview already grades with AI directly; GRADER_ENDPOINT only
+     affects the live site. ==================================================*/
+  const GRADER_ENDPOINT = null;
+
   const Q = [
-    { q: "Hello, ___ name is Sara.", o: ["My","I","Me","Mine"], a: 0 },
-    { q: "She ___ from Spain.", o: ["are","is","am","be"], a: 1 },
-    { q: "They ___ playing football right now.", o: ["is","am","are","be"], a: 2 },
-    { q: "I ___ to the cinema yesterday.", o: ["go","goes","went","gone"], a: 2 },
-    { q: "There aren't ___ apples left.", o: ["some","any","much","a"], a: 1 },
-    { q: "My sister is ___ than me.", o: ["tall","taller","tallest","more tall"], a: 1 },
-    { q: "I ___ in this city for three years.", o: ["live","am living","have lived","lived"], a: 2 },
-    { q: "He asked me ___ I was tired.", o: ["that","if","what","which"], a: 1 },
-    { q: "You ___ wear a seatbelt — it's the law.", o: ["should","must","can","might"], a: 1 },
-    { q: "By next June, she ___ her degree.", o: ["finishes","will finish","will have finished","finished"], a: 2 },
-    { q: "I'm not used to ___ up so early.", o: ["get","getting","got","gets"], a: 1 },
-    { q: "Rarely ___ such commitment to a goal.", o: ["I have seen","have I seen","I saw","did I saw"], a: 1 }
+    { type:"choice", level:"A1", q:"I bought ___ umbrella because it started to rain.", o:["a","an","the","some"], correct:"an" },
+    { type:"choice", level:"A1", q:"My name ___ Sara and I ___ from Lebanon.", o:["is / am","am / is","are / am","is / are"], correct:"is / am" },
+    { type:"choice", level:"A1", q:"\u2018___ is my brother,\u2019 she said, pointing to the boy beside her.", o:["These","That","This","Those"], correct:"This" },
+    { type:"choice", level:"A2", q:"The lesson starts ___ 9 o\u2019clock ___ Monday morning.", o:["in / on","at / on","on / at","at / in"], correct:"at / on" },
+    { type:"choice", level:"A2", q:"There isn\u2019t ___ milk left in the fridge.", o:["many","much","some","few"], correct:"much" },
+    { type:"choice", level:"A2", q:"My sister is ___ than me.", o:["tall","more tall","taller","tallest"], correct:"taller" },
+    { type:"text", level:"A2", grade:"api", q:"Complete the sentence in your own words: \u2018Last weekend, I \u2026\u2019", target:"a grammatically reasonable sentence in the past simple about last weekend, containing a past-tense verb", fallback:function(a){ return words(a) >= 3; } },
+    { type:"choice", level:"B1", q:"Can you ___ my little brother while I\u2019m out?", o:["look for","look after","look up","look into"], correct:"look after" },
+    { type:"choice", level:"B1", q:"She\u2019s really good ___ tennis and very interested ___ music.", o:["in / at","at / in","on / about","at / on"], correct:"at / in" },
+    { type:"choice", level:"B1", q:"I ___ him at the market yesterday.", o:["have seen","saw","have saw","had seen"], correct:"saw" },
+    { type:"choice", level:"B1", q:"Before you sign anything, you need to ___ a decision.", o:["do","take","make","have"], correct:"make" },
+    { type:"text", level:"B1", grade:"api", q:"Answer in one full sentence: \u2018What would you do if you won a lot of money?\u2019", target:"a sentence using the second conditional, e.g. \u2018I would \u2026\u2019 / \u2018I\u2019d \u2026\u2019", fallback:function(a){ return words(a) >= 3 && /\bwould\b|\u2019d\b|'d\b/i.test(a); } },
+    { type:"text", level:"B2", grade:"list", q:"Find and correct the mistake. Type the corrected sentence: \u2018She is work in a hospital.\u2019", accept:["she works in a hospital","she works in a hospital."] },
+    { type:"choice", level:"B2", q:"He asked me ___ I was feeling tired.", o:["that","what","if","which"], correct:"if" },
+    { type:"text", level:"B2", grade:"list", q:"Rewrite with the same meaning using the word DRIVEN. Fill the gap: \u2018A friendly taxi driver drove us into town.\u2019 \u2192 \u2018We ___ a friendly taxi driver.\u2019", accept:["were driven into town by"] },
+    { type:"choice", level:"B2", q:"The new High Line park is a remarkably ___ steel structure. (ATTRACT)", o:["attract","attraction","attractive","attractively"], correct:"attractive" },
+    { type:"choice", level:"C1", q:"\u2018I had never seen such a beautiful sight.\u2019 \u2192 \u2018Never ___ such a beautiful sight.\u2019", o:["I had seen","had I seen","did I see","I saw"], correct:"had I seen" },
+    { type:"text", level:"C1", grade:"list", q:"Rewrite this formally using inversion. Type the full sentence: \u2018You must not leave the building under any circumstances.\u2019", accept:["under no circumstances must you leave the building","under no circumstances must you leave the building.","under no circumstances may you leave the building"] }
   ];
+
   let i = 0, score = 0;
   const quiz = document.getElementById('quiz');
   const shell = '<div class="quiz-bar"><span id="qbar"></span></div>'
@@ -131,32 +167,118 @@
               + '<div class="quiz-q" id="qtext"></div>'
               + '<div class="quiz-opts" id="qopts"></div>';
 
+  function words(s){ return s.trim() ? s.trim().split(/\s+/).length : 0; }
+  function norm(s){ return s.toLowerCase().trim().replace(/\s+/g,' ').replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu,''); }
+
+  async function gradeApi(item, answer){
+    try {
+      if (GRADER_ENDPOINT) {
+        // PRODUCTION PATH — our serverless proxy holds the API key and returns
+        // { "result": "CORRECT" | "INCORRECT" }.
+        const res = await fetch(GRADER_ENDPOINT, {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body: JSON.stringify({ question:item.q, target:item.target, answer:answer })
+        });
+        if (!res.ok) throw new Error('grader status ' + res.status);
+        const data = await res.json();
+        const verdict = (data && (data.result || data.verdict) || '').toString();
+        if (/INCORRECT/i.test(verdict)) return false;
+        if (/CORRECT/i.test(verdict))   return true;
+        throw new Error('unparseable grader response');
+      } else {
+        // PREVIEW-ONLY PATH — direct call (the Claude preview injects auth).
+        // This fails on the live site, which is exactly why GRADER_ENDPOINT exists.
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json', 'anthropic-version':'2023-06-01' },
+          body: JSON.stringify({
+            model:'claude-sonnet-4-20250514',
+            max_tokens:16,
+            messages:[{ role:'user', content:
+              'You are a precise English examiner. Question shown to the student: "'+item.q+'". '
+              + 'A correct answer is '+item.target+'. The student wrote: "'+answer+'". '
+              + 'Decide whether the answer satisfies the target (ignore minor spelling and punctuation). '
+              + 'Reply with ONLY one word: CORRECT or INCORRECT.' }]
+          })
+        });
+        const data = await res.json();
+        let text = '';
+        if (data && Array.isArray(data.content)) text = data.content.map(function(b){ return b && b.text ? b.text : ''; }).join(' ');
+        if (/INCORRECT/i.test(text)) return false;
+        if (/CORRECT/i.test(text))   return true;
+        throw new Error('unparseable');
+      }
+    } catch (e) {
+      // Any failure (incl. the live direct-call CORS block) → lenient local check.
+      return item.fallback ? item.fallback(answer) : (words(answer) >= 3);
+    }
+  }
+
   function render(){
     const item = Q[i];
     document.getElementById('qbar').style.width = (i / Q.length * 100) + '%';
     document.getElementById('qcount').textContent = 'Question ' + (i + 1) + ' of ' + Q.length;
     document.getElementById('qtext').textContent = item.q;
+    if (item.type === 'text') renderText(item); else renderChoice(item);
+  }
+
+  function advance(){ i++; if (i < Q.length) render(); else result(); }
+
+  function renderChoice(item){
     const op = document.getElementById('qopts');
     op.innerHTML = '';
-    item.o.forEach(function(opt, idx){
+    item.o.forEach(function(opt){
       const b = document.createElement('button');
-      b.className = 'quiz-opt';
-      b.type = 'button';
-      b.textContent = opt;
+      b.className = 'quiz-opt'; b.type = 'button'; b.textContent = opt;
       b.addEventListener('click', function(){
-        if (idx === item.a) score++;
-        i++;
-        if (i < Q.length) { render(); } else { result(); }
+        if (opt === item.correct) score++;
+        advance();
       });
       op.appendChild(b);
     });
   }
 
+  function renderText(item){
+    const op = document.getElementById('qopts');
+    op.innerHTML = '';
+    const input = document.createElement('input');
+    input.type = 'text'; input.className = 'quiz-input';
+    input.placeholder = 'Type your answer\u2026';
+    input.setAttribute('autocomplete','off'); input.setAttribute('autocapitalize','off'); input.setAttribute('spellcheck','false');
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'quiz-submit'; btn.textContent = 'Submit';
+    const status = document.createElement('div');
+    status.className = 'quiz-status'; status.setAttribute('aria-live','polite');
+    op.appendChild(input); op.appendChild(btn); op.appendChild(status);
+    input.focus();
+
+    let busy = false;
+    async function submit(){
+      if (busy) return;
+      const val = input.value.trim();
+      if (!val){ input.classList.remove('shake'); void input.offsetWidth; input.classList.add('shake'); input.focus(); return; }
+      if (item.grade === 'list'){
+        const ok = item.accept.some(function(a){ return norm(a) === norm(val); });
+        if (ok) score++;
+        advance();
+      } else {
+        busy = true; input.disabled = true; btn.disabled = true;
+        btn.textContent = 'Checking\u2026'; status.textContent = 'Checking your answer\u2026';
+        const ok = await gradeApi(item, val);
+        if (ok) score++;
+        advance();
+      }
+    }
+    btn.addEventListener('click', submit);
+    input.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); submit(); } });
+  }
+
   function band(){
-    if (score <= 3)  return ["A1", "Beginner — Foundations", "You're right at the start, and that's a great place to begin. We'll build a solid foundation from the ground up — the everyday words, sounds, and structures you'll use most."];
-    if (score <= 5)  return ["A2", "Elementary", "You can handle everyday basics. The next step is stringing them together into connected, confident speech — and closing the small gaps that trip Arabic speakers up."];
-    if (score <= 8)  return ["B1", "Intermediate", "You can hold your own in familiar situations. Now we sharpen your accuracy and push toward genuine fluency, so English stops feeling like translation in your head."];
-    if (score <= 10) return ["B2", "Upper-Intermediate", "You communicate well across most topics. We'll polish the fine details that take you from good to genuinely fluent — and prepare you for exams like IELTS if that's your goal."];
+    if (score <= 4)  return ["A1", "Beginner — Foundations", "You're right at the start, and that's a great place to begin. We'll build a solid foundation from the ground up — the everyday words, sounds, and structures you'll use most."];
+    if (score <= 7)  return ["A2", "Elementary", "You can handle everyday basics. The next step is stringing them together into connected, confident speech — and closing the small gaps that trip Arabic speakers up."];
+    if (score <= 11) return ["B1", "Intermediate", "You can hold your own in familiar situations. Now we sharpen your accuracy and push toward genuine fluency, so English stops feeling like translation in your head."];
+    if (score <= 14) return ["B2", "Upper-Intermediate", "You communicate well across most topics. We'll polish the fine details that take you from good to genuinely fluent — and prepare you for exams like IELTS if that's your goal."];
     return ["C1", "Advanced", "You're already strong. From here it's all about nuance, precision, and the finer points that make your English sound effortless and natural."];
   }
 
