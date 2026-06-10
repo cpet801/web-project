@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
 <title>Pay for Your Lessons — English Mastered</title>
-<meta name="description" content="Choose your English lesson package and pay the way that suits you — card, PayPal, USDT, or local transfer (Whish, Western Union, OMT). Single, 5-lesson, and 10-lesson packages with Jana Malas.">
+<meta name="description" content="How payment works at English Mastered — package prices, the pay-direct discount, and secure card, PayPal, USDT, and local transfer options.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Pay for Your Lessons — English Mastered">
-<meta property="og:description" content="Choose your lesson package and pay your way — card, PayPal, USDT, or local transfer.">
+<meta property="og:description" content="Package prices, the pay-direct discount, and every way to pay — card, PayPal, USDT, or local transfer.">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://englishmastered.org/payments.html">
 <meta property="og:site_name" content="English Mastered">
@@ -26,6 +26,68 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+  /* ---- payments-page-only styles ---- */
+  .ptable-wrap{ background:var(--paper); border:1px solid var(--border); border-radius:16px;
+    padding:8px 22px 16px; overflow-x:auto; }
+  .ptable{ width:100%; border-collapse:collapse; font-size:1.02rem; min-width:480px; }
+  .ptable th{ font-size:.78rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--muted); text-align:left; padding:18px 12px 12px; border-bottom:2px solid var(--ink); line-height:1.35; }
+  .ptable th.num,.ptable td.num{ text-align:right; }
+  .ptable td{ padding:18px 12px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  .ptable tr:last-child td{ border-bottom:none; }
+  .pt-pkg{ font-weight:600; font-size:1.05rem; }
+  .pt-sub{ display:block; font-weight:400; font-size:.86rem; color:var(--muted); margin-top:4px; }
+  .pt-price{ font-family:'Fraunces',serif; font-optical-sizing:none;
+    font-variation-settings:"opsz" 144,"wght" 640,"SOFT" 10,"WONK" 1;
+    font-size:1.85rem; white-space:nowrap; color:var(--ink); }
+  .pt-std{ font-family:'Fraunces',serif; font-optical-sizing:none;
+    font-variation-settings:"opsz" 144,"wght" 520,"SOFT" 10,"WONK" 1;
+    font-size:1.4rem; color:var(--muted); white-space:nowrap; }
+  .pt-save{ display:inline-block; background:rgba(216,155,58,.18); color:var(--caramel-dark,#7a5410);
+    font-size:.82rem; font-weight:700; padding:4px 11px; border-radius:7px; white-space:nowrap; margin-top:6px; }
+  .pt-same{ display:inline-block; font-size:.88rem; color:var(--muted); white-space:nowrap; margin-top:6px; }
+  .pt-dir{ background:rgba(216,155,58,.07); }
+  .pt-foot{ font-size:.9rem; color:var(--muted); margin:16px 2px 4px; line-height:1.55; }
+
+  .payrow{ display:grid; grid-template-columns:1fr 120px auto; align-items:center; gap:18px;
+    padding:20px 4px; border-bottom:1px solid var(--border); }
+  .payrow:last-child{ border-bottom:none; }
+  .payrow-name{ font-weight:600; font-size:1.1rem; }
+  .payrow-price{ font-family:'Fraunces',serif; font-optical-sizing:none;
+    font-variation-settings:"opsz" 144,"wght" 640,"SOFT" 10,"WONK" 1;
+    font-size:1.85rem; text-align:right; white-space:nowrap; color:var(--ink); }
+  .payrow-btns{ display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; }
+  .payrow-btns .btn{ padding:13px 22px; font-size:.95rem; }
+  @media(max-width:620px){
+    .payrow{ grid-template-columns:1fr auto; gap:10px 14px; }
+    .payrow-btns{ grid-column:1 / -1; justify-content:stretch; }
+    .payrow-btns .btn{ flex:1; }
+  }
+
+  .fee-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:6px; }
+  .fee-card{ position:relative; background:var(--paper); border:1px solid var(--border);
+    border-radius:16px; padding:30px 30px 26px; overflow:hidden; }
+  .fee-card::before{ content:""; position:absolute; left:0; top:0; height:100%; width:4px;
+    background:linear-gradient(180deg,var(--gold),var(--blue,#0B86C3)); }
+  .fee-head{ display:flex; align-items:center; gap:13px; margin-bottom:4px; }
+  .fee-logo{ flex:0 0 auto; width:46px; height:46px; border-radius:50%;
+    background:var(--paper-2); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center; }
+  .fee-logo svg{ width:26px; height:26px; }
+  .fee-title{ font-family:'Fraunces',serif; font-optical-sizing:none;
+    font-variation-settings:"opsz" 144,"wght" 640,"SOFT" 10,"WONK" 1;
+    font-size:1.55rem; margin:0; color:var(--ink); letter-spacing:-.01em; }
+  .fee-sub{ font-size:.95rem; color:var(--ink); opacity:.6; margin:0 0 16px; }
+  .fee-steps{ list-style:none; margin:0 0 16px; padding:0; counter-reset:fs; }
+  .fee-steps li{ position:relative; padding:8px 0 8px 34px; font-size:1.02rem; line-height:1.45; color:var(--ink); }
+  .fee-steps li::before{ counter-increment:fs; content:counter(fs); position:absolute; left:0; top:6px;
+    width:22px; height:22px; border-radius:50%; background:rgba(216,155,58,.18);
+    font-family:'Fraunces',serif; font-weight:700; font-size:.8rem;
+    display:flex; align-items:center; justify-content:center; color:var(--ink); }
+  .fee-warn{ font-size:.88rem; opacity:.62; margin:.55rem 0 16px; line-height:1.4; }
+  @media(max-width:720px){ .fee-grid{ grid-template-columns:1fr; gap:16px; } .fee-card{ padding:26px 22px 22px; } }
+</style>
 </head>
 <body>
 
@@ -61,150 +123,14 @@
   <div class="wrap">
     <p class="kicker">Payment</p>
     <h1 class="wonk">Start your lessons</h1>
-    <p>Had your free call and ready to begin? Pick your package, then pay the way that suits you — by card, PayPal, USDT, or a local transfer.</p>
+    <p>Had your free call and ready to begin? Here's how payment works, what each package costs, and every way to pay.</p>
     <hr class="dash center">
   </div>
 </header>
 
-<!-- PACKAGES -->
+<!-- HOW IT WORKS + PRICE TABLE -->
 <section class="block" style="padding-top:24px;">
   <div class="wrap">
-    <div class="pricing">
-
-      <div class="price-card reveal">
-        <div class="pc-name">Single Lesson</div>
-        <div class="pc-price">$15 <span>/ lesson</span></div>
-        <p class="pc-methods">Same price with every payment method</p>
-        <ul class="pc-feat">
-          <li>60-minute one-to-one session</li>
-          <li>Fully personalised to your goals</li>
-          <li>Pay as you go — no commitment</li>
-        </ul>
-        <a href="https://buy.stripe.com/eVqcN5g7rgoqfDK3Lo4Ja03" class="btn btn-primary btn-block">Pay by card — $15</a>
-        <a href="https://www.paypal.com/ncp/payment/GF3GSWA6KDG6Y" class="btn btn-ghost btn-block" style="margin-top:10px;">Pay with PayPal</a>
-      </div>
-
-      <div class="price-card reveal">
-        <div class="pc-name">5-Lesson Package</div>
-        <span class="pc-was">$75 by card or PayPal</span>
-        <div class="pc-price">$70 <span>/ 5 lessons</span></div>
-        <div class="pc-save">Save $5 direct</div>
-        <p class="pc-methods">when you pay direct — Western Union/OMT, Whish, or USDT ↓</p>
-        <ul class="pc-feat">
-          <li>Everything in single lessons</li>
-          <li>A structured plan across 5 sessions</li>
-          <li>WhatsApp support between lessons</li>
-        </ul>
-        <a href="https://buy.stripe.com/bJeaEX9J32xA4Z6fu64Ja04 class="btn btn-primary btn-block">Pay by card — $75</a>
-        <a href="https://www.paypal.com/ncp/payment/BG8LYBRN3SLXA class="btn btn-ghost btn-block" style="margin-top:10px;">Pay with PayPal — $75</a>
-      </div>
-
-      <div class="price-card featured reveal">
-        <span class="badge">Best Value</span>
-        <div class="pc-name">10-Lesson Package</div>
-        <span class="pc-was">$135 by card or PayPal</span>
-        <div class="pc-price">$125 <span>/ 10 lessons</span></div>
-        <div class="pc-save">Save $10 direct</div>
-        <p class="pc-methods">when you pay direct — Western Union/OMT, Whish, or USDT ↓</p>
-        <ul class="pc-feat">
-          <li>Everything in the 5-lesson package</li>
-          <li>A structured plan across 10 sessions</li>
-          <li>Priority scheduling</li>
-        </ul>
-        <a href="https://buy.stripe.com/14A8wP6wRegigHO3Lo4Ja05" class="btn btn-gold btn-block">Pay by card — $135</a>
-        <a href="https://www.paypal.com/ncp/payment/Z5A7AYJ4BEESJ" class="btn btn-ghost btn-block" style="margin-top:10px;">Pay with PayPal — $135</a>
-      </div>
-
-    </div>
-    <p class="note">Card and PayPal are charged at the standard price and run through secure Stripe / PayPal checkout — your details never touch this site. Prefer the lower direct price? Pay by USDT or local transfer below — same lessons, fee-free. Packages are valid for four months; lessons can be rescheduled with 24 hours' notice.</p>
-  </div>
-</section>
-
-<!-- FEE-FREE WAYS TO PAY -->
-<section class="block" id="fee-free" style="background:var(--paper-2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <hr class="dash center">
-      <h2 class="serif">Fee-<span class="nowonk">f</span>ree ways to pay</h2>
-      <p>No processing fee — just send the amount for your package ($15, $70, or $125) and message Jana to confirm.</p>
-    </div>
-
-    <style>
-      .fee-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:6px}
-      .fee-card{position:relative;background:var(--paper,#fff);border:1px solid var(--border,#e7e0d0);
-        border-radius:16px;padding:30px 30px 26px;overflow:hidden}
-      .fee-card::before{content:"";position:absolute;left:0;top:0;height:100%;width:4px;
-        background:linear-gradient(180deg,var(--gold,#D89B3A),var(--blue,#0B86C3))}
-      .fee-head{display:flex;align-items:center;gap:13px;margin-bottom:4px}
-      .fee-logo{flex:0 0 auto;width:46px;height:46px;border-radius:50%;
-        background:var(--paper-2,#f6f1e7);border:1px solid var(--border,#e7e0d0);
-        display:flex;align-items:center;justify-content:center}
-      .fee-logo svg{width:26px;height:26px}
-      .fee-title{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.4rem;margin:0;
-        color:var(--ink,#101820);letter-spacing:-.01em}
-      .fee-sub{font-size:.9rem;color:var(--ink,#101820);opacity:.6;margin:0 0 16px}
-      .fee-steps{list-style:none;margin:0 0 16px;padding:0;counter-reset:fs}
-      .fee-steps li{position:relative;padding:7px 0 7px 32px;font-size:.97rem;line-height:1.45;
-        color:var(--ink,#101820)}
-      .fee-steps li::before{counter-increment:fs;content:counter(fs);position:absolute;left:0;top:6px;
-        width:22px;height:22px;border-radius:50%;background:rgba(216,155,58,.18);
-        font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:.8rem;
-        display:flex;align-items:center;justify-content:center;color:var(--ink,#101820)}
-      .wallet{display:block;font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace;
-        font-size:.85rem;word-break:break-all;background:var(--paper-2,#f6f1e7);
-        border:1px solid var(--border,#e7e0d0);border-radius:9px;padding:11px 13px;margin:4px 0 2px}
-      .fee-warn{font-size:.82rem;opacity:.62;margin:.55rem 0 16px;line-height:1.4}
-      @media(max-width:720px){.fee-grid{grid-template-columns:1fr;gap:16px}.fee-card{padding:26px 22px 22px}}
-    </style>
-
-    <div class="fee-grid">
-
-      <!-- USDT -->
-      <div class="fee-card reveal">
-        <div class="fee-head">
-          <span class="fee-logo"><svg fill="#26A17B" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Tether</title><path d="M18.7538 10.5176c0 .6251-2.2379 1.1483-5.2381 1.2812l.0028.0007c-.0848.0064-.5233.0325-1.5012.0325-.7778 0-1.33-.0233-1.5237-.0325-3.0059-.1322-5.2495-.6555-5.2495-1.2819s2.2436-1.149 5.2495-1.2834v2.0442c.1965.0142.7594.0474 1.5372.0474.9334 0 1.4008-.0389 1.4849-.0466V9.2356c2.9994.1337 5.2381.657 5.2381 1.282zm5.19.5466L12.1248 22.389a.1803.1803 0 0 1-.2496 0L.0562 11.0635a.1781.1781 0 0 1-.0382-.2079l4.3762-9.1921a.1767.1767 0 0 1 .1626-.1026h14.8878a.1768.1768 0 0 1 .1612.1032l4.3762 9.1922a.1782.1782 0 0 1-.0382.2079zm-4.478-.4038c0-.8068-2.5515-1.4799-5.9473-1.6369V7.195h4.186V4.4055H6.3076V7.195h4.1852v1.8286c-3.4018.1562-5.9601.83-5.9601 1.6376 0 .8075 2.5583 1.4806 5.9601 1.6376v5.8618h3.025v-5.8639c3.394-.1563 5.948-.8295 5.948-1.6363z"/></svg></span>
-          <h3 class="fee-title">Pay with USDT</h3>
-        </div>
-        <p class="fee-sub">Stablecoin &middot; no fee</p>
-        <ol class="fee-steps">
-          <li>Send the amount for your package — $15, $70, or $125 — in USDT.</li>
-          <li>Use the <strong>TRC-20 (Tron)</strong> network only.</li>
-          <li>Send to this wallet address:</li>
-        </ol>
-        <code class="wallet">USDT_WALLET_ADDRESS_HERE</code>
-        <p class="fee-warn">Only send USDT on the TRC-20 network, and double-check the address before sending — crypto transfers can't be reversed.</p>
-        <a href="https://wa.me/96171500874?text=Hi%20Jana%2C%20I've%20sent%20a%20USDT%20payment%20for%20my%20lessons." target="_blank" rel="noopener" class="btn btn-primary btn-block">Confirm USDT payment</a>
-      </div>
-
-      <!-- LOCAL TRANSFER -->
-      <div class="fee-card reveal">
-        <div class="fee-head">
-          <span class="fee-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#101820" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h14l-3.2-3.2M21 15H7l3.2 3.2"/></svg></span>
-          <h3 class="fee-title">Whish &middot; Western Union &middot; OMT</h3>
-        </div>
-        <p class="fee-sub">Cash &amp; wallet transfer &middot; no fee</p>
-        <ol class="fee-steps">
-          <li>Message Jana on WhatsApp and tell her which package you'd like.</li>
-          <li>She'll send the exact recipient details for Whish, Western Union, or OMT.</li>
-          <li>Make the transfer and share your reference number (the MTCN for Western Union).</li>
-          <li>She confirms it's received and books your first lesson.</li>
-        </ol>
-        <p class="fee-warn">Sending the details over WhatsApp keeps your transfer secure and makes sure the recipient name matches exactly.</p>
-        <a href="https://wa.me/96171500874?text=Hi%20Jana%2C%20I'd%20like%20to%20pay%20for%20lessons%20by%20local%20transfer.%20Could%20you%20send%20the%20details%3F" target="_blank" rel="noopener" class="btn btn-primary btn-block">Get transfer details</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- HOW PAYMENT WORKS -->
-<section class="block" id="after">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <hr class="dash center">
-      <h2 class="serif">How it works</h2>
-      <p>No accounts to set up, no waiting around.</p>
-    </div>
     <div class="steps">
       <div class="step reveal">
         <div class="step-num">1</div>
@@ -222,6 +148,121 @@
         <p>She'll book your first session and send everything you need to get started.</p>
       </div>
     </div>
+
+    <div class="ptable-wrap reveal" style="margin-top:26px;">
+      <table class="ptable">
+        <tr>
+          <th>Package</th>
+          <th class="num">Standard price<br>card or PayPal</th>
+          <th class="num pt-dir">Discounted price<br>pay direct</th>
+        </tr>
+        <tr>
+          <td class="pt-pkg">Single Lesson<span class="pt-sub">$15 per lesson</span></td>
+          <td class="num pt-std">$15</td>
+          <td class="num pt-dir"><span class="pt-price">$15</span><br><span class="pt-same">same price</span></td>
+        </tr>
+        <tr>
+          <td class="pt-pkg">5-Lesson Package<span class="pt-sub">$13 per lesson paid direct</span></td>
+          <td class="num pt-std">$70</td>
+          <td class="num pt-dir"><span class="pt-price">$65</span><br><span class="pt-save">Save $5</span></td>
+        </tr>
+        <tr>
+          <td class="pt-pkg">10-Lesson Package<span class="pt-sub">$11.50 per lesson paid direct</span></td>
+          <td class="num pt-std">$125</td>
+          <td class="num pt-dir"><span class="pt-price">$115</span><br><span class="pt-save">Save $10</span></td>
+        </tr>
+      </table>
+      <p class="pt-foot">Pay direct — Western Union/OMT, Whish, or USDT — and the processing saving is passed straight to you. Packages are valid for four months; lessons can be rescheduled with 24 hours' notice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEE-FREE WAYS TO PAY -->
+<section class="block" id="fee-free" style="background:var(--paper-2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <hr class="dash center">
+      <h2 class="serif">Fee-<span class="nowonk">f</span>ree ways to pay</h2>
+      <p>These methods skip the processing fees entirely — which is why they get the discounted price. Just send the discounted amount for your package ($15, $65, or $115) and message Jana to confirm.</p>
+    </div>
+
+    <div class="fee-grid">
+
+      <!-- USDT -->
+      <div class="fee-card reveal">
+        <div class="fee-head">
+          <span class="fee-logo"><svg fill="#26A17B" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Tether</title><path d="M18.7538 10.5176c0 .6251-2.2379 1.1483-5.2381 1.2812l.0028.0007c-.0848.0064-.5233.0325-1.5012.0325-.7778 0-1.33-.0233-1.5237-.0325-3.0059-.1322-5.2495-.6555-5.2495-1.2819s2.2436-1.149 5.2495-1.2834v2.0442c.1965.0142.7594.0474 1.5372.0474.9334 0 1.4008-.0389 1.4849-.0466V9.2356c2.9994.1337 5.2381.657 5.2381 1.282zm5.19.5466L12.1248 22.389a.1803.1803 0 0 1-.2496 0L.0562 11.0635a.1781.1781 0 0 1-.0382-.2079l4.3762-9.1921a.1767.1767 0 0 1 .1626-.1026h14.8878a.1768.1768 0 0 1 .1612.1032l4.3762 9.1922a.1782.1782 0 0 1-.0382.2079zm-4.478-.4038c0-.8068-2.5515-1.4799-5.9473-1.6369V7.195h4.186V4.4055H6.3076V7.195h4.1852v1.8286c-3.4018.1562-5.9601.83-5.9601 1.6376 0 .8075 2.5583 1.4806 5.9601 1.6376v5.8618h3.025v-5.8639c3.394-.1563 5.948-.8295 5.948-1.6363z"/></svg></span>
+          <h3 class="fee-title">Pay with USDT</h3>
+        </div>
+        <p class="fee-sub">Stablecoin &middot; discounted price</p>
+        <ol class="fee-steps">
+          <li>Message Jana on WhatsApp and she'll send the wallet address.</li>
+          <li>Send the discounted amount for your package — $15, $65, or $115 — in USDT on the <strong>TRC-20 (Tron)</strong> network only.</li>
+          <li>Share the transaction link or screenshot to confirm.</li>
+        </ol>
+        <!-- TODO: once the USDT wallet exists, replace step 1 with the address in a
+             monospace box, e.g. <code class="wallet">TXxxxx...</code> + copy advice. -->
+        <p class="fee-warn">Only send USDT on the TRC-20 network, and double-check the address before sending — crypto transfers can't be reversed.</p>
+        <a href="https://wa.me/96171500874?text=Hi%20Jana%2C%20I'd%20like%20to%20pay%20for%20lessons%20with%20USDT.%20Could%20you%20send%20the%20wallet%20address%3F" target="_blank" rel="noopener" class="btn btn-primary btn-block">Get the wallet address</a>
+      </div>
+
+      <!-- LOCAL TRANSFER -->
+      <div class="fee-card reveal">
+        <div class="fee-head">
+          <span class="fee-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#101820" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h14l-3.2-3.2M21 15H7l3.2 3.2"/></svg></span>
+          <h3 class="fee-title">Whish &middot; Western Union &middot; OMT</h3>
+        </div>
+        <p class="fee-sub">Cash &amp; wallet transfer &middot; discounted price</p>
+        <ol class="fee-steps">
+          <li>Message Jana on WhatsApp and tell her which package you'd like.</li>
+          <li>She'll send the exact recipient details for Whish, Western Union, or OMT.</li>
+          <li>Make the transfer and share your reference number (the MTCN for Western Union).</li>
+          <li>She confirms it's received and books your first lesson.</li>
+        </ol>
+        <p class="fee-warn">Sending the details over WhatsApp keeps your transfer secure and makes sure the recipient name matches exactly.</p>
+        <a href="https://wa.me/96171500874?text=Hi%20Jana%2C%20I'd%20like%20to%20pay%20for%20lessons%20by%20local%20transfer.%20Could%20you%20send%20the%20details%3F" target="_blank" rel="noopener" class="btn btn-primary btn-block">Get transfer details</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CARD / PAYPAL CHECKOUT -->
+<section class="block" id="checkout">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <hr class="dash center">
+      <h2 class="serif">Pay by card or PayPal</h2>
+      <p>Standard price &middot; secure Stripe and PayPal checkout &middot; instant receipt for you and Jana.</p>
+    </div>
+
+    <div class="ptable-wrap reveal" style="padding:10px 26px;">
+      <div class="payrow">
+        <span class="payrow-name">Single Lesson</span>
+        <span class="payrow-price">$15</span>
+        <span class="payrow-btns">
+          <a href="https://buy.stripe.com/eVqcN5g7rgoqfDK3Lo4Ja03" class="btn btn-primary">Pay by card</a>
+          <a href="https://www.paypal.com/ncp/payment/GF3GSWA6KDG6Y" class="btn btn-gold">Pay by PayPal</a>
+        </span>
+      </div>
+      <div class="payrow">
+        <span class="payrow-name">5-Lesson Package</span>
+        <span class="payrow-price">$70</span>
+        <span class="payrow-btns">
+          <a href="https://buy.stripe.com/dRm5kD8EZ0ps63aeq24Ja06" class="btn btn-primary">Pay by card</a>
+          <a href="https://www.paypal.com/ncp/payment/BG8LYBRN3SLXA" class="btn btn-gold">Pay by PayPal</a>
+        </span>
+      </div>
+      <div class="payrow">
+        <span class="payrow-name">10-Lesson Package</span>
+        <span class="payrow-price">$125</span>
+        <span class="payrow-btns">
+          <a href="https://buy.stripe.com/28E00j8EZegi8bieq24Ja07" class="btn btn-primary">Pay by card</a>
+          <a href="https://www.paypal.com/ncp/payment/Z5A7AYJ4BEESJ" class="btn btn-gold">Pay by PayPal</a>
+        </span>
+      </div>
+    </div>
+    <p class="pt-foot" style="text-align:center;">Prefer the discounted price? Use the fee-free methods above — same lessons, lower price.</p>
   </div>
 </section>
 
