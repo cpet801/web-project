@@ -114,6 +114,76 @@
   .track-name{ font-size:1.3rem; }
   .track-count{ margin-left:0; flex-basis:100%; }
 }
+
+/* ============================================================
+   CATEGORY SECTIONS + DECK/GUIDE PAIRS (4A)
+   ============================================================ */
+.cat{ max-width:1120px; }
+.cat + .cat{ margin-top:58px; }
+.cat-head{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:20px;
+  padding-left:16px; border-left:4px solid var(--trk,var(--deep)); }
+.cat-name{ font-family:'Fraunces',Georgia,serif; font-optical-sizing:none;
+  font-variation-settings:"opsz" 144,"wght" 620,"SOFT" 10,"WONK" 1;
+  font-size:1.6rem; color:var(--deep); margin:0; line-height:1.1; letter-spacing:-.01em; }
+.cat-sub{ font-size:.92rem; color:var(--muted); }
+.cat-cnt{ margin-left:auto; font-size:13px; color:var(--muted); white-space:nowrap; }
+
+.pairp{ background:var(--card); border:1px solid var(--border); border-left:4px solid var(--trk,var(--gold));
+  border-radius:15px; overflow:hidden; }
+.pairp + .pairp{ margin-top:16px; }
+.pairp-head{ padding:16px 22px; border-bottom:1px solid var(--border); display:flex; align-items:baseline; gap:13px; flex-wrap:wrap; }
+.pairp-head h3{ font-family:'Fraunces',Georgia,serif; font-optical-sizing:none;
+  font-variation-settings:"opsz" 144,"wght" 620,"SOFT" 10,"WONK" 1;
+  font-size:1.3rem; color:var(--deep); margin:0; line-height:1.1; }
+.pairp-head span{ font-size:.84rem; color:var(--muted); }
+.pairp-body{ display:grid; grid-template-columns:1fr 1fr; }
+.pairp-body.single{ grid-template-columns:1fr; }
+.phalf{ padding:20px 22px; display:flex; gap:18px; align-items:flex-start; }
+.phalf + .phalf{ border-left:1px solid var(--border); }
+.phalf.is-soon .pthumb{ opacity:.55; }
+
+/* mini document-cover thumbnails (scaled-down wk covers) */
+.pthumb{ position:relative; flex:0 0 172px; min-height:124px; border-radius:10px; overflow:hidden;
+  display:flex; flex-direction:column; justify-content:center; padding:16px 16px; }
+.pthumb.deck{ background-color:var(--deep); background-image:linear-gradient(155deg,#16212c,var(--deep) 96%); }
+.pthumb.deck::after{ content:""; position:absolute; right:-22px; top:-22px; width:88px; height:88px; border-radius:50%;
+  background:radial-gradient(circle, color-mix(in srgb,var(--trk) 42%,transparent), transparent 68%); }
+.pthumb.guide{ background:var(--pearl,#F7F3EC); border:1px solid var(--border); }
+.pthumb.guide::before{ content:""; position:absolute; top:0; left:0; right:0; height:6px; background:var(--trk); }
+.pt-kicker{ font-style:normal; font-size:8.5px; font-weight:700; letter-spacing:2px; text-transform:uppercase; line-height:1.4; }
+.pthumb.deck .pt-kicker{ color:var(--gold-bright,#E7B458); }
+.pthumb.guide .pt-kicker{ color:var(--trk); }
+.pt-title{ font-family:'Fraunces',Georgia,serif; font-optical-sizing:none;
+  font-variation-settings:"opsz" 144,"wght" 600,"SOFT" 10,"WONK" 1;
+  font-size:1.02rem; line-height:1.12; margin-top:7px; letter-spacing:-.01em; text-wrap:balance; }
+.pthumb.deck .pt-title{ color:#fff; }
+.pthumb.guide .pt-title{ color:var(--deep); }
+.pt-cap{ font-style:normal; font-size:8.5px; font-weight:600; letter-spacing:1.4px; text-transform:uppercase; margin-top:8px; }
+.pthumb.deck .pt-cap{ color:var(--on-deep-mute,#9DA7B1); }
+.pt-rule{ width:26px; height:3px; border-radius:2px; margin-top:9px; background:var(--trk); }
+.pt-lines{ display:flex; flex-direction:column; gap:5px; margin-top:11px; }
+.pt-lines i{ height:3px; border-radius:2px; background:color-mix(in srgb,var(--deep) 16%,transparent); }
+.pt-lines i:nth-child(1){ width:78%; } .pt-lines i:nth-child(2){ width:62%; } .pt-lines i:nth-child(3){ width:70%; }
+.pt-soon{ position:absolute; z-index:2; top:9px; right:9px; font-size:8.5px; font-weight:700; letter-spacing:1.2px;
+  text-transform:uppercase; color:#3a2708; background:var(--gold-bright,#E7B458); padding:4px 9px; border-radius:14px; }
+
+.pinfo{ display:flex; flex-direction:column; gap:8px; min-width:0; }
+.pmeta{ font-size:12.5px; color:var(--muted); letter-spacing:.02em; }
+.pmeta b{ color:var(--deep); }
+.pinfo p{ font-size:.9rem; color:var(--muted); line-height:1.55; margin:0; }
+.plink{ font-size:.9rem; font-weight:600; color:var(--gold-deep,#B87333); text-decoration:none; }
+.plink:hover{ text-decoration:underline; }
+.ppending{ font-size:.86rem; color:var(--muted); }
+
+@media(max-width:840px){
+  .pairp-body{ grid-template-columns:1fr; }
+  .phalf + .phalf{ border-left:none; border-top:1px solid var(--border); }
+}
+@media(max-width:520px){
+  .phalf{ flex-direction:column; }
+  .pthumb{ flex:none; width:100%; }
+  .cat-cnt{ margin-left:0; }
+}
 </style>
 </head>
 <body>
@@ -152,7 +222,7 @@
   <div class="wrap">
     <p class="kicker">Materials &amp; Samples</p>
     <h1 class="wonk">A Look Inside My Lessons</h1>
-    <p>Real materials I've built — the slide deck students learn from, paired with the lesson guide I teach from. Grouped by course and colour-coded by focus, so you can see how a whole programme fits together.</p>
+    <p>Real materials I've built — the slide deck students learn from, paired with the lesson guide I teach from. Grouped and colour-coded by focus, so you can see how a whole programme fits together.</p>
     <div class="sample-legend">
       <span class="lg"><i style="background:var(--pp-esp)"></i>Maritime / ESP</span>
       <span class="lg"><i style="background:var(--pp-general)"></i>General English</span>
@@ -168,174 +238,130 @@
 <section class="block">
   <div class="wrap">
 
-    <!-- TRACK 1 — MARITIME / ESP -->
-    <div class="track reveal" style="--trk:var(--pp-esp)">
-      <div class="track-head">
-        <span class="track-badge">ESP &middot; Maritime</span>
-        <span class="track-name">Maritime English <span>· English for Specific Purposes</span></span>
-        <span class="track-count">2 samples &middot; deck + guide</span>
+    <!-- ===== 1 · ENGLISH FOR SPECIFIC PURPOSES ===== -->
+    <div class="cat reveal" style="--trk:var(--pp-esp)">
+      <div class="cat-head">
+        <h2 class="cat-name">English for Specific Purposes (ESP)</h2>
+        <span class="cat-sub">English for your profession — maritime, hospitality, aviation &amp; more</span>
+        <span class="cat-cnt">2 samples &middot; deck + guide</span>
       </div>
-      <div class="wk-grid">
-
-        <!-- Maritime Business deck (REAL) -->
-        <article class="wk-card">
-          <div class="wk-thumb deck">
-            <span class="wk-format"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg>Slide deck</span>
-            <div class="mc">
-              <span class="mc-kicker">ESP &middot; English for Specific Purposes</span>
-              <span class="mc-title">Maritime Business English</span>
-              <span class="mc-rule"></span>
-              <span class="mc-cap">Brokers &middot; Charterers &middot; Cargo Ops</span>
-            </div>
+      <article class="pairp">
+        <div class="pairp-head"><h3>Maritime English</h3><span>Full professional course &middot; 6 modules &middot; Advanced</span></div>
+        <div class="pairp-body">
+          <div class="phalf">
+            <span class="pthumb deck"><i class="pt-kicker">Slide deck</i><b class="pt-title">Maritime Business English</b><i class="pt-cap">Brokers &middot; Charterers &middot; Cargo Ops</i><span class="pt-rule"></span></span>
+            <span class="pinfo">
+              <span class="pmeta"><b>22</b> slides &middot; Advanced</span>
+              <p>Professional communication for ship owners, brokers, charterers and cargo operations — six modules from chartering vocabulary and negotiation to formal email writing.</p>
+              <a class="plink" href="samples/Maritime-Business-English-Deck.pdf" target="_blank" rel="noopener">View deck &rarr;</a>
+            </span>
           </div>
-          <div class="wk-body">
-            <div class="wk-tags"><span class="wk-pill">ESP &middot; Advanced</span><span class="wk-metaline"><b>22</b> slides</span></div>
-            <h3>Maritime Business English</h3>
-            <p>Professional communication for ship owners, brokers, charterers and cargo operations — six modules running from chartering vocabulary and negotiation to formal email writing.</p>
-            <a class="wk-link" href="samples/Maritime-Business-English-Deck.pdf" target="_blank" rel="noopener">View sample <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <div class="phalf">
+            <span class="pthumb guide"><i class="pt-kicker">Lesson guide</i><b class="pt-title">Cargo, Claims &amp; Safety</b><span class="pt-lines"><i></i><i></i><i></i></span></span>
+            <span class="pinfo">
+              <span class="pmeta">Module 4 &middot; <b>22</b> pages</span>
+              <p>The teaching guide for a full module — cargo handling, damage claims and dispute resolution, with a grammar focus on past simple vs. continuous for incidents at sea.</p>
+              <a class="plink" href="samples/Maritime-Technical-English-Module-4.pdf" target="_blank" rel="noopener">View guide &rarr;</a>
+            </span>
           </div>
-        </article>
-
-        <!-- Maritime Technical module guide (REAL) -->
-        <article class="wk-card">
-          <div class="wk-thumb guide">
-            <span class="wk-format"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg>Lesson guide</span>
-            <div class="mc">
-              <span class="mc-kicker">ESP &middot; Module 4</span>
-              <span class="mc-title">Cargo, Claims &amp; Safety</span>
-              <span class="mc-lines"><i></i><i></i><i></i></span>
-            </div>
-          </div>
-          <div class="wk-body">
-            <div class="wk-tags"><span class="wk-pill">ESP &middot; Module 4</span><span class="wk-metaline"><b>22</b> pages</span></div>
-            <h3>Maritime Technical English: Module 4</h3>
-            <p>The teaching guide for a full module — cargo handling, damage claims and dispute resolution, with a grammar focus on past simple vs. past continuous for describing incidents at sea.</p>
-            <a class="wk-link" href="samples/Maritime-Technical-English-Module-4.pdf" target="_blank" rel="noopener">View sample <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </div>
-        </article>
-
-      </div>
+        </div>
+      </article>
     </div>
 
-    <!-- TRACK 2 — GENERAL ENGLISH / A2 -->
-    <div class="track reveal" style="--trk:var(--pp-general)">
-      <div class="track-head">
-        <span class="track-badge">General &middot; A2</span>
-        <span class="track-name">General English <span>· A2 elementary course</span></span>
-        <span class="track-count">2 samples &middot; deck + guide</span>
+    <!-- ===== 2 · GENERAL ENGLISH ===== -->
+    <div class="cat reveal" style="--trk:var(--pp-general)">
+      <div class="cat-head">
+        <h2 class="cat-name">General English</h2>
+        <span class="cat-sub">The everyday foundations — grammar, vocabulary and speaking, beginner to advanced</span>
+        <span class="cat-cnt">1 sample &middot; 1 in progress</span>
       </div>
-      <div class="wk-grid">
-
-        <!-- A2 Unit 5 deck (REAL) -->
-        <article class="wk-card">
-          <div class="wk-thumb deck">
-            <span class="wk-format"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg>Slide deck</span>
-            <div class="mc">
-              <span class="mc-kicker">General English &middot; A2</span>
-              <span class="mc-title">Unit 5: Home</span>
-              <span class="mc-rule"></span>
-              <span class="mc-cap">there is / are &middot; have got</span>
-            </div>
+      <article class="pairp">
+        <div class="pairp-head"><h3>A2 Elementary Course</h3><span>Unit 5: Home &middot; session 8 of the course</span></div>
+        <div class="pairp-body">
+          <div class="phalf">
+            <span class="pthumb deck"><i class="pt-kicker">Slide deck</i><b class="pt-title">Unit 5: Home</b><i class="pt-cap">there is / are &middot; have got</i><span class="pt-rule"></span></span>
+            <span class="pinfo">
+              <span class="pmeta"><b>47</b> slides &middot; A2</span>
+              <p>Describing your home with <i>there is / there are</i>, <i>have got</i> and modifiers — building to an informal-email writing task.</p>
+              <a class="plink" href="samples/A2-Unit-5-Home-Deck.pdf" target="_blank" rel="noopener">View deck &rarr;</a>
+            </span>
           </div>
-          <div class="wk-body">
-            <div class="wk-tags"><span class="wk-pill">A2 &middot; Unit 5</span><span class="wk-metaline"><b>47</b> slides</span></div>
-            <h3>A2 General English: Unit 5 — Home</h3>
-            <p>The eighth session of the A2 course: describing your home with <i>there is / there are</i>, <i>have got</i> and modifiers — building to an informal-email writing task.</p>
-            <a class="wk-link" href="samples/A2-Unit-5-Home-Deck.pdf" target="_blank" rel="noopener">View sample <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <div class="phalf is-soon">
+            <span class="pthumb guide"><span class="pt-soon">Coming soon</span><i class="pt-kicker">Lesson guide</i><b class="pt-title">Unit 5: Home</b><span class="pt-lines"><i></i><i></i><i></i></span></span>
+            <span class="pinfo">
+              <span class="pmeta">A2 &middot; in progress</span>
+              <p>The teacher's companion to the Unit 5 slides — lesson map, board work, drills and homework, written the same way as the Maritime module guide.</p>
+              <span class="ppending">Being built now</span>
+            </span>
           </div>
-        </article>
-
-        <!-- A2 Unit 5 lesson guide (COMING SOON) -->
-        <article class="wk-card is-soon">
-          <div class="wk-thumb guide">
-            <span class="wk-format"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg>Lesson guide</span>
-            <span class="wk-soonchip">Coming soon</span>
-            <div class="mc">
-              <span class="mc-kicker">General English &middot; A2</span>
-              <span class="mc-title">Unit 5: Home</span>
-              <span class="mc-lines"><i></i><i></i><i></i></span>
-            </div>
-          </div>
-          <div class="wk-body">
-            <div class="wk-tags"><span class="wk-pill">A2 &middot; Unit 5</span><span class="wk-metaline">In progress</span></div>
-            <h3>A2 General English: Unit 5 — Lesson Guide</h3>
-            <p>The teacher's companion to the Unit 5 slides — lesson map, board work, drills and homework, written the same way as the Maritime module guide.</p>
-            <span class="wk-pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Being built now</span>
-          </div>
-        </article>
-
-      </div>
+        </div>
+      </article>
     </div>
 
-    <!-- TRACK 3 — IN PROGRESS -->
-    <div class="track reveal" style="--trk:var(--deep)">
-      <div class="track-head">
-        <span class="track-badge">In progress</span>
-        <span class="track-name">More samples on the way <span>· across the other courses</span></span>
-        <span class="track-count">3 samples &middot; in progress</span>
+    <!-- ===== 3 · IELTS ===== -->
+    <div class="cat reveal" style="--trk:var(--pp-ielts)">
+      <div class="cat-head">
+        <h2 class="cat-name">IELTS</h2>
+        <span class="cat-sub">Exam preparation — band-focused writing, speaking, reading and listening</span>
+        <span class="cat-cnt">In progress</span>
       </div>
-      <div class="wk-grid">
+      <article class="pairp">
+        <div class="pairp-head"><h3>IELTS Writing</h3><span>Task 2 &middot; B2&ndash;C1</span></div>
+        <div class="pairp-body single">
+          <div class="phalf is-soon">
+            <span class="pthumb deck"><span class="pt-soon">Coming soon</span><i class="pt-kicker">Slide deck</i><b class="pt-title">Task 2 Masterclass</b><i class="pt-cap">Band-7 essay structure</i><span class="pt-rule"></span></span>
+            <span class="pinfo">
+              <span class="pmeta">B2&ndash;C1 &middot; in progress</span>
+              <p>Band-7 essay structure, linking language, and the mistakes Arabic speakers make most — with annotated model answers.</p>
+              <span class="ppending">Being built now</span>
+            </span>
+          </div>
+        </div>
+      </article>
+    </div>
 
-        <!-- IELTS (COMING SOON) -->
-        <article class="wk-card is-soon" style="--trk:var(--pp-ielts)">
-          <div class="wk-thumb deck">
-            <span class="wk-format"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg>Slide deck</span>
-            <span class="wk-soonchip">Coming soon</span>
-            <div class="mc">
-              <span class="mc-kicker">Exam Prep &middot; IELTS</span>
-              <span class="mc-title">Writing: Task 2</span>
-              <span class="mc-rule"></span>
-              <span class="mc-cap">Band-7 essay structure</span>
-            </div>
-          </div>
-          <div class="wk-body">
-            <div class="wk-tags"><span class="wk-pill">IELTS &middot; B2–C1</span><span class="wk-metaline">In progress</span></div>
-            <h3>IELTS Writing: Task 2 Masterclass</h3>
-            <p>Band-7 essay structure, linking language, and the mistakes Arabic speakers make most — with annotated model answers.</p>
-            <span class="wk-pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Being built now</span>
-          </div>
-        </article>
-
-        <!-- Business (COMING SOON) -->
-        <article class="wk-card is-soon" style="--trk:var(--pp-biz)">
-          <div class="wk-thumb guide">
-            <span class="wk-format"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg>Lesson guide</span>
-            <span class="wk-soonchip">Coming soon</span>
-            <div class="mc">
-              <span class="mc-kicker">Business English</span>
-              <span class="mc-title">Email Etiquette</span>
-              <span class="mc-lines"><i></i><i></i><i></i></span>
-            </div>
-          </div>
-          <div class="wk-body">
-            <div class="wk-tags"><span class="wk-pill">Business &middot; B1+</span><span class="wk-metaline">In progress</span></div>
-            <h3>Business Email Etiquette</h3>
-            <p>Tone, openings and sign-offs for professional English — opening lines, polite requests and clean closings for the international workplace.</p>
-            <span class="wk-pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Being built now</span>
-          </div>
-        </article>
-
-        <!-- Conversation (COMING SOON) -->
-        <article class="wk-card is-soon" style="--trk:var(--pp-conv)">
-          <div class="wk-thumb deck">
-            <span class="wk-format"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg>Slide deck</span>
-            <span class="wk-soonchip">Coming soon</span>
-            <div class="mc">
-              <span class="mc-kicker">Conversation</span>
-              <span class="mc-title">Everyday Talk</span>
-              <span class="mc-rule"></span>
-              <span class="mc-cap">B1–B2 fluency</span>
-            </div>
-          </div>
-          <div class="wk-body">
-            <div class="wk-tags"><span class="wk-pill">Conversation &middot; B1–B2</span><span class="wk-metaline">In progress</span></div>
-            <h3>Everyday Conversation: B1–B2</h3>
-            <p>Real-world prompts and natural phrases to stop translating in your head and just speak — the kind of fluency work we do live in lessons.</p>
-            <span class="wk-pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Being built now</span>
-          </div>
-        </article>
-
+    <!-- ===== 4 · BUSINESS ===== -->
+    <div class="cat reveal" style="--trk:var(--pp-biz)">
+      <div class="cat-head">
+        <h2 class="cat-name">Business English</h2>
+        <span class="cat-sub">Professional communication — emails, meetings and presentations</span>
+        <span class="cat-cnt">In progress</span>
       </div>
+      <article class="pairp">
+        <div class="pairp-head"><h3>Business Email Etiquette</h3><span>The international workplace &middot; B1+</span></div>
+        <div class="pairp-body single">
+          <div class="phalf is-soon">
+            <span class="pthumb guide"><span class="pt-soon">Coming soon</span><i class="pt-kicker">Lesson guide</i><b class="pt-title">Email Etiquette</b><span class="pt-lines"><i></i><i></i><i></i></span></span>
+            <span class="pinfo">
+              <span class="pmeta">B1+ &middot; in progress</span>
+              <p>Tone, openings and sign-offs for professional English — opening lines, polite requests and clean closings for the international workplace.</p>
+              <span class="ppending">Being built now</span>
+            </span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ===== 5 · CONVERSATION ===== -->
+    <div class="cat reveal" style="--trk:var(--pp-conv)">
+      <div class="cat-head">
+        <h2 class="cat-name">Conversation</h2>
+        <span class="cat-sub">Speaking fluency — natural everyday English, without translating in your head</span>
+        <span class="cat-cnt">In progress</span>
+      </div>
+      <article class="pairp">
+        <div class="pairp-head"><h3>Everyday Conversation</h3><span>B1&ndash;B2 fluency</span></div>
+        <div class="pairp-body single">
+          <div class="phalf is-soon">
+            <span class="pthumb deck"><span class="pt-soon">Coming soon</span><i class="pt-kicker">Slide deck</i><b class="pt-title">Everyday Talk</b><i class="pt-cap">B1&ndash;B2 fluency</i><span class="pt-rule"></span></span>
+            <span class="pinfo">
+              <span class="pmeta">B1&ndash;B2 &middot; in progress</span>
+              <p>Real-world prompts and natural phrases to stop translating in your head and just speak — the kind of fluency work we do live in lessons.</p>
+              <span class="ppending">Being built now</span>
+            </span>
+          </div>
+        </div>
+      </article>
     </div>
 
     <p class="note">These are real samples of the materials I create. Your plan is always built around your goals, your level, and what you need English for — these just show the kind of work you can expect.</p>
