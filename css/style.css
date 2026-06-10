@@ -693,3 +693,46 @@ body{ overflow-x: clip; }
   .foot-mark{ height: 42px; }
   .foot-word{ font-size: 21px; }
 }
+
+/* ============================================================
+   GENERAL ENGLISH  —  new foundational goal  (appended, wins cascade)
+   Its own colour: a deep emerald that stands apart from the five
+   WARM goal hues (gold / orange / slate / rust / pink). Being the
+   lone cool tone, it reads as "the calm, all-round base the other
+   goals are built on" — which is exactly what it is.
+   ============================================================ */
+:root{ --pp-general:#2E6F5E; }
+
+/* Services → Goals list: emerald purpose dot */
+.eml-grid li.pp-general .eml-dot{
+  background:var(--pp-general);
+  box-shadow:0 0 0 4px color-mix(in srgb, var(--pp-general) 15%, transparent);
+}
+
+/* Home → "What Jana Helps With": General English is a FULL-WIDTH
+   foundation card sitting above the four specialised goals. */
+.card-item.gen{ --bar:var(--pp-general); }
+.card-item.gen.foundation{
+  grid-column:1 / -1;
+  display:flex; align-items:center; gap:28px;
+}
+.card-item.gen.foundation .card-icon{ margin-bottom:0; flex:0 0 auto; }
+.card-item.gen.foundation .gen-body{ flex:1 1 auto; }
+.card-item.gen.foundation .gen-body h3{ margin:2px 0 8px; }
+.card-item.gen.foundation .gen-body p{ max-width:62ch; }
+@media (max-width:700px){
+  .card-item.gen.foundation{ flex-direction:column; align-items:flex-start; gap:16px; }
+}
+
+/* ---- Two-tier (dual) pricing: direct headline + struck standard price ---- */
+.pc-was{ display:block; font-family:'Fraunces',serif; font-optical-sizing:auto;
+  font-variation-settings:"wght" 560,"SOFT" 10,"WONK" 1; font-size:1.2rem; line-height:1;
+  color:var(--muted); text-decoration:line-through; text-decoration-thickness:1.5px;
+  text-decoration-color:rgba(110,99,88,.55); margin-bottom:9px; }
+.price-card.featured .pc-was{ color:var(--on-deep-mute); text-decoration-color:rgba(157,167,177,.5); }
+.pc-save{ display:inline-block; margin-top:12px; padding:4px 11px; border-radius:7px;
+  background:rgba(216,155,58,.16); color:var(--caramel-dark);
+  font-family:'Public Sans',sans-serif; font-size:12px; font-weight:700; letter-spacing:.02em; }
+.price-card.featured .pc-save{ background:rgba(216,155,58,.22); color:var(--gold); }
+.pc-methods{ font-size:13px; line-height:1.4; color:var(--muted); margin-top:12px; }
+.price-card.featured .pc-methods{ color:var(--on-deep-mute); }
