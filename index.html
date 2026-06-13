@@ -13,19 +13,21 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://englishmastered.org/">
 <meta property="og:site_name" content="English Mastered">
-<meta property="og:image" content="https://englishmastered.org/img/og-cover.png">
+<meta property="og:image" content="https://englishmastered.org/img/og-home.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="English Mastered — online English coaching with Jana Malas">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://englishmastered.org/img/og-cover.png">
+<meta name="twitter:title" content="English Mastered — Online English Coaching with Jana Malas">
+<meta name="twitter:description" content="Personalised online English coaching with Jana Malas — IELTS prep, Business English, and conversational fluency for Arabic speakers.">
+<meta name="twitter:image" content="https://englishmastered.org/img/og-home.png">
 <meta name="theme-color" content="#101820">
 <link rel="canonical" href="https://englishmastered.org/">
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="img/jana-hero.jpg" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,10,1;1,9..144,400..700,10,1&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/jana-hero.webp" type="image/webp" fetchpriority="high">
 <link rel="stylesheet" href="css/style.css">
 <script type="application/ld+json">
 {
@@ -37,20 +39,27 @@
       "name": "English Mastered",
       "alternateName": "English Mastered with Jana Malas",
       "url": "https://englishmastered.org/",
-      "logo": "https://englishmastered.org/img/em-icon.png",
-      "image": "https://englishmastered.org/img/og-cover.png",
+      "logo": { "@type": "ImageObject", "url": "https://englishmastered.org/img/em-icon.png" },
+      "image": "https://englishmastered.org/img/og-home.png",
       "description": "Personalised online English coaching for Arabic speakers — IELTS preparation, Business English, and conversational fluency, taught one-to-one by Jana Malas.",
       "email": "jana@englishmastered.org",
       "telephone": "+96171500874",
-      "founder": { "@type": "Person", "name": "Jana Malas" },
+      "founder": { "@type": "Person", "name": "Jana Malas", "@id": "https://englishmastered.org/about.html#jana" },
       "foundingDate": "2021",
       "areaServed": "Worldwide",
       "priceRange": "$$",
       "knowsLanguage": ["en", "ar"],
       "sameAs": [
         "https://instagram.com/english_mastered",
-        "https://wa.me/96171500874"
-      ]
+        "https://wa.me/96171500874",
+        "https://www.facebook.com/profile.php?id=100077407694745"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "ratingCount": "200"
+      }
     },
     {
       "@type": "WebSite",
@@ -59,6 +68,12 @@
       "name": "English Mastered",
       "inLanguage": "en",
       "publisher": { "@id": "https://englishmastered.org/#business" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishmastered.org/" }
+      ]
     }
   ]
 }
@@ -77,8 +92,8 @@
 <!-- NAV -->
 <nav>
   <div class="wrap nav-inner">
-    <a class="brand" href="index.html">
-      <img class="brand-logo" src="img/em-icon.png" alt="">
+    <a class="brand" href="/">
+      <img class="brand-logo" src="img/em-icon.png" width="56" height="56" alt="">
       <span class="brand-text">
         <span class="b1">English Mastered</span>
       </span>
@@ -102,7 +117,7 @@
       <p class="kicker">THE ARABIC SPEAKER'S ENGLISH COACH</p>
       <h1 class="wonk">Speak English<br>with con<span class="nowonk">f</span>idence.</h1>
       <p class="sub serif">Most approaches to English teaching weren't designed for Arabic speakers. Mine are.</p>
-      <p class="lead">I'm Jana, an English coach from Lebanon and a native Arabic speaker. I created English Mastered because I know what it feels like to study for years and still freeze when it's time to speak. That experience is what makes my coaching different.</p>
+      <p class="lead">I'm <a class="tlink" href="about.html">Jana</a>, an English coach from Lebanon and a native Arabic speaker. I created English Mastered because I know what it feels like to study for years and still freeze when it's time to speak. That experience is what makes my coaching different.</p>
       <p class="lead">My goal is simple: to get you using English with confidence. Whether you're feeling behind on IELTS preparation, have an exam coming up fast, or need to ace a job interview, you don't need an app or a crowded class. You need a coach who builds a plan around you — your background, goals, and timeline.</p>
       <div class="btns">
         <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-primary">Book a Free Call</a>
@@ -111,7 +126,10 @@
     </div>
     <div class="hero-visual">
       <div class="photo-panel">
-        <img src="img/jana-hero.jpg" alt="Jana Malas, English coach" class="photo-img" width="632" height="842" fetchpriority="high" decoding="async" style="object-position: center 30%;">
+        <picture>
+          <source srcset="img/jana-hero.webp" type="image/webp">
+          <img src="img/jana-hero.jpg" alt="Jana Malas, English coach" class="photo-img" width="632" height="842" fetchpriority="high" decoding="async" style="object-position: center 30%;">
+        </picture>
       </div>
       <div class="chip chip-1">
         <div class="big">7+</div>
@@ -180,25 +198,26 @@
     <div class="steps four">
       <div class="step reveal">
         <div class="step-num">1</div>
-        <h4>Find your level</h4>
-        <p>Take the quick level check so we know your starting point — it takes about five minutes.</p>
+        <h3>Find your level</h3>
+        <p><a class="tlink" href="level-test.html">Take the quick level check</a> so we know your starting point — it takes about five minutes.</p>
       </div>
       <div class="step reveal">
         <div class="step-num">2</div>
-        <h4>Book a free call</h4>
+        <h3>Book a free call</h3>
         <p>A relaxed 15-minute video chat where Jana confirms your level and learns your goals.</p>
       </div>
       <div class="step reveal">
         <div class="step-num">3</div>
-        <h4>Get your plan</h4>
+        <h3>Get your plan</h3>
         <p>Jana builds a plan around your exact needs and the habits holding you back — not a generic syllabus.</p>
       </div>
       <div class="step reveal">
         <div class="step-num">4</div>
-        <h4>Start learning</h4>
+        <h3>Start learning</h3>
         <p>One-to-one lessons via Zoom, Teams, or Webex, with materials and support between sessions.</p>
       </div>
     </div>
+    <p style="text-align:center; margin-top:18px;"><a class="tlink" href="start.html">See the full step-by-step &rarr;</a></p>
   </div>
 </section>
 
@@ -249,6 +268,7 @@
       </div>
       <div class="trot-dots" id="trotDots" role="tablist" aria-label="Choose a testimonial"></div>
     </div>
+    <p style="text-align:center; margin-top:18px;"><a class="tlink" href="samples.html">See what lessons look like &rarr;</a></p>
   </div>
 </section>
 
@@ -267,30 +287,31 @@
   <div class="foot-rule"></div>
   <div class="wrap foot-inner">
     <div class="foot-brand">
-      <a class="foot-lockup" href="index.html">
-        <img class="foot-mark" src="img/em-icon.png" alt="">
+      <a class="foot-lockup" href="/">
+        <picture><source srcset="img/em-icon.webp" type="image/webp"><img class="foot-mark" src="img/em-icon.png" width="40" height="40" loading="lazy" alt=""></picture>
         <span class="foot-word">English Mastered</span>
       </a>
       <div class="b2">Personalised online English coaching with Jana Malas — for Arabic speakers ready to master the language.</div>
     </div>
     <div class="foot-col">
       <h5>Explore</h5>
-      <a href="start.html">How It Works</a>
+      <a href="start.html">How Lessons Work</a>
       <a href="level-test.html">Find Your Level</a>
       <a href="services.html">Services</a>
       <a href="payments.html">Pay for Lessons</a>
       <a href="samples.html">Sample Lessons</a>
-      <a href="about.html">About Jana</a>
+      <a href="about.html">Meet Your Coach</a>
     </div>
     <div class="foot-col">
       <h5>Get in touch</h5>
       <a href="book.html">Book a free call</a>
       <a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="/cdn-cgi/l/email-protection#ed878c838cad88838a81849e85808c9e99889f8889c3829f8a">Email</a>
+      <a href="mailto:jana@englishmastered.org">Email</a>
       <a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a>
     </div>
   </div>
-  <div class="foot-base"><div class="wrap">© 2025 English Mastered — Jana Malas</div></div>
+  <div class="foot-base"><div class="wrap">&copy; 2025–2026 English Mastered — Jana Malas</div></div>
 </footer>
 
 <!-- WHATSAPP -->
@@ -298,7 +319,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28" fill="white"><path d="M16 0C7.16 0 0 7.16 0 16c0 2.82.74 5.47 2.03 7.77L0 32l8.47-2.02A16 16 0 1016 0zm0 29.33a13.27 13.27 0 01-6.78-1.86l-.49-.29-5.03 1.2 1.22-4.91-.32-.5A13.24 13.24 0 012.67 16C2.67 8.64 8.64 2.67 16 2.67S29.33 8.64 29.33 16 23.36 29.33 16 29.33z"/></svg>
 </a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   const obs = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.15});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
