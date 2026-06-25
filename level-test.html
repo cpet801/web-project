@@ -69,6 +69,28 @@
   .quiz-status{ font-size:13px; color:var(--muted); min-height:18px; }
   .quiz-input.shake{ animation:quizShake .35s; border-color:var(--caramel); }
   @keyframes quizShake{ 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+  /* results: keep / download / print / email (uses existing site tokens) */
+  .result-tools{ margin:24px auto 0; max-width:520px; text-align:left;
+    border-top:1px solid var(--border); padding-top:20px; }
+  .result-tools h4{ font-family:'Public Sans',sans-serif; font-size:12px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--muted); font-weight:700; margin:0 0 12px; }
+  .result-tools-row{ display:flex; gap:10px; flex-wrap:wrap; margin:0 0 14px; }
+  .result-btn{ flex:1 1 auto; background:var(--paper); color:var(--deep); border:1.5px solid var(--border);
+    border-radius:10px; padding:11px 18px; font-size:14px; font-weight:600; font-family:'Public Sans',sans-serif;
+    cursor:pointer; transition:border-color .2s ease, background .2s ease, transform .2s ease; }
+  .result-btn:hover{ border-color:var(--caramel); transform:translateY(-1px); }
+  .result-email{ display:flex; gap:10px; flex-wrap:wrap; align-items:flex-start; }
+  .result-email .quiz-input{ flex:1 1 180px; padding:12px 16px; font-size:15px; }
+  .result-email .quiz-submit{ flex:0 0 auto; align-self:auto; padding:13px 22px; }
+  .result-msg{ width:100%; font-size:13px; min-height:18px; margin-top:4px; color:var(--muted); }
+  .result-msg.ok{ color:var(--deep); }
+  .result-msg.err{ color:#9E472A; }
+  @media print{
+    .brandbar, nav, .page-hero, .quiz-note, footer, .wa-btn,
+    .quiz-actions, .result-tools, .tlink{ display:none !important; }
+    body{ background:#fff; }
+    .quiz-result{ box-shadow:none !important; border:0 !important; }
+  }
 </style>
 </head>
 <body>
@@ -190,6 +212,8 @@
   ];
 
   let i = 0, score = 0;
+  const transcript = [];
+  let lastBand = null;
   const quiz = document.getElementById('quiz');
   const shell = '<div class="quiz-bar"><span id="qbar"></span></div>'
               + '<div class="quiz-count" id="qcount"></div>'
@@ -199,11 +223,23 @@
   function words(s){ return s.trim() ? s.trim().split(/\s+/).length : 0; }
   function norm(s){ return s.toLowerCase().trim().replace(/\s+/g,' ').replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu,''); }
 
+  function correctAnswerOf(item){
+    if (item.type === 'choice') return item.correct;
+    if (item.accept) return item.accept.join('   OR   ');
+    return item.target;
+  }
+  function record(item, answer, ok, extra){
+    transcript.push(Object.assign({
+      n: i + 1, level: item.level, type: item.type, q: item.q,
+      answer: answer, correctAnswer: correctAnswerOf(item), ok: ok
+    }, extra || {}));
+  }
+
   async function gradeApi(item, answer){
     try {
       if (GRADER_ENDPOINT) {
         // PRODUCTION PATH — our serverless proxy holds the API key and returns
-        // { "result": "CORRECT" | "INCORRECT" }.
+        // { result, model, prompt, modelText }.
         const res = await fetch(GRADER_ENDPOINT, {
           method:'POST',
           headers:{ 'Content-Type':'application/json' },
@@ -212,17 +248,26 @@
         if (!res.ok) throw new Error('grader status ' + res.status);
         const data = await res.json();
         const verdict = (data && (data.result || data.verdict) || '').toString();
-        if (/INCORRECT/i.test(verdict)) return false;
-        if (/CORRECT/i.test(verdict))   return true;
-        throw new Error('unparseable grader response');
+        if (/LIMIT/i.test(verdict)) {
+          const ok = item.fallback ? item.fallback(answer) : (words(answer) >= 3);
+          return { ok:ok, via:'local fallback (daily AI cap reached)' };
+        }
+        let ok;
+        if (/INCORRECT/i.test(verdict)) ok = false;
+        else if (/CORRECT/i.test(verdict)) ok = true;
+        else throw new Error('unparseable grader response');
+        return {
+          ok: ok,
+          via: 'AI grader (' + (data.model || 'Claude Haiku') + ' via em-grader Worker)',
+          prompt: (data.prompt || ''), model: (data.model || ''), raw: (data.modelText || verdict)
+        };
       } else {
         // PREVIEW-ONLY PATH — direct call (the Claude preview injects auth).
-        // This fails on the live site, which is exactly why GRADER_ENDPOINT exists.
         const res = await fetch('https://api.anthropic.com/v1/messages', {
           method:'POST',
           headers:{ 'Content-Type':'application/json', 'anthropic-version':'2023-06-01' },
           body: JSON.stringify({
-            model:'claude-sonnet-4-20250514',
+            model:'claude-haiku-4-5',
             max_tokens:16,
             messages:[{ role:'user', content:
               'You are a precise English examiner. Question shown to the student: "'+item.q+'". '
@@ -234,13 +279,16 @@
         const data = await res.json();
         let text = '';
         if (data && Array.isArray(data.content)) text = data.content.map(function(b){ return b && b.text ? b.text : ''; }).join(' ');
-        if (/INCORRECT/i.test(text)) return false;
-        if (/CORRECT/i.test(text))   return true;
-        throw new Error('unparseable');
+        let ok;
+        if (/INCORRECT/i.test(text)) ok = false;
+        else if (/CORRECT/i.test(text)) ok = true;
+        else throw new Error('unparseable');
+        return { ok:ok, via:'AI grader (preview direct call)', prompt:'(graded in preview)', model:'claude-haiku-4-5', raw:text };
       }
     } catch (e) {
       // Any failure (incl. the live direct-call CORS block) → lenient local check.
-      return item.fallback ? item.fallback(answer) : (words(answer) >= 3);
+      const ok = item.fallback ? item.fallback(answer) : (words(answer) >= 3);
+      return { ok:ok, via:'local fallback (AI unavailable)' };
     }
   }
 
@@ -261,7 +309,9 @@
       const b = document.createElement('button');
       b.className = 'quiz-opt'; b.type = 'button'; b.textContent = opt;
       b.addEventListener('click', function(){
-        if (opt === item.correct) score++;
+        const ok = (opt === item.correct);
+        record(item, opt, ok, { via:'multiple choice (local check)' });
+        if (ok) score++;
         advance();
       });
       op.appendChild(b);
@@ -289,13 +339,15 @@
       if (!val){ input.classList.remove('shake'); void input.offsetWidth; input.classList.add('shake'); input.focus(); return; }
       if (item.grade === 'list'){
         const ok = item.accept.some(function(a){ return norm(a) === norm(val); });
+        record(item, val, ok, { via:'exact match (local check)' });
         if (ok) score++;
         advance();
       } else {
         busy = true; input.disabled = true; btn.disabled = true;
         btn.textContent = 'Checking\u2026'; status.textContent = 'Checking your answer\u2026';
-        const ok = await gradeApi(item, val);
-        if (ok) score++;
+        const d = await gradeApi(item, val);
+        record(item, val, d.ok, { via:d.via, aiPrompt:d.prompt, aiModel:d.model, aiRaw:d.raw });
+        if (d.ok) score++;
         advance();
       }
     }
@@ -312,7 +364,7 @@
   }
 
   function result(){
-    const r = band();
+    const r = band(); lastBand = r;
     quiz.innerHTML = '<div class="quiz-result">'
       + '<div class="quiz-level">' + r[0] + '</div>'
       + '<div class="quiz-level-name">' + r[1] + '</div>'
@@ -322,11 +374,148 @@
       + '<a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config=\'{"layout":"month_view"}\' class="btn btn-primary" href="book.html">Book a free call to confirm</a>'
       + '<button class="quiz-retake" type="button" id="retake">Retake the check</button>'
       + '</div>'
+      + '<div class="result-tools">'
+      +   '<h4>Keep your results</h4>'
+      +   '<div class="result-tools-row">'
+      +     '<button class="result-btn" type="button" id="dl">\u2193&nbsp; Download</button>'
+      +     '<button class="result-btn" type="button" id="pr">\u2399&nbsp; Print</button>'
+      +   '</div>'
+      +   '<div class="result-email">'
+      +     '<input class="quiz-input" type="text" id="rname" placeholder="Your name (optional)" autocomplete="name">'
+      +     '<input class="quiz-input" type="email" id="remail" placeholder="Your email" autocomplete="email" inputmode="email" spellcheck="false">'
+      +     '<button class="quiz-submit" type="button" id="sendme">Email me my results</button>'
+      +     '<div class="result-msg" id="emailmsg" aria-live="polite"></div>'
+      +   '</div>'
+      + '</div>'
       + '<p style="text-align:center;margin-top:16px;font-size:14px;"><a class="tlink" href="services.html">See lessons and packages for your level</a> &nbsp;&middot;&nbsp; <a class="tlink" href="start.html">How lessons work</a></p>'
       + '</div>';
+
     document.getElementById('retake').addEventListener('click', function(){
-      i = 0; score = 0; quiz.innerHTML = shell; render();
+      i = 0; score = 0; transcript.length = 0; lastBand = null; quiz.innerHTML = shell; render();
     });
+    document.getElementById('dl').addEventListener('click', function(){
+      download('english-mastered-level-' + r[0] + '.html', buildResultsDoc(false));
+    });
+    document.getElementById('pr').addEventListener('click', function(){
+      printDoc(buildResultsDoc(false));
+    });
+    document.getElementById('sendme').addEventListener('click', sendResults);
+    document.getElementById('remail').addEventListener('keydown', function(e){
+      if (e.key === 'Enter'){ e.preventDefault(); sendResults(); }
+    });
+  }
+
+  function escq(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // Per-question row for the downloadable/printable doc. forOwner is reserved
+  // for a future "save the full AI detail locally" use; the student copy keeps
+  // it false, so AI internals stay in the emailed owner copy only.
+  function rowHtml(t, forOwner){
+    const mark = t.ok ? '\u2713' : '\u2717';
+    const color = t.ok ? '#2E6F5E' : '#9E472A';
+    return '<div style="padding:10px 0;border-bottom:1px solid #eee;">'
+      + '<div style="font-size:11px;color:#999;">Q' + (t.n||'') + ' &middot; ' + escq(t.level||'') + '</div>'
+      + '<div style="font-size:14px;color:#101820;margin:2px 0 3px;font-weight:600;">' + escq(t.q||'') + '</div>'
+      + '<div style="font-size:13px;color:#222;"><strong>Your answer:</strong> ' + escq(t.answer||'')
+      +   ' <span style="color:' + color + ';font-weight:700;">' + mark + '</span></div>'
+      + '</div>';
+  }
+
+  function buildResultsDoc(forOwner){
+    const r = lastBand || band();
+    const nameEl = document.getElementById('rname');
+    const name = (nameEl && nameEl.value.trim()) || '';
+    const rows = transcript.map(function(t){ return rowHtml(t, forOwner); }).join('');
+    const when = new Date().toLocaleString();
+    return '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+      + '<meta name="viewport" content="width=device-width,initial-scale=1">'
+      + '<title>English level results \u2014 ' + escq(r[0]) + '</title></head>'
+      + '<body style="margin:0;padding:24px;background:#faf8f3;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#222;">'
+      + '<div style="max-width:660px;margin:0 auto;background:#fff;border:1px solid #eee;border-radius:14px;padding:28px;">'
+      + '<div style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#B87333;font-weight:700;">English Mastered</div>'
+      + (name ? '<div style="font-size:13px;color:#666;margin-top:4px;">' + escq(name) + '</div>' : '')
+      + '<div style="font-size:48px;font-weight:800;color:#101820;margin:14px 0 0;line-height:1;">' + escq(r[0]) + '</div>'
+      + '<div style="font-size:16px;color:#666;margin:6px 0 10px;">' + escq(r[1]) + '</div>'
+      + '<p style="font-size:15px;line-height:1.6;">' + escq(r[2]) + '</p>'
+      + '<p style="font-size:15px;"><strong>' + score + ' of ' + Q.length + '</strong> correct.</p>'
+      + '<a href="https://englishmastered.org/book.html" style="display:inline-block;background:#B87333;color:#fff;text-decoration:none;font-weight:600;padding:11px 24px;border-radius:9px;font-size:15px;">Book your free call</a>'
+      + '<h3 style="margin:24px 0 4px;font-size:14px;color:#101820;">Your answers</h3>'
+      + rows
+      + '<p style="font-size:12px;color:#999;margin-top:18px;line-height:1.6;">Taken ' + escq(when) + '. This is a quick, indicative check \u2014 not an official exam. Jana confirms your real level on your free call.</p>'
+      + '</div></body></html>';
+  }
+
+  function download(filename, html){
+    const blob = new Blob([html], { type:'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ if (a.parentNode) a.parentNode.removeChild(a); URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function printDoc(html){
+    const f = document.createElement('iframe');
+    f.setAttribute('aria-hidden','true');
+    f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;';
+    f.onload = function(){
+      try { f.contentWindow.focus(); f.contentWindow.print(); }
+      catch (e) { window.print(); }
+      setTimeout(function(){ if (f.parentNode) f.parentNode.removeChild(f); }, 2000);
+    };
+    f.srcdoc = html;
+    document.body.appendChild(f);
+  }
+
+  async function sendResults(){
+    const msg = document.getElementById('emailmsg');
+    const btn = document.getElementById('sendme');
+    const emailEl = document.getElementById('remail');
+    const nameEl = document.getElementById('rname');
+    const email = emailEl.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      msg.className = 'result-msg err'; msg.textContent = 'Please enter a valid email address.';
+      emailEl.focus(); return;
+    }
+    if (!GRADER_ENDPOINT){
+      msg.className = 'result-msg err';
+      msg.textContent = 'Emailing isn\u2019t available in preview \u2014 it works on the live site.';
+      return;
+    }
+    btn.disabled = true; const old = btn.textContent; btn.textContent = 'Sending\u2026';
+    msg.className = 'result-msg'; msg.textContent = 'Sending your results\u2026';
+    const r = lastBand || band();
+    try {
+      const res = await fetch(GRADER_ENDPOINT.replace(/\/+$/,'') + '/email', {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({
+          student:{ name: nameEl.value.trim(), email: email },
+          result:{ level:r[0], name:r[1], blurb:r[2] },
+          score: score, total: Q.length,
+          transcript: transcript
+        })
+      });
+      const data = await res.json().catch(function(){ return {}; });
+      if (data && data.ok && data.studentSent){
+        msg.className = 'result-msg ok';
+        msg.textContent = 'Sent! Check your inbox (and your spam folder, just in case).';
+        btn.textContent = 'Sent \u2713';
+      } else if (data && data.ok){
+        msg.className = 'result-msg ok';
+        msg.textContent = 'Your results were recorded. If the copy didn\u2019t arrive, check your spam folder.';
+        btn.textContent = 'Sent \u2713';
+      } else {
+        throw new Error((data && data.error) || 'send failed');
+      }
+    } catch (e){
+      msg.className = 'result-msg err';
+      msg.textContent = 'Sorry \u2014 couldn\u2019t send right now. You can Download your results instead.';
+      btn.disabled = false; btn.textContent = old;
+    }
   }
 
   quiz.innerHTML = shell;
