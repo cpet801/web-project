@@ -22,11 +22,100 @@
 <meta name="twitter:image" content="https://englishmastered.org/img/og-level-test.png">
 <meta name="theme-color" content="#101820">
 <link rel="canonical" href="https://englishmastered.org/level-test.html">
-<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="icon" type="image/png" href="assets/em-mark-gold.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,10,1;1,9..144,400..700,10,1&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<style>
+  :root{
+    --navy:#01426A; --navy-deep:#013049; --teal:#1E97A6; --teal-bright:#2BB7C4;
+    --caramel:#B87333; --caramel-dark:#9c5f29; --paper:#F7F3EC; --paper-2:#EFE7D7; --pearl:#FCFBF5; --gold:#E4A72C;
+    --text:#2A2520; --deep:#013049; --muted:#6E6358; --border:#E3D9CA; --on-deep:#F2EBDD; --on-deep-mute:#9DA7B1; --slate:#5E7689;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Public Sans',system-ui,sans-serif;color:var(--text);background:var(--paper);font-size:17px;line-height:1.6;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 28px;}
+  .fr,h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;font-variation-settings:'opsz' 144,'wght' 620,'SOFT' 10,'WONK' 1;color:var(--navy);margin:0;letter-spacing:-.01em;}
+  .wonk{font-variation-settings:'opsz' 144,'wght' 650,'SOFT' 10,'WONK' 1;}
+  a{color:inherit;text-decoration:none;}
+  .tlink{color:#0066CC;font-weight:600;border-bottom:1.5px solid rgba(0,102,204,.3);}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);}
+  /* brand bar */
+  .brandbar{position:relative;background:#6E2940;color:#E7CDB4;overflow:hidden;}
+  .brandbar::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-burgundy-cta.svg) center/cover;}
+  .brandbar .wrap{position:relative;display:flex;justify-content:space-between;align-items:center;height:38px;font-size:11.5px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;}
+  .brandbar .kc{color:var(--gold);}
+  .brandbar a{color:#E7CDB4;}
+  .brandbar .sep{margin:0 7px;opacity:.55;}
+  /* nav */
+  nav{background:var(--paper);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:84px;}
+  .brand{display:flex;align-items:center;gap:6px;}
+  .brand img{display:block;}
+  .brand-text{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 640,'WONK' 1;font-size:32px;color:var(--navy);white-space:nowrap;letter-spacing:-.02em;display:inline-block;line-height:1.02;}
+  .brand-sub{display:block;font-family:'Public Sans',sans-serif;font-variation-settings:normal;font-weight:700;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C4921B;text-align:right;margin-top:3px;margin-right:-3px;}
+  .nav-links{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:600;}
+  .nav-links a{color:#3a352e;position:relative;padding:6px 0;}
+  .nav-cta{background:var(--caramel)!important;color:#fff!important;padding:9px 20px!important;font-size:13px;border-radius:9px;}
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:15px;font-weight:600;height:44px;padding:0 22px;box-sizing:border-box;white-space:nowrap;border-radius:10px;cursor:pointer;transition:transform .15s;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--caramel);color:#fff;box-shadow:0 8px 22px rgba(184,115,51,.3);}
+  /* page hero */
+  .page-hero{position:relative;overflow:hidden;background:var(--paper-2);border-bottom:1px solid var(--border);color:var(--text);text-align:center;min-height:200px;display:flex;align-items:center;padding:0;}
+  .ph-inner{position:relative;z-index:1;width:100%;transform:translateY(6px);}
+  .page-hero .kicker{color:var(--teal);margin-bottom:4px;}
+  .page-hero h1{color:var(--navy);font-size:46px;margin:0 0 6px;}
+  .page-hero p{color:var(--muted);max-width:58ch;margin:0 auto;font-size:16px;}
+  .page-hero .brushwing{display:block;margin:10px auto 0;}
+  /* quiz card */
+  .block{padding:60px 0;}
+  .quiz{max-width:720px;margin:0 auto;background:var(--pearl);border:1px solid var(--border);border-radius:18px;box-shadow:0 24px 60px rgba(1,66,106,.13);padding:32px 38px 36px;}
+  .quiz-bar{height:7px;border-radius:6px;background:#e7ddcd;overflow:hidden;margin-bottom:16px;}
+  .quiz-bar span{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--teal),var(--caramel));transition:width .35s ease;}
+  .quiz-count{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+  .quiz-q{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 600,'SOFT' 10,'WONK' 1;font-size:27px;line-height:1.28;color:var(--navy);margin:0 0 24px;text-wrap:pretty;}
+  .quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+  .quiz-opt{display:flex;align-items:center;text-align:left;padding:16px 18px;border:1.5px solid var(--border);background:#fff;border-radius:12px;font-size:16px;font-weight:600;color:var(--text);cursor:pointer;transition:border-color .15s,transform .15s,background .15s;}
+  .quiz-opt:hover{border-color:var(--caramel);transform:translateY(-2px);background:rgba(184,115,51,.05);}
+  .quiz-opts .quiz-input{grid-column:1 / -1;}
+  .quiz-opts .quiz-submit{grid-column:1 / -1;justify-self:start;}
+  .quiz-opts .quiz-status{grid-column:1 / -1;}
+  .quiz-note{text-align:center;color:var(--muted);font-size:14px;max-width:62ch;margin:26px auto 0;line-height:1.55;}
+  /* quiz result */
+  .quiz-result{text-align:center;}
+  .quiz-level{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 660,'WONK' 1;font-size:68px;line-height:1;color:var(--navy);margin:2px 0 0;}
+  .quiz-level-name{font-family:'Fraunces',serif;font-variation-settings:'opsz' 60,'wght' 560,'WONK' 1;font-size:21px;color:var(--caramel);margin:6px 0 2px;}
+  .quiz-result>p{font-size:16px;line-height:1.6;color:var(--text);max-width:52ch;margin:14px auto 0;text-wrap:pretty;}
+  .quiz-actions{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-top:24px;}
+  .quiz-retake{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 22px;background:transparent;border:1.5px solid var(--border);color:var(--navy);border-radius:10px;font-size:15px;font-weight:600;font-family:'Public Sans',sans-serif;cursor:pointer;transition:border-color .15s,transform .15s;}
+  .quiz-retake:hover{border-color:var(--caramel);transform:translateY(-2px);}
+  /* footer */
+  footer{position:relative;background:#013049;color:var(--on-deep-mute);overflow:hidden;}
+  footer::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-navy-footer.svg) center/cover;opacity:.6;}
+  footer>*{position:relative;z-index:1;}
+  .foot-rule{height:4px;background:linear-gradient(90deg,#5E7689 0 30%,var(--teal) 30% 55%,var(--gold) 55% 75%,var(--caramel) 75% 100%);}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding:25px 0 25px;}
+  .foot-brand-col{display:flex;flex-direction:column;max-width:24em;}
+  .foot-brand{display:flex;align-items:center;gap:6px;}
+  .foot-brand .b1{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 600,'WONK' 1;font-size:28px;color:var(--on-deep);line-height:1.02;letter-spacing:-.02em;}
+  .foot-tag{font-size:12.5px;line-height:1.4;color:var(--on-deep);margin:9px 0 0;max-width:21em;}
+  .foot-links{display:flex;gap:30px;font-size:13.5px;}
+  .foot-col h4{font-family:'Public Sans';font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin:0 0 8px;}
+  .foot-col a{display:block;color:var(--on-deep);margin-bottom:4px;}
+  .copyright{border-top:1px solid #1a3247;padding:15.5px 0;font-size:12px;color:#5f7385;text-align:center;}
+  /* whatsapp */
+  .wa-btn{position:fixed;bottom:26px;right:26px;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.28);z-index:200;transition:transform .2s;}
+  .wa-btn:hover{transform:scale(1.1);}
+  @media(max-width:760px){
+    .quiz-opts{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .page-hero h1{font-size:38px;}
+    .quiz{padding:26px 22px 28px;}
+    .foot-inner{gap:18px;}
+  }
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -92,6 +181,24 @@
     .quiz-result{ box-shadow:none !important; border:0 !important; }
   }
 </style>
+<style>
+/* mobile hamburger nav */
+.nav-toggle{display:none}
+.nav-toggle-cb{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+@media(max-width:860px){
+  .nav-inner{position:relative}
+  .nav-toggle{display:flex;flex-direction:column;justify-content:center;gap:5px;width:46px;height:46px;margin-right:-8px;padding:0 11px;background:transparent;border:0;cursor:pointer;border-radius:9px;-webkit-tap-highlight-color:transparent}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:transform .25s ease,opacity .2s ease;transform-origin:center}
+  .nav-toggle-cb:checked + .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle-cb:checked + .nav-toggle span:nth-child(2){opacity:0}
+  .nav-toggle-cb:checked + .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .nav-links{display:flex !important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);border-top:1px solid var(--border);box-shadow:0 24px 40px rgba(16,24,32,.14);padding:8px 24px 18px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .24s ease,transform .24s ease,visibility .24s;max-height:calc(100vh - 110px);overflow-y:auto;z-index:60}
+  .nav-toggle-cb:checked ~ .nav-links{opacity:1;visibility:visible;transform:none}
+  .nav-links a{padding:15px 2px;font-size:17px;border-bottom:1px solid var(--border)}
+  .nav-links a.active svg{display:none}
+  .nav-cta{margin-top:14px;text-align:center;border-radius:9px}
+}
+</style>
 </head>
 <body>
 
@@ -107,8 +214,8 @@
 <nav>
   <div class="wrap nav-inner">
     <a class="brand" href="/">
-      <img class="brand-logo" src="img/em-icon.png" width="56" height="56" alt="">
-      <span class="brand-text"><span class="b1">English Mastered</span></span>
+      <img src="assets/em-mark-gold.png" width="56" height="56" alt="English Mastered" style="margin:-12px 0 0 0;filter:drop-shadow(.35px 0 0 #C8941F) drop-shadow(-.35px 0 0 #C8941F);">
+      <span class="brand-text">English Mastered<span class="brand-sub">with Jana Malas</span></span>
     </a>
     <input type="checkbox" id="navtoggle" class="nav-toggle-cb" aria-label="Open navigation menu">
     <label class="nav-toggle" for="navtoggle" aria-hidden="true"><span></span><span></span><span></span></label>
@@ -124,11 +231,11 @@
 
 <!-- PAGE HERO -->
 <header class="page-hero">
-  <div class="wrap">
+  <div class="wrap ph-inner">
     <p class="kicker">Level Check</p>
     <h1 class="wonk">Find your English level</h1>
     <p>Eighteen questions, about 10–15 minutes, working from easy to advanced. Pick the best option — or type your answer — for each.</p>
-    <hr class="dash center">
+    <svg class="brushwing" viewBox="0 0 120 14" width="150" height="11"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#2BB7C4"></path></svg>
   </div>
 </header>
 
@@ -144,32 +251,34 @@
 <footer>
   <div class="foot-rule"></div>
   <div class="wrap foot-inner">
-    <div class="foot-brand">
-      <a class="foot-lockup" href="/">
-        <picture><source srcset="img/em-icon.webp" type="image/webp"><img class="foot-mark" src="img/em-icon.png" width="40" height="40" loading="lazy" alt=""></picture>
-        <span class="foot-word">English Mastered</span>
-      </a>
-      <div class="b2">Personalised online English coaching with Jana Malas — for Arabic speakers ready to master the language.</div>
+    <div class="foot-brand-col">
+      <div class="foot-brand">
+        <img src="assets/em-mark-white.png" width="49" height="49" alt="" style="margin:0;filter:drop-shadow(.35px 0 0 #F2EBDD) drop-shadow(-.35px 0 0 #F2EBDD);">
+        <div><div class="b1">English Mastered</div></div>
+      </div>
+      <p class="foot-tag">Personalised online English coaching with Jana Malas — for Arabic speakers ready to master the language.</p>
     </div>
-    <div class="foot-col">
-      <h5>Explore</h5>
-      <a href="start.html">How Lessons Work</a>
-      <a href="level-test.html">Find Your Level</a>
-      <a href="services.html">Services</a>
-      <a href="payments.html">Pay for Lessons</a>
-      <a href="samples.html">Sample Lessons</a>
-      <a href="about.html">Meet Your Coach</a>
-    </div>
-    <div class="foot-col">
-      <h5>Get in touch</h5>
-      <a href="book.html">Book a free call</a>
-      <a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="mailto:jana@englishmastered.org">Email</a>
-      <a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a>
+    <div class="foot-links">
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="start.html">How Lessons Work</a>
+        <a href="level-test.html">Find Your Level</a>
+        <a href="services.html">Services</a>
+        <a href="payments.html">Pay for Lessons</a>
+        <a href="samples.html">Sample Lessons</a>
+        <a href="about.html">Meet Your Coach</a>
+      </div>
+      <div class="foot-col">
+        <h4>Get in touch</h4>
+        <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html">Book a free call</a>
+        <a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:jana@englishmastered.org">Email</a>
+        <a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a>
+      </div>
     </div>
   </div>
-  <div class="foot-base"><div class="wrap">&copy; 2025–2026 English Mastered — Jana Malas</div></div>
+  <div class="copyright">© 2025–2026 English Mastered — Jana Malas · Online English coaching for Arabic speakers · Lebanon &amp; Worldwide</div>
 </footer>
 
 <!-- WHATSAPP -->
@@ -523,5 +632,12 @@
 })();
 </script>
 
+
+<!-- Cal.com popup for Book buttons -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "free-discovery-call", {origin:"https://app.cal.com"});
+  Cal.ns["free-discovery-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#B87333"},"dark":{"cal-brand":"#D89B3A"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
 </body>
 </html>

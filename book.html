@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <title>Book a Free English Coaching Call | English Mastered</title>
 <meta name="description" content="Book a free 15-minute call with Jana Malas. We'll talk through your goals, check your level, and map out a plan — no pressure, no payment.">
@@ -22,11 +22,158 @@
 <meta name="twitter:image" content="https://englishmastered.org/img/og-book.png">
 <meta name="theme-color" content="#101820">
 <link rel="canonical" href="https://englishmastered.org/book.html">
-<link rel="icon" type="image/png" href="img/favicon.png">
+<meta name="description" content="Book a free 15-minute call with Jana Malas. We'll talk through your goals, check your level, and map out a plan — no pressure, no payment.">
+<link rel="icon" type="image/png" href="assets/em-mark-gold.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,10,1;1,9..144,400..700,10,1&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<style>
+  :root{
+    --navy:#01426A; --navy-deep:#013049; --teal:#1E97A6; --teal-bright:#2BB7C4;
+    --caramel:#B87333; --paper:#F7F3EC; --paper-2:#EFE7D7; --pearl:#FCFBF5; --gold:#E4A72C;
+    --text:#2A2520; --muted:#6E6358; --border:#E3D9CA; --on-deep:#F2EBDD; --on-deep-mute:#9DA7B1;
+    --slate:#5E7689;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Public Sans',system-ui,sans-serif;color:var(--text);background:var(--paper);font-size:17px;line-height:1.6;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 28px;}
+  .fr,h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;font-variation-settings:'opsz' 144,'wght' 620,'SOFT' 10,'WONK' 1;color:var(--navy);margin:0;letter-spacing:-.01em;}
+  .wonk{font-variation-settings:'opsz' 144,'wght' 650,'SOFT' 10,'WONK' 1;}
+  a{color:inherit;text-decoration:none;}
+  .tlink{color:#0066CC;font-weight:600;border-bottom:1.5px solid rgba(0,102,204,.3);}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);}
+  /* brandbar / nav */
+  .brandbar{position:relative;background:#6E2940;color:#E7CDB4;overflow:hidden;}
+  .brandbar::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-burgundy-cta.svg) center/cover;}
+  .brandbar .wrap{position:relative;display:flex;justify-content:space-between;align-items:center;height:38px;font-size:11.5px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;}
+  .brandbar .kc{color:var(--gold);}
+  .brandbar a{color:#E7CDB4;}
+  nav{background:var(--paper);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:84px;}
+  .brand{display:flex;align-items:center;gap:6px;}
+  .brand-text{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 640,'WONK' 1;font-size:32px;color:var(--navy);white-space:nowrap;letter-spacing:-.02em;display:inline-block;line-height:1.02;}
+  .brand-sub{display:block;font-family:'Public Sans',sans-serif;font-variation-settings:normal;font-weight:700;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C4921B;text-align:right;margin-top:3px;margin-right:-3px;}
+  .nav-links{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:600;}
+  .nav-links a{color:#3a352e;position:relative;padding:6px 0;}
+  .nav-links a.active{color:var(--teal);}
+  .nav-links a.active svg{position:absolute;left:0;bottom:-2px;}
+  .nav-cta{background:var(--caramel)!important;color:#fff!important;padding:9px 20px!important;font-size:13px;border-radius:9px;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:15px;font-weight:600;height:44px;padding:0 22px;box-sizing:border-box;white-space:nowrap;border-radius:10px;cursor:pointer;transition:transform .15s;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--caramel);color:#fff;box-shadow:0 8px 22px rgba(184,115,51,.3);}
+  .btn-ghost{border:1.6px solid var(--navy);color:var(--navy);}
+  /* page hero */
+  .page-hero{position:relative;overflow:hidden;background:var(--paper-2);border-bottom:1px solid var(--border);color:var(--text);text-align:center;min-height:200px;display:flex;align-items:center;padding:0;}
+  .ph-inner{position:relative;z-index:1;width:100%;transform:translateY(6px);}
+  .page-hero .kicker{color:var(--teal);margin-bottom:4px;}
+  .page-hero h1{color:var(--navy);font-size:46px;margin:0 0 6px;}
+  .page-hero p{color:var(--muted);max-width:56ch;margin:0 auto;font-size:16px;}
+  .page-hero .brushwing{margin:8px auto 0;}
+  /* sections */
+  .block{padding:60px 0;}
+  .alt{background:var(--paper-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .section-head{text-align:center;max-width:60ch;margin:0 auto 40px;}
+  .section-head h2{font-size:36px;margin:14px 0 10px;}
+  .section-head p{color:var(--muted);font-size:16px;margin:0;}
+  .section-head .brushwing{margin:0 auto;}
+  /* ===== BOOKING WIDGET ===== */
+  .book-band{padding:54px 0 60px;}
+  .booker{display:grid;grid-template-columns:300px 1fr 264px;background:var(--pearl);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(1,66,106,.13);max-width:980px;margin:0 auto;}
+  /* left info rail */
+  .bk-info{position:relative;overflow:hidden;background:#013049;color:var(--on-deep);padding:30px 28px;}
+  .bk-info::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-navy-footer.svg) center/cover;opacity:.6;}
+  .bk-info>*{position:relative;z-index:1;}
+  .bk-host{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+  .bk-host img{width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid rgba(228,167,44,.6);}
+  .bk-host .n{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 600,'WONK' 1;font-size:18px;color:var(--on-deep);line-height:1.1;}
+  .bk-host .r{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-top:3px;}
+  .bk-title{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 620,'WONK' 1;font-size:25px;line-height:1.12;color:var(--on-deep);margin:0 0 14px;}
+  .bk-meta{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;}
+  .bk-meta li{display:flex;align-items:center;gap:11px;font-size:14px;color:#cfe0e8;}
+  .bk-meta svg{flex:none;color:var(--teal-bright);}
+  .bk-note{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14);font-size:13px;line-height:1.55;color:var(--on-deep-mute);}
+  /* calendar */
+  .bk-cal{padding:26px 26px 30px;border-right:1px solid var(--border);}
+  .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+  .cal-head .mo{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 600,'WONK' 1;font-size:19px;color:var(--navy);}
+  .cal-nav{display:flex;gap:6px;}
+  .cal-nav button{width:32px;height:32px;border:1px solid var(--border);background:#fff;border-radius:8px;color:var(--navy);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .cal-nav button:first-child{color:var(--muted);}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+  .cal-dow{text-align:center;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);padding-bottom:4px;}
+  .cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;border-radius:9px;color:var(--text);}
+  .cal-day.muted{color:#c3bbac;}
+  .cal-day.avail{background:rgba(184,115,51,.1);color:var(--caramel);cursor:pointer;}
+  .cal-day.avail:hover{background:rgba(184,115,51,.2);}
+  .cal-day.sel{background:var(--caramel);color:#fff;box-shadow:0 6px 16px rgba(184,115,51,.36);}
+  .cal-day.today{box-shadow:inset 0 0 0 1.5px var(--teal);}
+  /* time slots */
+  .bk-times{padding:26px 22px 30px;display:flex;flex-direction:column;}
+  .bk-times .lbl{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:4px;}
+  .bk-times .day{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 600,'WONK' 1;font-size:17px;color:var(--navy);margin-bottom:16px;}
+  .slots{display:flex;flex-direction:column;gap:9px;overflow:auto;}
+  .slot{height:44px;border:1.5px solid var(--border);background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--navy);cursor:pointer;transition:border-color .15s,transform .15s;}
+  .slot:hover{border-color:var(--caramel);transform:translateY(-1px);}
+  .slot.pick{border-color:var(--caramel);background:rgba(184,115,51,.07);color:var(--caramel);}
+  .slot.confirm{background:var(--caramel);border-color:var(--caramel);color:#fff;}
+  .bk-tz{margin-top:14px;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px;}
+  .book-alt{text-align:center;color:var(--muted);font-size:14.5px;margin:26px auto 0;max-width:60ch;}
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .step{position:relative;background:var(--pearl);border:1px solid var(--border);border-top:3px solid var(--teal);border-radius:14px;padding:26px 24px 24px;}
+  .step-num{width:38px;height:38px;border-radius:11px;background:rgba(30,151,166,.12);color:var(--teal);font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 640,'WONK' 1;font-size:19px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .step h3{font-size:20px;margin:0 0 7px;}
+  .step p{font-size:14px;line-height:1.6;color:var(--muted);margin:0;}
+  /* reassurance strip */
+  .assure{display:flex;justify-content:center;gap:38px;flex-wrap:wrap;margin-top:38px;}
+  .assure div{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--navy);}
+  .assure svg{color:var(--teal);flex:none;}
+  /* footer */
+  footer{position:relative;background:#013049;color:var(--on-deep-mute);overflow:hidden;}
+  footer::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-navy-footer.svg) center/cover;opacity:.6;}
+  footer>*{position:relative;z-index:1;}
+  .foot-rule{height:4px;background:linear-gradient(90deg,#5E7689 0 30%,var(--teal) 30% 55%,var(--gold) 55% 75%,var(--caramel) 75% 100%);}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding:25px 0 25px;}
+  .foot-brand-col{display:flex;flex-direction:column;max-width:24em;}
+  .foot-brand{display:flex;align-items:center;gap:6px;}
+  .foot-brand .b1{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 600,'WONK' 1;font-size:28px;color:var(--on-deep);line-height:1.02;letter-spacing:-.02em;}
+  .foot-tag{font-size:12.5px;line-height:1.4;color:var(--on-deep);margin:9px 0 0;max-width:18.5em;}
+  .foot-links{display:flex;gap:30px;font-size:13.5px;}
+  .foot-col h4{font-family:'Public Sans';font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin:0 0 8px;}
+  .foot-col a{display:block;color:var(--on-deep);margin-bottom:4px;}
+  .copyright{border-top:1px solid #1a3247;padding:15.5px 0;font-size:12px;color:#5f7385;text-align:center;}
+  .wa-btn{position:fixed;bottom:26px;right:26px;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.28);z-index:200;transition:transform .2s;}
+  .wa-btn:hover{transform:scale(1.1);}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+  @media(max-width:920px){
+    .booker{grid-template-columns:1fr;max-width:460px;}
+    .bk-cal{border-right:none;border-bottom:1px solid var(--border);}
+    .steps{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .page-hero h1{font-size:38px;}
+  }
+</style>
+<style>
+/* mobile hamburger nav */
+.nav-toggle{display:none}
+.nav-toggle-cb{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+@media(max-width:860px){
+  .nav-inner{position:relative}
+  .nav-toggle{display:flex;flex-direction:column;justify-content:center;gap:5px;width:46px;height:46px;margin-right:-8px;padding:0 11px;background:transparent;border:0;cursor:pointer;border-radius:9px;-webkit-tap-highlight-color:transparent}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:transform .25s ease,opacity .2s ease;transform-origin:center}
+  .nav-toggle-cb:checked + .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle-cb:checked + .nav-toggle span:nth-child(2){opacity:0}
+  .nav-toggle-cb:checked + .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .nav-links{display:flex !important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);border-top:1px solid var(--border);box-shadow:0 24px 40px rgba(16,24,32,.14);padding:8px 24px 18px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .24s ease,transform .24s ease,visibility .24s;max-height:calc(100vh - 110px);overflow-y:auto;z-index:60}
+  .nav-toggle-cb:checked ~ .nav-links{opacity:1;visibility:visible;transform:none}
+  .nav-links a{padding:15px 2px;font-size:17px;border-bottom:1px solid var(--border)}
+  .nav-links a.active svg{display:none}
+  .nav-cta{margin-top:14px;text-align:center;border-radius:9px}
+}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -44,16 +191,16 @@
 <div class="brandbar">
   <div class="wrap">
     <span class="kc">Online English Coaching</span>
-    <span>Lebanon &amp; Worldwide<span class="sep">&middot;</span><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp +961 71 500 874</a></span>
+    <span>Lebanon &amp; Worldwide&nbsp;·&nbsp;<a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp +961 71 500 874</a></span>
   </div>
 </div>
 
 <!-- NAV -->
 <nav>
   <div class="wrap nav-inner">
-    <a class="brand" href="/">
-      <img class="brand-logo" src="img/em-icon.png" width="56" height="56" alt="">
-      <span class="brand-text"><span class="b1">English Mastered</span></span>
+    <a class="brand" href="index.html">
+      <img src="assets/em-mark-gold.png" width="56" height="56" alt="English Mastered" style="margin:-12px 0 0 0;filter:drop-shadow(.35px 0 0 #C8941F) drop-shadow(-.35px 0 0 #C8941F);">
+      <span class="brand-text">English Mastered<span class="brand-sub">with Jana Malas</span></span>
     </a>
     <input type="checkbox" id="navtoggle" class="nav-toggle-cb" aria-label="Open navigation menu">
     <label class="nav-toggle" for="navtoggle" aria-hidden="true"><span></span><span></span><span></span></label>
@@ -62,49 +209,94 @@
       <a href="start.html">How It Works</a>
       <a href="services.html">Services</a>
       <a href="about.html">About</a>
-      <a href="book.html" class="nav-cta">Book Free Call</a>
+      <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="nav-cta">Book Free Call</a>
     </div>
   </div>
 </nav>
 
 <!-- PAGE HERO -->
 <header class="page-hero">
-  <div class="wrap">
+  <div class="wrap ph-inner">
     <p class="kicker">Booking</p>
     <h1 class="wonk">Book your free call</h1>
     <p>Pick a time that suits you. We'll talk through your goals, check your level, and map out a plan — no pressure, and no payment to book.</p>
-    <hr class="dash center">
+    <svg class="brushwing" viewBox="0 0 120 14" width="150" height="11"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#2BB7C4"></path></svg>
   </div>
 </header>
 
-<!-- BOOKING CALENDAR -->
+<!-- BOOKING WIDGET -->
 <section class="block book-band">
   <div class="wrap">
+    <div class="booker reveal">
 
-    <!-- Cal.com inline booking embed — englishmastered / free-discovery-call -->
-    <div style="width:100%;min-height:540px;overflow:scroll;border-radius:16px;" id="my-cal-inline-free-discovery-call"></div>
-    <script type="text/javascript">
-      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-      Cal("init", "free-discovery-call", {origin:"https://app.cal.com"});
-      Cal.ns["free-discovery-call"]("inline", {
-        elementOrSelector:"#my-cal-inline-free-discovery-call",
-        config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
-        calLink: "englishmastered/free-discovery-call",
-      });
-      Cal.ns["free-discovery-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#B87333"},"dark":{"cal-brand":"#D89B3A"}},"hideEventTypeDetails":false,"layout":"month_view"});
-    </script>
-    <!-- Cal.com embed ends -->
+      <!-- info rail -->
+      <aside class="bk-info">
+        <div class="bk-host">
+          <img src="assets/jana-teaching.jpg" alt="Jana Malas">
+          <div>
+            <div class="n">Jana Malas</div>
+            <div class="r">Founder &amp; Coach</div>
+          </div>
+        </div>
+        <h2 class="bk-title">Free discovery call</h2>
+        <ul class="bk-meta">
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>15 minutes</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.5-2.5v9L15 14M4 6h11v12H4z"/></svg>Video call (link by email)</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.2-7-11a7 7 0 0114 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Wherever you are</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>No payment to book</li>
+        </ul>
+        <p class="bk-note">A relaxed chat — not a test or a sales pitch. Come as you are and we'll take it from there.</p>
+      </aside>
 
+      <!-- calendar -->
+      <div class="bk-cal">
+        <div class="cal-head">
+          <span class="mo">June 2026</span>
+          <div class="cal-nav">
+            <button aria-label="Previous month">‹</button>
+            <button aria-label="Next month">›</button>
+          </div>
+        </div>
+        <div class="cal-grid">
+          <div class="cal-dow">Su</div><div class="cal-dow">Mo</div><div class="cal-dow">Tu</div><div class="cal-dow">We</div><div class="cal-dow">Th</div><div class="cal-dow">Fr</div><div class="cal-dow">Sa</div>
+          <div class="cal-day muted">31</div>
+          <div class="cal-day muted">1</div><div class="cal-day muted">2</div><div class="cal-day muted">3</div><div class="cal-day muted">4</div><div class="cal-day muted">5</div><div class="cal-day muted">6</div>
+          <div class="cal-day muted">7</div><div class="cal-day muted">8</div><div class="cal-day muted">9</div><div class="cal-day muted">10</div><div class="cal-day muted">11</div><div class="cal-day muted">12</div><div class="cal-day muted">13</div>
+          <div class="cal-day muted">14</div><div class="cal-day muted">15</div><div class="cal-day muted">16</div><div class="cal-day muted">17</div><div class="cal-day muted">18</div><div class="cal-day muted">19</div><div class="cal-day muted">20</div>
+          <div class="cal-day today muted">21</div><div class="cal-day avail">22</div><div class="cal-day avail">23</div><div class="cal-day sel">24</div><div class="cal-day avail">25</div><div class="cal-day avail">26</div><div class="cal-day muted">27</div>
+          <div class="cal-day muted">28</div><div class="cal-day avail">29</div><div class="cal-day avail">30</div><div class="cal-day muted">1</div><div class="cal-day muted">2</div><div class="cal-day muted">3</div><div class="cal-day muted">4</div>
+        </div>
+      </div>
+
+      <!-- time slots -->
+      <div class="bk-times">
+        <div class="lbl">Wednesday</div>
+        <div class="day">June 24</div>
+        <div class="slots">
+          <div class="slot">09:00</div>
+          <div class="slot">10:30</div>
+          <div class="slot pick">14:00</div>
+          <div class="slot confirm">16:30&nbsp;&nbsp;·&nbsp;&nbsp;Confirm</div>
+          <div class="slot">18:00</div>
+          <div class="slot">19:30</div>
+        </div>
+        <div class="bk-tz">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
+          Times shown in Beirut (GMT+3)
+        </div>
+      </div>
+
+    </div>
     <p class="book-alt">Prefer to message first? Reach Jana on <a class="tlink" href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a> or by <a class="tlink" href="mailto:jana@englishmastered.org">email</a>.</p>
   </div>
 </section>
 
 <!-- WHAT TO EXPECT -->
-<section class="block" id="expect" style="background:var(--paper-2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+<section class="block alt">
   <div class="wrap">
     <div class="section-head reveal">
-      <hr class="dash center">
-      <h2 class="serif">What happens on the call</h2>
+      <svg class="brushwing" viewBox="0 0 120 14" width="120" height="10"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#1E97A6"></path></svg>
+      <h2 class="wonk">What happens on the call</h2>
       <p>It's a relaxed 15 minutes — no test, no sales pitch.</p>
     </div>
     <div class="steps">
@@ -121,10 +313,15 @@
       <div class="step reveal">
         <div class="step-num">3</div>
         <h3>You get a plan</h3>
-        <p>Jana suggests a starting point and a plan. Start whenever you're ready — there's zero obligation. <a class="tlink" href="services.html">Check pricing and packages first &rarr;</a></p>
+        <p>Jana suggests a starting point and a plan. Start whenever you're ready — there's zero obligation. <a class="tlink" href="services.html">Check pricing first →</a></p>
       </div>
     </div>
-    <p class="book-alt">Not sure of your level yet? <a class="tlink" href="level-test.html">Take the quick level check first &rarr;</a></p>
+    <div class="assure reveal">
+      <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>No payment to book</div>
+      <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Zero obligation</div>
+      <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Reschedule anytime</div>
+    </div>
+    <p class="book-alt">Not sure of your level yet? <a class="tlink" href="level-test.html">Take the quick level check first →</a></p>
   </div>
 </section>
 
@@ -132,32 +329,19 @@
 <footer>
   <div class="foot-rule"></div>
   <div class="wrap foot-inner">
-    <div class="foot-brand">
-      <a class="foot-lockup" href="/">
-        <picture><source srcset="img/em-icon.webp" type="image/webp"><img class="foot-mark" src="img/em-icon.png" width="40" height="40" loading="lazy" alt=""></picture>
-        <span class="foot-word">English Mastered</span>
-      </a>
-      <div class="b2">Personalised online English coaching with Jana Malas — for Arabic speakers ready to master the language.</div>
+    <div class="foot-brand-col">
+      <div class="foot-brand">
+        <img src="assets/em-mark-white.png" width="49" height="49" alt="" style="margin:0;filter:drop-shadow(.35px 0 0 #F2EBDD) drop-shadow(-.35px 0 0 #F2EBDD);">
+        <div><div class="b1">English Mastered</div></div>
+      </div>
+      <p class="foot-tag">Personalised online English coaching with Jana Malas. For Arabic speakers who are ready to master the language.</p>
     </div>
-    <div class="foot-col">
-      <h5>Explore</h5>
-      <a href="start.html">How Lessons Work</a>
-      <a href="level-test.html">Find Your Level</a>
-      <a href="services.html">Services</a>
-      <a href="payments.html">Pay for Lessons</a>
-      <a href="samples.html">Sample Lessons</a>
-      <a href="about.html">Meet Your Coach</a>
-    </div>
-    <div class="foot-col">
-      <h5>Get in touch</h5>
-      <a href="book.html">Book a free call</a>
-      <a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="mailto:jana@englishmastered.org">Email</a>
-      <a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a>
+    <div class="foot-links">
+      <div class="foot-col"><h4>Explore</h4><a href="start.html">How Lessons Work</a><a href="level-test.html">Find Your Level</a><a href="services.html">Services</a><a href="payments.html">Pay for Lessons</a><a href="samples.html">Sample Lessons</a><a href="about.html">Meet Your Coach</a></div>
+      <div class="foot-col"><h4>Get in touch</h4><a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html">Book a free call</a><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:jana@englishmastered.org">Email</a><a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a></div>
     </div>
   </div>
-  <div class="foot-base"><div class="wrap">&copy; 2025–2026 English Mastered — Jana Malas</div></div>
+  <div class="copyright">© 2025–2026 English Mastered — Jana Malas · Online English coaching for Arabic speakers · Lebanon &amp; Worldwide</div>
 </footer>
 
 <!-- WHATSAPP -->
@@ -170,5 +354,12 @@
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 
+
+<!-- Cal.com popup for Book buttons -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "free-discovery-call", {origin:"https://app.cal.com"});
+  Cal.ns["free-discovery-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#B87333"},"dark":{"cal-brand":"#D89B3A"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
 </body>
 </html>

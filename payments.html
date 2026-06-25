@@ -20,13 +20,13 @@
 <meta name="twitter:title" content="Pay for Your Lessons — English Mastered">
 <meta name="twitter:description" content="Payment options for English Mastered lessons — Stripe, PayPal, Whish, Western Union, and USDT.">
 <meta name="twitter:image" content="https://englishmastered.org/img/og-book.png">
-<meta name="theme-color" content="#101820">
+<meta name="theme-color" content="#01426A">
 <meta name="robots" content="noindex">
-<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="canonical" href="https://englishmastered.org/payments.html">
+<link rel="icon" type="image/png" href="assets/em-mark-gold.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,10,1;1,9..144,400..700,10,1&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -38,66 +38,160 @@
 }
 </script>
 <style>
-  /* ---- payments-page-only styles ---- */
-  .ptable-wrap{ background:var(--paper); border:1px solid var(--border); border-radius:16px;
-    padding:8px 22px 16px; overflow-x:auto; }
-  .ptable{ width:100%; border-collapse:collapse; font-size:1.02rem; min-width:480px; }
-  .ptable th{ font-size:.78rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
-    color:var(--muted); text-align:left; padding:18px 12px 12px; border-bottom:2px solid var(--ink); line-height:1.35; }
-  .ptable th.num,.ptable td.num{ text-align:right; }
-  .ptable td{ padding:18px 12px; border-bottom:1px solid var(--border); vertical-align:middle; }
-  .ptable tr:last-child td{ border-bottom:none; }
-  .pt-pkg{ font-weight:600; font-size:1.05rem; }
-  .pt-sub{ display:block; font-weight:400; font-size:.86rem; color:var(--muted); margin-top:4px; }
-  .pt-price{ font-family:'Fraunces',serif; font-optical-sizing:none;
-    font-variation-settings:"opsz" 144,"wght" 640,"SOFT" 10,"WONK" 1;
-    font-size:1.85rem; white-space:nowrap; color:var(--ink); }
-  .pt-std{ font-family:'Fraunces',serif; font-optical-sizing:none;
-    font-variation-settings:"opsz" 144,"wght" 520,"SOFT" 10,"WONK" 1;
-    font-size:1.4rem; color:var(--muted); white-space:nowrap; }
-  .pt-save{ display:inline-block; background:rgba(216,155,58,.18); color:var(--caramel-dark,#7a5410);
-    font-size:.82rem; font-weight:700; padding:4px 11px; border-radius:7px; white-space:nowrap; margin-top:6px; }
-  .pt-same{ display:inline-block; font-size:.88rem; color:var(--muted); white-space:nowrap; margin-top:6px; }
-  .pt-dir{ background:rgba(216,155,58,.07); }
-  .pt-foot{ font-size:.9rem; color:var(--muted); margin:16px 2px 4px; line-height:1.55; }
-
-  .payrow{ display:grid; grid-template-columns:1fr 120px auto; align-items:center; gap:18px;
-    padding:20px 4px; border-bottom:1px solid var(--border); }
-  .payrow:last-child{ border-bottom:none; }
-  .payrow-name{ font-weight:600; font-size:1.1rem; }
-  .payrow-price{ font-family:'Fraunces',serif; font-optical-sizing:none;
-    font-variation-settings:"opsz" 144,"wght" 640,"SOFT" 10,"WONK" 1;
-    font-size:1.85rem; text-align:right; white-space:nowrap; color:var(--ink); }
-  .payrow-btns{ display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; }
-  .payrow-btns .btn{ padding:13px 22px; font-size:.95rem; }
-  @media(max-width:620px){
-    .payrow{ grid-template-columns:1fr auto; gap:10px 14px; }
-    .payrow-btns{ grid-column:1 / -1; justify-content:stretch; }
-    .payrow-btns .btn{ flex:1; }
+  :root{
+    --navy:#01426A; --navy-deep:#013049; --teal:#1E97A6; --teal-bright:#2BB7C4;
+    --caramel:#B87333; --paper:#F7F3EC; --paper-2:#EFE7D7; --pearl:#FCFBF5; --gold:#E4A72C;
+    --text:#2A2520; --muted:#6E6358; --border:#E3D9CA; --on-deep:#F2EBDD; --on-deep-mute:#9DA7B1;
+    --gen:#0C5C63; --ielts:#E4A72C; --toefl:#C8663F; --biz:#6E2742; --esp:#007BA7; --conv:#7D8252; --grp:#9E472A;
   }
-
-  .fee-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:6px; }
-  .fee-card{ position:relative; background:var(--paper); border:1px solid var(--border);
-    border-radius:16px; padding:30px 30px 26px; overflow:hidden; }
-  .fee-card::before{ content:""; position:absolute; left:0; top:0; height:100%; width:4px;
-    background:linear-gradient(180deg,var(--gold),var(--blue,#0B86C3)); }
-  .fee-head{ display:flex; align-items:center; gap:13px; margin-bottom:4px; }
-  .fee-logo{ flex:0 0 auto; width:46px; height:46px; border-radius:50%;
-    background:var(--paper-2); border:1px solid var(--border);
-    display:flex; align-items:center; justify-content:center; }
-  .fee-logo svg{ width:26px; height:26px; }
-  .fee-title{ font-family:'Fraunces',serif; font-optical-sizing:none;
-    font-variation-settings:"opsz" 144,"wght" 640,"SOFT" 10,"WONK" 1;
-    font-size:1.55rem; margin:0; color:var(--ink); letter-spacing:-.01em; }
-  .fee-sub{ font-size:.95rem; color:var(--ink); opacity:.6; margin:0 0 16px; }
-  .fee-steps{ list-style:none; margin:0 0 16px; padding:0; counter-reset:fs; }
-  .fee-steps li{ position:relative; padding:8px 0 8px 34px; font-size:1.02rem; line-height:1.45; color:var(--ink); }
-  .fee-steps li::before{ counter-increment:fs; content:counter(fs); position:absolute; left:0; top:6px;
-    width:22px; height:22px; border-radius:50%; background:rgba(216,155,58,.18);
-    font-family:'Fraunces',serif; font-weight:700; font-size:.8rem;
-    display:flex; align-items:center; justify-content:center; color:var(--ink); }
-  .fee-warn{ font-size:.88rem; opacity:.62; margin:.55rem 0 16px; line-height:1.4; }
-  @media(max-width:720px){ .fee-grid{ grid-template-columns:1fr; gap:16px; } .fee-card{ padding:26px 22px 22px; } }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Public Sans',system-ui,sans-serif;color:var(--text);background:var(--paper);font-size:17px;line-height:1.6;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 28px;}
+  .fr,h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;font-variation-settings:'opsz' 144,'wght' 620,'SOFT' 10,'WONK' 1;color:var(--navy);margin:0;letter-spacing:-.01em;}
+  .wonk{font-variation-settings:'opsz' 144,'wght' 650,'SOFT' 10,'WONK' 1;}
+  a{color:inherit;text-decoration:none;}
+  .tlink{color:#0066CC;font-weight:600;border-bottom:1.5px solid rgba(0,102,204,.3);}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);}
+  .brushwing{display:block;}
+  /* brandbar */
+  .brandbar{position:relative;background:#6E2940;color:#E7CDB4;overflow:hidden;}
+  .brandbar::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-burgundy-cta.svg) center/cover;}
+  .brandbar .wrap{position:relative;display:flex;justify-content:space-between;align-items:center;height:38px;font-size:11.5px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;}
+  .brandbar .kc{color:var(--gold);}
+  .brandbar a{color:#E7CDB4;}
+  /* nav */
+  nav{background:var(--paper);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:84px;}
+  .brand{display:flex;align-items:center;gap:6px;}
+  .brand img{display:block;}
+  .brand-text{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 640,'WONK' 1;font-size:32px;color:var(--navy);white-space:nowrap;letter-spacing:-.02em;display:inline-block;line-height:1.02;}
+  .brand-sub{display:block;font-family:'Public Sans',sans-serif;font-variation-settings:normal;font-weight:700;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C4921B;text-align:right;margin-top:3px;margin-right:-3px;}
+  .nav-links{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:600;}
+  .nav-links a{color:#3a352e;position:relative;padding:6px 0;}
+  .nav-links a.active{color:var(--teal);}
+  .nav-links a.active svg{position:absolute;left:0;bottom:-2px;}
+  .nav-cta{background:var(--caramel)!important;color:#fff!important;padding:9px 20px!important;font-size:13px;border-radius:9px;}
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:15px;font-weight:600;height:40px;padding:0 16px;box-sizing:border-box;width:170px;white-space:nowrap;border-radius:10px;cursor:pointer;transition:transform .15s;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--caramel);color:#fff;box-shadow:0 8px 22px rgba(184,115,51,.3);}
+  .btn-ghost{border:1.6px solid var(--navy);color:var(--navy);}
+  .btn-gold{background:var(--gold);color:#3a2708;}
+  .btn-block{display:flex;justify-content:center;width:100%;min-width:0;}
+  .btns{display:flex;gap:13px;flex-wrap:wrap;}
+  /* page hero */
+  .page-hero{position:relative;overflow:hidden;background:var(--paper-2);border-bottom:1px solid var(--border);color:var(--text);text-align:center;min-height:190px;display:flex;align-items:center;padding:0;}
+  .ph-inner{position:relative;z-index:1;width:100%;transform:translateY(11px);}
+  .page-hero .kicker{color:var(--teal);margin-bottom:4px;position:relative;top:-5px;}
+  .page-hero h1{color:var(--navy);font-size:46px;margin:0 0 4px;position:relative;top:-15px;}
+  .page-hero p{color:var(--muted);max-width:54ch;margin:0 auto;font-size:16px;position:relative;top:-19px;}
+  .page-hero .brushwing{margin:2px auto 0;position:relative;top:-12px;}
+  /* sections */
+  .block{padding:60px 0;}
+  .alt{background:var(--paper-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .section-head{text-align:center;max-width:60ch;margin:0 auto 40px;}
+  .section-head h2{font-size:36px;margin:14px 0 10px;}
+  .section-head p{color:var(--muted);font-size:16px;margin:0;}
+  .section-head .brushwing{margin:0 auto;}
+  .note{font-size:13px;color:var(--muted);text-align:center;max-width:80ch;margin:26px auto 0;line-height:1.55;}
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .step{position:relative;}
+  .step-num{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 660,'WONK' 1;font-size:46px;color:#013049;line-height:1;}
+  .step-wing{display:block;margin:3px 0 0;}
+  .step h3{font-size:19px;margin:8px 0 6px;}
+  .step p{font-size:14px;line-height:1.55;color:var(--muted);margin:0;}
+  /* ---- payments-page-only styles ---- */
+  .ptable-wrap{background:var(--pearl);border:1px solid var(--border);border-radius:16px;padding:8px 22px 16px;overflow-x:auto;}
+  .ptable{width:100%;border-collapse:collapse;font-size:1.02rem;min-width:480px;}
+  .ptable th{font-size:.9rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:18px 12px 12px;border-bottom:2px solid var(--navy);line-height:1.35;}
+  .ptable th.num,.ptable td.num{text-align:right;}
+  .ptable td{padding:12px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  .ptable tr:last-child td{border-bottom:none;}
+  .pt-pkg{font-weight:600;font-size:1.175rem;}
+  .pt-sub{display:block;font-weight:400;font-size:.86rem;color:var(--muted);margin-top:4px;}
+  .pt-price{font-family:'Fraunces',serif;font-optical-sizing:none;font-variation-settings:"opsz" 144,"wght" 640,"SOFT" 10,"WONK" 1;font-size:1.85rem;white-space:nowrap;color:var(--navy);}
+  .pt-std{font-family:'Fraunces',serif;font-optical-sizing:none;font-variation-settings:"opsz" 144,"wght" 520,"SOFT" 10,"WONK" 1;font-size:1.5rem;color:var(--muted);white-space:nowrap;}
+  .pt-save{display:inline-block;background:rgba(216,155,58,.18);color:#7a5410;font-size:.82rem;font-weight:700;padding:4px 11px;border-radius:7px;white-space:nowrap;margin-top:6px;}
+  .pt-same{display:inline-block;font-size:.88rem;color:var(--muted);white-space:nowrap;margin-top:6px;}
+  .pt-dir{background:rgba(216,155,58,.07);}
+  .pt-foot{font-size:.9rem;color:var(--muted);margin:16px 2px 4px;line-height:1.55;}
+  .payrow{display:grid;grid-template-columns:1fr 120px auto;align-items:center;gap:18px;padding:20px 4px;border-bottom:1px solid var(--border);}
+  .payrow:last-child{border-bottom:none;}
+  .payrow-name{font-weight:600;font-size:1.1rem;}
+  .payrow-price{font-family:'Fraunces',serif;font-optical-sizing:none;font-variation-settings:"opsz" 144,"wght" 640,"SOFT" 10,"WONK" 1;font-size:1.85rem;text-align:right;white-space:nowrap;color:var(--navy);}
+  .payrow-btns{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;}
+  .payrow-btns .btn{font-size:.95rem;}
+  .fee-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:6px;}
+  .fee-card{position:relative;background:var(--pearl);border:1px solid var(--border);border-radius:16px;padding:30px 30px 26px;overflow:hidden;}
+  .fee-card::before{content:"";position:absolute;left:0;top:0;height:100%;width:4px;background:linear-gradient(180deg,var(--gold),var(--teal));}
+  .fee-head{display:flex;align-items:center;gap:13px;margin-bottom:4px;}
+  .fee-logo{flex:0 0 auto;width:46px;height:46px;border-radius:50%;background:var(--paper-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+  .fee-logo svg{width:26px;height:26px;}
+  .fee-title{font-family:'Fraunces',serif;font-optical-sizing:none;font-variation-settings:"opsz" 144,"wght" 640,"SOFT" 10,"WONK" 1;font-size:1.55rem;margin:0;color:var(--navy);letter-spacing:-.01em;}
+  .fee-sub{font-size:.95rem;color:var(--text);opacity:.6;margin:0 0 16px;}
+  .fee-steps{list-style:none;margin:0 0 16px;padding:0;counter-reset:fs;}
+  .fee-steps li{position:relative;padding:8px 0 8px 34px;font-size:1.02rem;line-height:1.45;color:var(--text);}
+  .fee-steps li::before{counter-increment:fs;content:counter(fs);position:absolute;left:0;top:6px;width:22px;height:22px;border-radius:50%;background:rgba(216,155,58,.18);font-family:'Fraunces',serif;font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center;color:var(--text);}
+  .fee-warn{font-size:.88rem;opacity:.62;margin:.55rem 0 16px;line-height:1.4;}
+  /* cta */
+  .cta-band{position:relative;overflow:hidden;background:#6E2940;color:var(--on-deep);text-align:center;min-height:200px;display:flex;align-items:center;padding:0 0 12px;}
+  .cta-band::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-burgundy-cta.svg) center/cover;}
+  .cta-inner{position:relative;z-index:1;padding:0;width:100%;}
+  .cta-band h2{color:var(--on-deep);font-size:38px;line-height:1.05;margin:0 0 12px;white-space:nowrap;}
+  .cta-band p{color:var(--on-deep);margin:0 0 12px;font-size:15px;}
+  .cta-band .brushwing{margin:0 auto 5px;}
+  .cta-band .btn-primary{}
+  /* footer */
+  footer{position:relative;background:#013049;color:var(--on-deep-mute);overflow:hidden;}
+  footer::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-navy-footer.svg) center/cover;opacity:.6;}
+  footer>*{position:relative;z-index:1;}
+  .foot-rule{height:4px;background:linear-gradient(90deg,#5E7689 0 30%,var(--teal) 30% 55%,var(--gold) 55% 75%,var(--caramel) 75% 100%);}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding:25px 0 25px;}
+  .foot-brand-col{display:flex;flex-direction:column;max-width:24em;}
+  .foot-brand{display:flex;align-items:center;gap:6px;}
+  .foot-brand .b1{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 600,'WONK' 1;font-size:28px;color:var(--on-deep);line-height:1.02;letter-spacing:-.02em;}
+  .foot-tag{font-size:12.5px;line-height:1.4;color:var(--on-deep);margin:9px 0 0;max-width:18.5em;}
+  .foot-links{display:flex;gap:30px;font-size:13.5px;}
+  .foot-col h4{font-family:'Public Sans';font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin:0 0 8px;}
+  .foot-col a{display:block;color:var(--on-deep);margin-bottom:4px;}
+  .copyright{border-top:1px solid #1a3247;padding:15.5px 0;font-size:12px;color:#5f7385;text-align:center;}
+  .wa-btn{position:fixed;bottom:26px;right:26px;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.28);z-index:200;transition:transform .2s;}
+  .wa-btn:hover{transform:scale(1.1);}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+  @media(max-width:860px){
+    .page-hero h1{font-size:38px;}
+    .steps{grid-template-columns:1fr;}
+    .fee-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .cta-band h2{font-size:28px;white-space:normal;}
+  }
+  @media(max-width:620px){
+    .payrow{grid-template-columns:1fr auto;gap:10px 14px;}
+    .payrow-btns{grid-column:1 / -1;justify-content:stretch;}
+    .payrow-btns .btn{flex:1;min-width:0;}
+  }
+</style>
+<style>
+/* mobile hamburger nav */
+.nav-toggle{display:none}
+.nav-toggle-cb{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+@media(max-width:860px){
+  .nav-inner{position:relative}
+  .nav-toggle{display:flex;flex-direction:column;justify-content:center;gap:5px;width:46px;height:46px;margin-right:-8px;padding:0 11px;background:transparent;border:0;cursor:pointer;border-radius:9px;-webkit-tap-highlight-color:transparent}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:transform .25s ease,opacity .2s ease;transform-origin:center}
+  .nav-toggle-cb:checked + .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle-cb:checked + .nav-toggle span:nth-child(2){opacity:0}
+  .nav-toggle-cb:checked + .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .nav-links{display:flex !important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);border-top:1px solid var(--border);box-shadow:0 24px 40px rgba(16,24,32,.14);padding:8px 24px 18px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .24s ease,transform .24s ease,visibility .24s;max-height:calc(100vh - 110px);overflow-y:auto;z-index:60}
+  .nav-toggle-cb:checked ~ .nav-links{opacity:1;visibility:visible;transform:none}
+  .nav-links a{padding:15px 2px;font-size:17px;border-bottom:1px solid var(--border)}
+  .nav-links a.active svg{display:none}
+  .nav-cta{margin-top:14px;text-align:center;border-radius:9px}
+}
 </style>
 </head>
 <body>
@@ -106,22 +200,22 @@
 <div class="brandbar">
   <div class="wrap">
     <span class="kc">Online English Coaching</span>
-    <span>Lebanon &amp; Worldwide<span class="sep">&middot;</span><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp +961 71 500 874</a></span>
+    <span>Lebanon &amp; Worldwide&nbsp;·&nbsp;<a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp +961 71 500 874</a></span>
   </div>
 </div>
 
 <!-- NAV -->
 <nav>
   <div class="wrap nav-inner">
-    <a class="brand" href="/">
-      <img class="brand-logo" src="img/em-icon.png" width="56" height="56" alt="">
-      <span class="brand-text"><span class="b1">English Mastered</span></span>
+    <a class="brand" href="index.html">
+      <img src="assets/em-mark-gold.png" width="56" height="56" alt="English Mastered" style="margin:-12px 0 0 0;filter:drop-shadow(.35px 0 0 #C8941F) drop-shadow(-.35px 0 0 #C8941F);">
+      <span class="brand-text">English Mastered<span class="brand-sub">with Jana Malas</span></span>
     </a>
     <input type="checkbox" id="navtoggle" class="nav-toggle-cb" aria-label="Open navigation menu">
     <label class="nav-toggle" for="navtoggle" aria-hidden="true"><span></span><span></span><span></span></label>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="start.html">How Lessons Work</a>
+      <a href="start.html">How It Works</a>
       <a href="services.html">Services</a>
       <a href="about.html">About</a>
       <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="nav-cta">Book Free Call</a>
@@ -131,11 +225,11 @@
 
 <!-- PAGE HERO -->
 <header class="page-hero">
-  <div class="wrap">
+  <div class="wrap ph-inner">
     <p class="kicker">Payment</p>
     <h1 class="wonk">Start your lessons</h1>
     <p>Had your free call and ready to begin? Here's how payment works, what each package costs, and every way to pay.</p>
-    <hr class="dash center">
+    <svg class="brushwing" viewBox="0 0 120 14" width="150" height="11"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#2BB7C4"></path></svg>
   </div>
 </header>
 
@@ -145,18 +239,21 @@
     <div class="steps">
       <div class="step reveal">
         <div class="step-num">1</div>
+        <svg class="step-wing" viewBox="0 0 80 12" width="58" height="9"><path d="M3 7 C 26 3 60 3 77 6 C 60 10 24 11 4 11 Z" fill="#B87333"></path></svg>
         <h3>Choose &amp; pay</h3>
         <p>Pick your package and pay however suits you — card, PayPal, USDT, or a local transfer.</p>
       </div>
       <div class="step reveal">
         <div class="step-num">2</div>
+        <svg class="step-wing" viewBox="0 0 80 12" width="58" height="9"><path d="M3 7 C 26 3 60 3 77 6 C 60 10 24 11 4 11 Z" fill="#B87333"></path></svg>
         <h3>Confirm</h3>
         <p>Card and PayPal send an instant receipt. Paying by USDT or transfer? Just message Jana to confirm.</p>
       </div>
       <div class="step reveal">
         <div class="step-num">3</div>
+        <svg class="step-wing" viewBox="0 0 80 12" width="58" height="9"><path d="M3 7 C 26 3 60 3 77 6 C 60 10 24 11 4 11 Z" fill="#B87333"></path></svg>
         <h3>Jana reaches out</h3>
-        <p>She'll book your first session and send everything you need to get started. <a class="tlink" href="start.html">See how the whole process works &rarr;</a></p>
+        <p>She'll book your first session and send everything you need to get started. <a class="tlink" href="start.html">See how the process works →</a></p>
       </div>
     </div>
 
@@ -189,12 +286,12 @@
 </section>
 
 <!-- FEE-FREE WAYS TO PAY -->
-<section class="block" id="fee-free" style="background:var(--paper-2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+<section class="block alt" id="fee-free">
   <div class="wrap">
     <div class="section-head reveal">
-      <hr class="dash center">
-      <h2 class="serif">Fee-<span class="nowonk">f</span>ree ways to pay</h2>
-      <p>These methods skip the processing fees entirely — which is why they get the discounted price. Just send the discounted amount for your package ($15, $65, or $115) and message Jana to confirm.</p>
+      <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#1E97A6"></path></svg>
+      <h2>Fee-<span>f</span>ree ways to pay</h2>
+      <p>These methods skip the processing fees entirely, so they get a discounted price. Just send the discounted amount for your package and message Jana to confirm.</p>
     </div>
 
     <div class="fee-grid">
@@ -205,14 +302,12 @@
           <span class="fee-logo"><svg fill="#26A17B" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Tether</title><path d="M18.7538 10.5176c0 .6251-2.2379 1.1483-5.2381 1.2812l.0028.0007c-.0848.0064-.5233.0325-1.5012.0325-.7778 0-1.33-.0233-1.5237-.0325-3.0059-.1322-5.2495-.6555-5.2495-1.2819s2.2436-1.149 5.2495-1.2834v2.0442c.1965.0142.7594.0474 1.5372.0474.9334 0 1.4008-.0389 1.4849-.0466V9.2356c2.9994.1337 5.2381.657 5.2381 1.282zm5.19.5466L12.1248 22.389a.1803.1803 0 0 1-.2496 0L.0562 11.0635a.1781.1781 0 0 1-.0382-.2079l4.3762-9.1921a.1767.1767 0 0 1 .1626-.1026h14.8878a.1768.1768 0 0 1 .1612.1032l4.3762 9.1922a.1782.1782 0 0 1-.0382.2079zm-4.478-.4038c0-.8068-2.5515-1.4799-5.9473-1.6369V7.195h4.186V4.4055H6.3076V7.195h4.1852v1.8286c-3.4018.1562-5.9601.83-5.9601 1.6376 0 .8075 2.5583 1.4806 5.9601 1.6376v5.8618h3.025v-5.8639c3.394-.1563 5.948-.8295 5.948-1.6363z"/></svg></span>
           <h3 class="fee-title">Pay with USDT</h3>
         </div>
-        <p class="fee-sub">Stablecoin &middot; discounted price</p>
+        <p class="fee-sub">Stablecoin · discounted price</p>
         <ol class="fee-steps">
           <li>Message Jana on WhatsApp and she'll send the wallet address.</li>
           <li>Send the discounted amount for your package — $15, $65, or $115 — in USDT on the <strong>TRC-20 (Tron)</strong> network only.</li>
           <li>Share the transaction link or screenshot to confirm.</li>
         </ol>
-        <!-- TODO: once the USDT wallet exists, replace step 1 with the address in a
-             monospace box, e.g. <code class="wallet">TXxxxx...</code> + copy advice. -->
         <p class="fee-warn">Only send USDT on the TRC-20 network, and double-check the address before sending — crypto transfers can't be reversed.</p>
         <a href="https://wa.me/96171500874?text=Hi%20Jana%2C%20I'd%20like%20to%20pay%20for%20lessons%20with%20USDT.%20Could%20you%20send%20the%20wallet%20address%3F" target="_blank" rel="noopener" class="btn btn-primary btn-block">Get the wallet address</a>
       </div>
@@ -220,10 +315,10 @@
       <!-- LOCAL TRANSFER -->
       <div class="fee-card reveal">
         <div class="fee-head">
-          <span class="fee-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#101820" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h14l-3.2-3.2M21 15H7l3.2 3.2"/></svg></span>
-          <h3 class="fee-title">Whish &middot; Western Union &middot; OMT</h3>
+          <span class="fee-logo"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h14l-3.2-3.2M21 15H7l3.2 3.2"/></svg></span>
+          <h3 class="fee-title">Whish · Western Union · OMT</h3>
         </div>
-        <p class="fee-sub">Cash &amp; wallet transfer &middot; discounted price</p>
+        <p class="fee-sub">Cash &amp; wallet transfer · discounted price</p>
         <ol class="fee-steps">
           <li>Message Jana on WhatsApp and tell her which package you'd like.</li>
           <li>She'll send the exact recipient details for Whish, Western Union, or OMT.</li>
@@ -242,9 +337,9 @@
 <section class="block" id="checkout">
   <div class="wrap">
     <div class="section-head reveal">
-      <hr class="dash center">
-      <h2 class="serif">Pay by card or PayPal</h2>
-      <p>Standard price &middot; secure Stripe and PayPal checkout &middot; instant receipt for you and Jana.</p>
+      <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#1E97A6"></path></svg>
+      <h2>Pay by card or PayPal</h2>
+      <p>Standard price · Instant payment and receipt · Secure Stripe and PayPal checkout</p>
     </div>
 
     <div class="ptable-wrap reveal" style="padding:10px 26px;">
@@ -273,18 +368,18 @@
         </span>
       </div>
     </div>
-    <p class="pt-foot" style="text-align:center;">Prefer the discounted price? Use the fee-free methods above — same lessons, lower price.</p>
+    <p class="pt-foot" style="text-align:center;">Prefer the discounted price? Use the fee-free methods above.</p>
   </div>
 </section>
 
 <!-- FINAL CTA -->
 <section class="cta-band">
   <div class="wrap cta-inner reveal">
-    <hr class="dash center">
-    <h2 class="wonk">Haven't had your <span class="nowonk">f</span>ree call yet?</h2>
+    <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#2BB7C4"></path></svg>
+    <h2 class="wonk">Haven't had your <span>f</span>ree call yet?</h2>
     <p>Not sure which package fits? Start with a free 15-minute call and Jana will point you the right way.</p>
     <div class="btns" style="justify-content:center;">
-      <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-primary">Book a free call</a>
+      <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-primary">Book a free call <span>→</span></a>
       <a href="services.html" class="btn btn-ghost" style="color:var(--on-deep);border-color:var(--on-deep);">See all packages</a>
     </div>
   </div>
@@ -294,32 +389,19 @@
 <footer>
   <div class="foot-rule"></div>
   <div class="wrap foot-inner">
-    <div class="foot-brand">
-      <a class="foot-lockup" href="/">
-        <picture><source srcset="img/em-icon.webp" type="image/webp"><img class="foot-mark" src="img/em-icon.png" width="40" height="40" loading="lazy" alt=""></picture>
-        <span class="foot-word">English Mastered</span>
-      </a>
-      <div class="b2">Personalised online English coaching with Jana Malas — for Arabic speakers ready to master the language.</div>
+    <div class="foot-brand-col">
+      <div class="foot-brand">
+        <img src="assets/em-mark-white.png" width="49" height="49" alt="" style="margin:0;filter:drop-shadow(.35px 0 0 #F2EBDD) drop-shadow(-.35px 0 0 #F2EBDD);">
+        <div><div class="b1">English Mastered</div></div>
+      </div>
+      <p class="foot-tag">Personalised online English coaching with Jana Malas. For Arabic speakers who are ready to master the language.</p>
     </div>
-    <div class="foot-col">
-      <h5>Explore</h5>
-      <a href="start.html">How Lessons Work</a>
-      <a href="level-test.html">Find Your Level</a>
-      <a href="services.html">Services</a>
-      <a href="payments.html">Pay for Lessons</a>
-      <a href="samples.html">Sample Lessons</a>
-      <a href="about.html">Meet Your Coach</a>
-    </div>
-    <div class="foot-col">
-      <h5>Get in touch</h5>
-      <a href="book.html">Book a free call</a>
-      <a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="mailto:jana@englishmastered.org">Email</a>
-      <a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a>
+    <div class="foot-links">
+      <div class="foot-col"><h4>Explore</h4><a href="start.html">How Lessons Work</a><a href="level-test.html">Find Your Level</a><a href="services.html">Services</a><a href="payments.html">Pay for Lessons</a><a href="samples.html">Sample Lessons</a><a href="about.html">Meet Your Coach</a></div>
+      <div class="foot-col"><h4>Get in touch</h4><a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html">Book a free call</a><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:jana@englishmastered.org">Email</a><a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a></div>
     </div>
   </div>
-  <div class="foot-base"><div class="wrap">&copy; 2025–2026 English Mastered — Jana Malas</div></div>
+  <div class="copyright">© 2025–2026 English Mastered — Jana Malas · Online English coaching for Arabic speakers · Lebanon &amp; Worldwide</div>
 </footer>
 
 <!-- WHATSAPP -->
@@ -332,5 +414,12 @@
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 
+
+<!-- Cal.com popup for Book buttons -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "free-discovery-call", {origin:"https://app.cal.com"});
+  Cal.ns["free-discovery-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#B87333"},"dark":{"cal-brand":"#D89B3A"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
 </body>
 </html>
