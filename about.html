@@ -146,7 +146,7 @@
   /* cta + footer */
   .cta-band{position:relative;overflow:hidden;background:#6E2940;color:var(--on-deep);text-align:center;min-height:200px;display:flex;align-items:center;padding:0 0 12px;}
   .cta-band::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-burgundy-cta.svg) center/cover;}
-  .cta-inner{position:relative;z-index:1;padding:0;width:100%;}
+  .cta-inner{position:relative;z-index:1;padding:0 28px;width:100%;}
   .cta-band h2{color:var(--on-deep);font-size:38px;line-height:1.05;margin:0 0 12px;white-space:nowrap;}
   .cta-band p{color:var(--on-deep);margin:0 0 12px;font-size:15px;}
   .cta-band .brushwing{margin:0 auto 5px;}
@@ -154,7 +154,7 @@
   footer::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-navy-footer.svg) center/cover;opacity:.6;}
   footer>*{position:relative;z-index:1;}
   .foot-rule{height:4px;background:linear-gradient(90deg,#5E7689 0 30%,var(--teal) 30% 55%,var(--gold) 55% 75%,var(--caramel) 75% 100%);}
-  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding:25px 0 25px;}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding:25px 28px;}
   .foot-brand-col{display:flex;flex-direction:column;max-width:24em;}
   .foot-brand{display:flex;align-items:center;gap:6px;}
   .foot-brand .b1{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 600,'WONK' 1;font-size:28px;color:var(--on-deep);line-height:1.02;letter-spacing:-.02em;}
@@ -162,7 +162,7 @@
   .foot-links{display:flex;gap:30px;font-size:13.5px;}
   .foot-col h4{font-family:'Public Sans';font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin:0 0 8px;}
   .foot-col a{display:block;color:var(--on-deep);margin-bottom:4px;}
-  .copyright{border-top:1px solid #1a3247;padding:15.5px 0;font-size:12px;color:#5f7385;text-align:center;}
+  .copyright{border-top:1px solid #1a3247;padding:15.5px 28px;font-size:12px;color:#5f7385;text-align:center;}
   .wa-btn{position:fixed;bottom:26px;right:26px;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.28);z-index:200;transition:transform .2s;}
   .wa-btn:hover{transform:scale(1.1);}
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease;}
@@ -175,39 +175,10 @@
     .page-hero h1{font-size:38px;}
     .nav-links{display:none;}
     .cta-band h2{font-size:28px;white-space:normal;}
+    .cta-band{min-height:auto;padding:52px 0;}
   }
 </style>
 <link rel="stylesheet" href="assets/em-facets-tonal.css">
-<style>
-/* mobile hamburger nav */
-.nav-toggle{display:none}
-.nav-toggle-cb{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
-@media(max-width:860px){
-  .nav-inner{position:relative}
-  .nav-toggle{display:flex;flex-direction:column;justify-content:center;gap:5px;width:46px;height:46px;margin-right:-8px;padding:0 11px;background:transparent;border:0;cursor:pointer;border-radius:9px;-webkit-tap-highlight-color:transparent}
-  .nav-toggle span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:transform .25s ease,opacity .2s ease;transform-origin:center}
-  .nav-toggle-cb:checked + .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-  .nav-toggle-cb:checked + .nav-toggle span:nth-child(2){opacity:0}
-  .nav-toggle-cb:checked + .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-  .nav-links{display:flex !important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);border-top:1px solid var(--border);box-shadow:0 24px 40px rgba(16,24,32,.14);padding:8px 24px 18px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .24s ease,transform .24s ease,visibility .24s;max-height:calc(100vh - 110px);overflow-y:auto;z-index:60}
-  .nav-toggle-cb:checked ~ .nav-links{opacity:1;visibility:visible;transform:none}
-  .nav-links a{padding:15px 2px;font-size:17px;border-bottom:1px solid var(--border)}
-  .nav-links a.active svg{display:none}
-  .nav-cta{margin-top:14px;text-align:center;border-radius:9px}
-}
-</style>
-<style id="em-mobile-fix">
-/* mobile layout fixes */
-html,body{overflow-x:clip}
-@media(max-width:900px){ .step .crow::before{display:none!important} }
-@media(max-width:860px){
-  .section-head p,.cta-band h2,.page-hero p{white-space:normal!important}
-}
-@media(max-width:640px){
-  .brandbar .kc{display:none}
-  .brandbar .wrap{justify-content:center}
-}
-</style>
 </head>
 <body>
 
@@ -226,14 +197,12 @@ html,body{overflow-x:clip}
       <img src="assets/em-mark-gold.png" width="56" height="56" alt="English Mastered" style="margin:-12px 0 0 0;filter:drop-shadow(.35px 0 0 #C8941F) drop-shadow(-.35px 0 0 #C8941F);">
       <span class="brand-text">English Mastered<span class="brand-sub">with Jana Malas</span></span>
     </a>
-    <input type="checkbox" id="navtoggle" class="nav-toggle-cb" aria-label="Open navigation menu">
-    <label class="nav-toggle" for="navtoggle" aria-hidden="true"><span></span><span></span><span></span></label>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="start.html">How It Works</a>
       <a href="services.html">Services</a>
       <a href="about.html" class="active">About<svg viewBox="0 0 60 8" width="42" height="6"><path d="M2 5 C 16 2 44 2 58 5 C 44 7 18 7 2 6 Z" fill="#1E97A6"></path></svg></a>
-      <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="nav-cta">Book Free Call</a>
+      <a href="book.html" class="nav-cta">Book Free Call</a>
     </div>
   </div>
 </nav>
@@ -260,7 +229,7 @@ html,body{overflow-x:clip}
         <p>I know that freeze. Arabic is my first language, and I learned English exactly the way my students do. I know the sound your mouth defaults to, the word order your brain reaches for, and the rule that <em>should</em> work but doesn't — and that's the whole reason English Mastered exists.</p>
         <p>Whether you're preparing for IELTS, writing emails at work, or you just want to hold a conversation without panicking — I'll meet you exactly where you are and build a clear path from there.</p>
         <div class="btns">
-          <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-primary">Book a Free Call <span>→</span></a>
+          <a href="book.html" class="btn btn-primary">Book a Free Call <span>→</span></a>
           <a href="samples.html" class="btn btn-ghost">See Sample Lessons</a>
         </div>
       </div>
@@ -336,7 +305,7 @@ html,body{overflow-x:clip}
     <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#2BB7C4"></path></svg>
     <h2 class="wonk">Let's have a quick chat</h2>
     <p>Book a free 15-minute call and tell me what you're working toward. No commitment, no payment — just a conversation.</p>
-    <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-primary">Book Your Free Call <span>→</span></a>
+    <a href="book.html" class="btn btn-primary">Book Your Free Call <span>→</span></a>
   </div>
 </section>
 
@@ -353,7 +322,7 @@ html,body{overflow-x:clip}
     </div>
     <div class="foot-links">
       <div class="foot-col"><h4>Explore</h4><a href="start.html">How Lessons Work</a><a href="level-test.html">Find Your Level</a><a href="services.html">Services</a><a href="payments.html">Pay for Lessons</a><a href="samples.html">Sample Lessons</a><a href="about.html">Meet Your Coach</a></div>
-      <div class="foot-col"><h4>Get in touch</h4><a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html">Book a free call</a><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:jana@englishmastered.org">Email</a><a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a></div>
+      <div class="foot-col"><h4>Get in touch</h4><a href="book.html">Book a free call</a><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:jana@englishmastered.org">Email</a><a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a></div>
     </div>
   </div>
   <div class="copyright">© 2025–2026 English Mastered — Jana Malas · Online English coaching for Arabic speakers · Lebanon &amp; Worldwide</div>
@@ -369,12 +338,5 @@ html,body{overflow-x:clip}
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 
-
-<!-- Cal.com popup for Book buttons -->
-<script type="text/javascript">
-  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-  Cal("init", "free-discovery-call", {origin:"https://app.cal.com"});
-  Cal.ns["free-discovery-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#B87333"},"dark":{"cal-brand":"#D89B3A"}},"hideEventTypeDetails":false,"layout":"month_view"});
-</script>
 </body>
 </html>

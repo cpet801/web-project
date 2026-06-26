@@ -58,6 +58,10 @@
   .nav-links{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:600;}
   .nav-links a{color:#3a352e;position:relative;padding:6px 0;}
   .nav-cta{background:var(--caramel)!important;color:#fff!important;padding:9px 20px!important;font-size:13px;border-radius:9px;}
+  /* mobile nav toggle (hidden on desktop; revealed in the 760px media query) */
+  .nav-toggle-cb{display:none;}
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;cursor:pointer;}
+  .nav-toggle span{display:block;height:2.5px;width:24px;background:var(--navy);border-radius:2px;transition:transform .2s ease,opacity .2s ease;}
   /* buttons */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:15px;font-weight:600;height:44px;padding:0 22px;box-sizing:border-box;white-space:nowrap;border-radius:10px;cursor:pointer;transition:transform .15s;}
   .btn:hover{transform:translateY(-2px);}
@@ -96,7 +100,7 @@
   footer::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-navy-footer.svg) center/cover;opacity:.6;}
   footer>*{position:relative;z-index:1;}
   .foot-rule{height:4px;background:linear-gradient(90deg,#5E7689 0 30%,var(--teal) 30% 55%,var(--gold) 55% 75%,var(--caramel) 75% 100%);}
-  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding:25px 0 25px;}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding:25px 28px;}
   .foot-brand-col{display:flex;flex-direction:column;max-width:24em;}
   .foot-brand{display:flex;align-items:center;gap:6px;}
   .foot-brand .b1{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 600,'WONK' 1;font-size:28px;color:var(--on-deep);line-height:1.02;letter-spacing:-.02em;}
@@ -104,13 +108,25 @@
   .foot-links{display:flex;gap:30px;font-size:13.5px;}
   .foot-col h4{font-family:'Public Sans';font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin:0 0 8px;}
   .foot-col a{display:block;color:var(--on-deep);margin-bottom:4px;}
-  .copyright{border-top:1px solid #1a3247;padding:15.5px 0;font-size:12px;color:#5f7385;text-align:center;}
+  .copyright{border-top:1px solid #1a3247;padding:15.5px 28px;font-size:12px;color:#5f7385;text-align:center;}
   /* whatsapp */
   .wa-btn{position:fixed;bottom:26px;right:26px;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.28);z-index:200;transition:transform .2s;}
   .wa-btn:hover{transform:scale(1.1);}
   @media(max-width:760px){
     .quiz-opts{grid-template-columns:1fr;}
-    .nav-links{display:none;}
+    .nav-toggle{display:flex;}
+    .nav-links{
+      display:none;position:absolute;top:100%;left:0;right:0;
+      flex-direction:column;align-items:stretch;gap:0;
+      background:var(--paper);border-bottom:1px solid var(--border);
+      padding:6px 0 10px;box-shadow:0 18px 40px rgba(1,66,106,.13);
+    }
+    .nav-toggle-cb:checked ~ .nav-links{display:flex;}
+    .nav-links a{padding:13px 28px;}
+    .nav-cta{margin:8px 28px 2px;text-align:center;padding:12px 20px!important;}
+    .nav-toggle-cb:checked + .nav-toggle span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+    .nav-toggle-cb:checked + .nav-toggle span:nth-child(2){opacity:0;}
+    .nav-toggle-cb:checked + .nav-toggle span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
     .page-hero h1{font-size:38px;}
     .quiz{padding:26px 22px 28px;}
     .foot-inner{gap:18px;}
@@ -180,36 +196,6 @@
     body{ background:#fff; }
     .quiz-result{ box-shadow:none !important; border:0 !important; }
   }
-</style>
-<style>
-/* mobile hamburger nav */
-.nav-toggle{display:none}
-.nav-toggle-cb{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
-@media(max-width:860px){
-  .nav-inner{position:relative}
-  .nav-toggle{display:flex;flex-direction:column;justify-content:center;gap:5px;width:46px;height:46px;margin-right:-8px;padding:0 11px;background:transparent;border:0;cursor:pointer;border-radius:9px;-webkit-tap-highlight-color:transparent}
-  .nav-toggle span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:transform .25s ease,opacity .2s ease;transform-origin:center}
-  .nav-toggle-cb:checked + .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-  .nav-toggle-cb:checked + .nav-toggle span:nth-child(2){opacity:0}
-  .nav-toggle-cb:checked + .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-  .nav-links{display:flex !important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);border-top:1px solid var(--border);box-shadow:0 24px 40px rgba(16,24,32,.14);padding:8px 24px 18px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .24s ease,transform .24s ease,visibility .24s;max-height:calc(100vh - 110px);overflow-y:auto;z-index:60}
-  .nav-toggle-cb:checked ~ .nav-links{opacity:1;visibility:visible;transform:none}
-  .nav-links a{padding:15px 2px;font-size:17px;border-bottom:1px solid var(--border)}
-  .nav-links a.active svg{display:none}
-  .nav-cta{margin-top:14px;text-align:center;border-radius:9px}
-}
-</style>
-<style id="em-mobile-fix">
-/* mobile layout fixes */
-html,body{overflow-x:clip}
-@media(max-width:900px){ .step .crow::before{display:none!important} }
-@media(max-width:860px){
-  .section-head p,.cta-band h2,.page-hero p{white-space:normal!important}
-}
-@media(max-width:640px){
-  .brandbar .kc{display:none}
-  .brandbar .wrap{justify-content:center}
-}
 </style>
 </head>
 <body>
@@ -282,7 +268,7 @@ html,body{overflow-x:clip}
       </div>
       <div class="foot-col">
         <h4>Get in touch</h4>
-        <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html">Book a free call</a>
+        <a href="book.html">Book a free call</a>
         <a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a>
         <a href="mailto:jana@englishmastered.org">Email</a>
         <a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a>
@@ -644,12 +630,5 @@ html,body{overflow-x:clip}
 })();
 </script>
 
-
-<!-- Cal.com popup for Book buttons -->
-<script type="text/javascript">
-  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-  Cal("init", "free-discovery-call", {origin:"https://app.cal.com"});
-  Cal.ns["free-discovery-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#B87333"},"dark":{"cal-brand":"#D89B3A"}},"hideEventTypeDetails":false,"layout":"month_view"});
-</script>
 </body>
 </html>
