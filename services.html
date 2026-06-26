@@ -26,10 +26,28 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishmastered.org/" },
-    { "@type": "ListItem", "position": 2, "name": "Lessons & Packages", "item": "https://englishmastered.org/services.html" }
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://englishmastered.org/" },
+        { "@type": "ListItem", "position": 2, "name": "Lessons & Packages", "item": "https://englishmastered.org/services.html" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Online English Coaching",
+      "serviceType": "English language coaching",
+      "description": "One-to-one online English lessons for Arabic speakers — IELTS preparation, Business English, conversation, and group classes, taught by Jana Malas.",
+      "provider": { "@id": "https://englishmastered.org/#org" },
+      "areaServed": "Worldwide",
+      "audience": { "@type": "Audience", "audienceType": "Arabic speakers learning English" },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "lowPrice": "15"
+      }
+    }
   ]
 }
 </script>
