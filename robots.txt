@@ -1,4 +1,74 @@
+# ============================================================
+# English Mastered — robots.txt
+# https://englishmastered.org
+# ============================================================
+
+# Standard search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# ----------------------------------------------------------
+# OpenAI
+# ----------------------------------------------------------
+# GPTBot — training crawler (builds model knowledge of the brand)
+User-agent: GPTBot
+Allow: /
+
+# OAI-SearchBot — powers ChatGPT Search citations
+User-agent: OAI-SearchBot
+Allow: /
+
+# ChatGPT-User — live fetch when a user asks about a URL
+User-agent: ChatGPT-User
+Allow: /
+
+# ----------------------------------------------------------
+# Anthropic
+# ----------------------------------------------------------
+# ClaudeBot — training crawler
+User-agent: ClaudeBot
+Allow: /
+
+# Claude-SearchBot — powers Claude web search citations
+User-agent: Claude-SearchBot
+Allow: /
+
+# Claude-User — user-initiated fetch
+User-agent: Claude-User
+Allow: /
+
+# ----------------------------------------------------------
+# Perplexity
+# ----------------------------------------------------------
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ----------------------------------------------------------
+# Google AI training (Gemini, AI Overviews)
+# ----------------------------------------------------------
+User-agent: Google-Extended
+Allow: /
+
+# ----------------------------------------------------------
+# Apple (Siri, Apple Intelligence)
+# ----------------------------------------------------------
+User-agent: Applebot-Extended
+Allow: /
+
+# ----------------------------------------------------------
+# Default: allow everything else
+# ----------------------------------------------------------
 User-agent: *
 Allow: /
 
+# ----------------------------------------------------------
+# Sitemap & LLM index
+# ----------------------------------------------------------
 Sitemap: https://englishmastered.org/sitemap.xml
+# AI model index: https://englishmastered.org/llms.txt
