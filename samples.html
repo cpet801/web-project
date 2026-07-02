@@ -59,7 +59,7 @@
     --navy:#01426A; --navy-deep:#013049; --teal:#1E97A6; --teal-bright:#2BB7C4;
     --caramel:#B87333; --paper:#F7F3EC; --paper-2:#EFE7D7; --pearl:#FCFBF5; --gold:#E4A72C;
     --text:#2A2520; --muted:#6E6358; --border:#E3D9CA; --on-deep:#F2EBDD; --on-deep-mute:#9DA7B1;
-    --gen:#0C5C63; --ielts:#E4A72C; --toefl:#C8663F; --biz:#6E2742; --esp:#007BA7; --conv:#7D8252; --grp:#9E472A;
+    --gen:#0C5C63; --ielts:#E31837; --toefl:#C8663F; --biz:#6E2742; --esp:#007BA7; --conv:#7D8252; --grp:#9E472A;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -80,10 +80,10 @@
   /* nav */
   nav{background:var(--paper);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:84px;}
-  .brand{display:flex;align-items:center;gap:6px;}
-  .brand img{display:block;}
-  .brand-text{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 640,'WONK' 1;font-size:32px;color:var(--navy);white-space:nowrap;letter-spacing:-.02em;display:inline-block;line-height:1.02;}
-  .brand-sub{display:block;font-family:'Public Sans',sans-serif;font-variation-settings:normal;font-weight:700;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C4921B;text-align:right;margin-top:3px;margin-right:-3px;}
+  .brand{display:flex;align-items:center;gap:7px;}
+  .brand img{display:block;width:62px;height:62px;margin-top:-13px;}
+  .brand-text{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 640,'WONK' 1;font-size:36px;color:var(--navy);white-space:nowrap;letter-spacing:-.02em;display:inline-block;line-height:1.02;}
+  .brand-sub{display:block;font-family:'Public Sans',sans-serif;font-variation-settings:normal;font-weight:700;font-size:11px;letter-spacing:3.3px;text-transform:uppercase;color:#C4921B;text-align:right;margin-top:3px;margin-right:-3px;}
   .nav-links{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:600;}
   .nav-links a{color:#3a352e;position:relative;padding:6px 0;}
   .nav-links a.active{color:var(--teal);}
@@ -220,6 +220,9 @@
   .nav-links a{padding:15px 2px;font-size:17px;border-bottom:1px solid var(--border)}
   .nav-links a.active svg{display:none}
   .nav-cta{margin-top:14px;text-align:center;border-radius:9px}
+  .brand img{width:48px;height:48px;margin-top:-10px}
+  .brand-text{font-size:28px}
+  .brand-sub{font-size:8.5px;letter-spacing:2.4px}
 }
 </style>
 <style id="em-mobile-fix">
@@ -249,7 +252,7 @@ html,body{overflow-x:clip}
 <nav>
   <div class="wrap nav-inner">
     <a class="brand" href="index.html">
-      <img src="assets/em-mark-gold.png" width="56" height="56" alt="English Mastered" style="margin:-12px 0 0 0;filter:drop-shadow(.35px 0 0 #C8941F) drop-shadow(-.35px 0 0 #C8941F);">
+      <img src="assets/em-mark-gold.png" alt="English Mastered" style="filter:drop-shadow(.35px 0 0 #C8941F) drop-shadow(-.35px 0 0 #C8941F);">
       <span class="brand-text">English Mastered<span class="brand-sub">with Jana Malas</span></span>
     </a>
     <input type="checkbox" id="navtoggle" class="nav-toggle-cb" aria-label="Open navigation menu">

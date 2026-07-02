@@ -57,7 +57,7 @@
     --navy:#01426A; --navy-deep:#013049; --teal:#1E97A6; --teal-bright:#2BB7C4;
     --caramel:#B87333; --paper:#F7F3EC; --paper-2:#EFE7D7; --pearl:#FCFBF5; --gold:#E4A72C;
     --text:#2A2520; --muted:#6E6358; --border:#E3D9CA; --on-deep:#F2EBDD; --on-deep-mute:#9DA7B1;
-    --gen:#0C5C63; --ielts:#E4A72C; --toefl:#C8663F; --biz:#6E2742; --esp:#007BA7; --conv:#7D8252; --grp:#9E472A;
+    --gen:#0C5C63; --ielts:#E31837; --toefl:#C8663F; --biz:#6E2742; --esp:#007BA7; --conv:#7D8252; --grp:#9E472A;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -202,6 +202,18 @@
     .cta-band{min-height:auto;padding:52px 0;}
   }
 </style>
+<style id="em-mobile-fix">
+/* mobile layout fixes */
+html,body{overflow-x:clip}
+@media(max-width:900px){ .step .crow::before{display:none!important} }
+@media(max-width:860px){
+  .section-head p,.cta-band h2,.page-hero p{white-space:normal!important}
+}
+@media(max-width:640px){
+  .brandbar .kc{display:none}
+  .brandbar .wrap{justify-content:center}
+}
+</style>
 </head>
 <body>
 
@@ -227,7 +239,7 @@
       <a href="start.html">How It Works</a>
       <a href="services.html">Services</a>
       <a href="about.html" class="active">About<svg viewBox="0 0 60 8" width="42" height="6"><path d="M2 5 C 16 2 44 2 58 5 C 44 7 18 7 2 6 Z" fill="#1E97A6"></path></svg></a>
-      <a href="book.html" class="nav-cta">Book Free Call</a>
+      <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="nav-cta">Book Free Call</a>
     </div>
   </div>
 </nav>
@@ -249,12 +261,12 @@
       <div class="bio-text reveal">
         <span class="kicker">A little about me</span>
         <h1 class="wonk">Hi, I'm Jana</h1>
-        <p class="lead">I'm an ESL coach from Lebanon, and I work one-to-one with Arabic speakers — online, anywhere in the world.</p>
+        <p class="lead">I'm an ESL coach from Lebanon, and I work one-to-one with Arabic speakers, online, anywhere in the world.</p>
         <p>I've been teaching English for over five years in secondary schools, universities, and NGOs across Lebanon and Turkey. I founded English Mastered in 2021 because I kept meeting the same student: an Arabic speaker who had studied English for years and still froze the moment they had to use it.</p>
         <p>I know that freeze. Arabic is my first language, and I learned English exactly the way my students do. I know the sound your mouth defaults to, the word order your brain reaches for, and the rule that <em>should</em> work but doesn't — and that's the whole reason English Mastered exists.</p>
-        <p>Whether you're preparing for IELTS, writing emails at work, or you just want to hold a conversation without panicking — I'll meet you exactly where you are and build a clear path from there.</p>
+        <p>Whether you're preparing for IELTS, writing emails at work, or you just want to hold a conversation without panicking, I'll meet you exactly where you are and build a clear path from there.</p>
         <div class="btns">
-          <a href="book.html" class="btn btn-primary">Book a Free Call <span>→</span></a>
+          <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-primary">Book a Free Call <span>→</span></a>
           <a href="samples.html" class="btn btn-ghost">See Sample Lessons</a>
         </div>
       </div>
@@ -278,10 +290,10 @@
         <p>Every lesson targets your real weak spots, and the goals you set on day one shape the whole plan.</p>
       </div>
       <div class="card-item reveal" style="border-top-color:var(--ielts);">
-        <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="34"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#E4A72C"></path></svg>
-        <div class="card-icon" style="background:rgba(228,167,44,.16);color:var(--ielts);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="34"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#E31837"></path></svg>
+        <div class="card-icon" style="background:rgba(227,24,55,.12);color:var(--ielts);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
         <h3>Arabic-speaker aware</h3>
-        <p>I know the exact grammar, sounds, and habits that trip up Arabic speakers — because I've been through it myself.</p>
+        <p>I know the exact grammar, sounds, and habits that trip up Arabic speakers, because I've been through all of that myself.</p>
       </div>
       <div class="card-item reveal" style="border-top-color:var(--conv);">
         <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="34"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#7D8252"></path></svg>
@@ -293,7 +305,7 @@
         <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="34"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#1E97A6"></path></svg>
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg></div>
         <h3>Flexible &amp; online</h3>
-        <p>Sessions over Zoom, Teams, or Webex — on a schedule that works around your job or your studies.</p>
+        <p>Sessions over Zoom, Teams, or Webex on a schedule that works around your job or your studies.</p>
       </div>
     </div>
   </div>
@@ -306,7 +318,7 @@
       <div class="cred-text reveal">
         <span class="kicker">Qualifications &amp; Training</span>
         <h2 class="wonk">Years of study behind every lesson</h2>
-        <p class="intro">Formal training in English and language teaching — and I keep learning.</p>
+        <p class="intro">Formal training in English and language teaching.</p>
         <ul class="cred-list">
           <li><span class="deg">M.A., English Language &amp; Literature — Linguistics Track</span><span class="meta">Lebanese University · 2022</span></li>
           <li><span class="deg">Teaching Diploma, Teaching of English</span><span class="meta">Lebanese University · 2021</span></li>
@@ -330,7 +342,7 @@
     <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#2BB7C4"></path></svg>
     <h2 class="wonk">Let's have a quick chat</h2>
     <p>Book a free 15-minute call and tell me what you're working toward. No commitment, no payment — just a conversation.</p>
-    <a href="book.html" class="btn btn-primary">Book Your Free Call <span>→</span></a>
+    <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-primary">Book Your Free Call <span>→</span></a>
   </div>
 </section>
 
@@ -347,7 +359,7 @@
     </div>
     <div class="foot-links">
       <div class="foot-col"><h4>Explore</h4><a href="start.html">How Lessons Work</a><a href="level-test.html">Find Your Level</a><a href="services.html">Services</a><a href="payments.html">Pay for Lessons</a><a href="samples.html">Sample Lessons</a><a href="about.html">Meet Your Coach</a></div>
-      <div class="foot-col"><h4>Get in touch</h4><a href="book.html">Book a free call</a><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:jana@englishmastered.org">Email</a><a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a></div>
+      <div class="foot-col"><h4>Get in touch</h4><a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html">Book a free call</a><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:jana@englishmastered.org">Email</a><a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a></div>
     </div>
   </div>
   <div class="copyright">© 2025–2026 English Mastered — Jana Malas · Online English coaching for Arabic speakers · Lebanon &amp; Worldwide</div>
@@ -363,5 +375,12 @@
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 
+
+<!-- Cal.com popup for Book buttons -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "free-discovery-call", {origin:"https://app.cal.com"});
+  Cal.ns["free-discovery-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#B87333"},"dark":{"cal-brand":"#D89B3A"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
 </body>
 </html>

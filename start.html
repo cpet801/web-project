@@ -67,6 +67,7 @@
   .nav-links{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:600;}
   .nav-links a{color:#3a352e;position:relative;padding:6px 0;}
   .nav-links a.active{color:var(--teal);}
+  .nav-links a.active svg{position:absolute;left:0;bottom:-2px;}
   .nav-cta{background:var(--caramel)!important;color:#fff!important;padding:9px 20px!important;font-size:13px;border-radius:9px;}
   .nav-toggle-cb{display:none;}
   .nav-toggle{display:none;}
@@ -91,10 +92,9 @@
   /* steps */
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;}
   .step{position:relative;text-align:center;}
-  .step .crow{position:relative;height:48px;margin-bottom:15px;display:flex;align-items:center;justify-content:center;}
-  .step .crow::before{content:"";position:absolute;left:50%;top:24px;width:calc(100% + 30px);height:2px;background:rgba(30,151,166,.32);z-index:0;}
-  .step:last-child .crow::before{display:none;}
-  .step .coin{position:relative;z-index:1;width:48px;height:48px;border-radius:50%;background:#E1EAE5;border:1.5px solid var(--teal);color:var(--teal);font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 620,'WONK' 1;font-size:22px;display:flex;align-items:center;justify-content:center;}
+  .step .coin{width:39px;height:39px;border-radius:13px;background:#D4E4E1;border:1.5px solid var(--teal);color:#0C5C63;font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 640,'WONK' 1;font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;margin:0 auto 14px;}
+  .step::after{content:"";position:absolute;left:calc(50% + 19.5px);top:18.75px;width:calc(100% - 9px);height:1.5px;background:rgba(30,151,166,.35);}
+  .steps .step:last-child::after{display:none;}
   .step h3{font-size:19px;margin:0 0 6px;}
   .step p{font-size:14px;line-height:1.55;color:var(--muted);margin:0;}
   /* level highlight */
@@ -125,9 +125,9 @@
   .foot-rule{height:4px;background:linear-gradient(90deg,#5E7689 0 30%,var(--teal) 30% 55%,var(--gold) 55% 75%,var(--caramel) 75% 100%);}
   .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding:25px 28px;}
   .foot-brand-col{display:flex;flex-direction:column;max-width:24em;}
-  .foot-brand{display:flex;align-items:center;gap:0;margin-left:-5px;}
-  .foot-brand .b1{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 600,'WONK' 1;font-size:28px;color:var(--on-deep);line-height:1.02;letter-spacing:-.02em;margin-left:-2px;}
-  .foot-tag{font-size:12.5px;line-height:1.4;color:var(--on-deep);margin:9px 0 0 42px;max-width:18.1em;letter-spacing:-.1px;}
+  .foot-brand{display:flex;align-items:center;gap:6px;}
+  .foot-brand .b1{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 600,'WONK' 1;font-size:28px;color:var(--on-deep);line-height:1.02;letter-spacing:-.02em;}
+  .foot-tag{font-size:12.5px;line-height:1.4;color:var(--on-deep);margin:9px 0 0 55px;max-width:18.5em;}
   .foot-links{display:flex;gap:30px;font-size:13.5px;}
   .foot-col h4{font-family:'Public Sans';font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin:0 0 8px;}
   .foot-col a{display:block;color:var(--on-deep);margin-bottom:4px;}
@@ -139,7 +139,7 @@
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
   @media(max-width:900px){
     .steps{grid-template-columns:1fr 1fr;}
-    .step .crow::before{display:none;}
+    .step::after{display:none;}
     .page-hero p{white-space:normal;}
     .video-grid{grid-template-columns:1fr;}
     .brand img{width:48px;height:48px;margin-top:-10px;}
@@ -165,6 +165,18 @@
     .cta-band h2{font-size:28px;}
   }
 </style>
+<style id="em-mobile-fix">
+/* mobile layout fixes */
+html,body{overflow-x:clip}
+@media(max-width:900px){ .step .crow::before{display:none!important} }
+@media(max-width:860px){
+  .section-head p,.cta-band h2,.page-hero p{white-space:normal!important}
+}
+@media(max-width:640px){
+  .brandbar .kc{display:none}
+  .brandbar .wrap{justify-content:center}
+}
+</style>
 </head>
 <body>
 
@@ -187,10 +199,10 @@
     <label class="nav-toggle" for="navtoggle" aria-hidden="true"><span></span><span></span><span></span></label>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="start.html" class="active">How It Works</a>
+      <a href="start.html" class="active">How It Works<svg viewBox="0 0 60 8" width="42" height="6"><path d="M2 5 C 16 2 44 2 58 5 C 44 7 18 7 2 6 Z" fill="#1E97A6"></path></svg></a>
       <a href="services.html">Services</a>
       <a href="about.html">About</a>
-      <a href="book.html" class="nav-cta">Book Free Call</a>
+      <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="nav-cta">Book Free Call</a>
     </div>
   </div>
 </nav>
@@ -210,22 +222,22 @@
   <div class="wrap">
     <div class="steps">
       <div class="step reveal">
-        <div class="crow"><div class="coin">1</div></div>
+        <div class="coin">1</div>
         <h3>Find your level</h3>
-        <p>Take the quick (10 minutes) level check so we know your starting point.</p>
+        <p>Take the quick (10–15 minutes) level check so we know your starting point.</p>
       </div>
       <div class="step reveal">
-        <div class="crow"><div class="coin">2</div></div>
+        <div class="coin">2</div>
         <h3>Book a free call</h3>
         <p>A 15-minute video chat where Jana confirms your level and your goals.</p>
       </div>
       <div class="step reveal">
-        <div class="crow"><div class="coin">3</div></div>
+        <div class="coin">3</div>
         <h3>Get your plan</h3>
         <p>Jana builds a plan around your needs and the habits holding you back.</p>
       </div>
       <div class="step reveal">
-        <div class="crow"><div class="coin">4</div></div>
+        <div class="coin">4</div>
         <h3>Start learning</h3>
         <p>Lessons via Zoom, Teams, or Webex, with materials and support between sessions.</p>
       </div>
@@ -237,7 +249,7 @@
 <section class="block alt">
   <div class="wrap">
     <div class="section-head reveal">
-      <svg class="brushwing" viewBox="0 0 120 14" width="120" height="10"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#1E97A6"></path></svg>
+      <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#1E97A6"></path></svg>
       <h2 class="wonk">Step one: find your level</h2>
       <p>Not sure whether you're a confident beginner or an advanced speaker who needs polish? Take the quick check and we'll point you in the right direction. Jana will then confirm it properly on your free call.</p>
     </div>
@@ -251,7 +263,7 @@
 <section class="block">
   <div class="wrap">
     <div class="section-head reveal">
-      <svg class="brushwing" viewBox="0 0 120 14" width="120" height="10"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#1E97A6"></path></svg>
+      <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#1E97A6"></path></svg>
       <h2 class="wonk">See it before you book</h2>
       <p>A quick look at how lessons run and how we find your level.</p>
     </div>
@@ -278,12 +290,12 @@
 <!-- FINAL CTA -->
 <section class="cta-band">
   <div class="wrap cta-inner reveal">
-    <svg class="brushwing" viewBox="0 0 120 14" width="120" height="10"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#E4A72C"></path></svg>
+    <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#2BB7C4"></path></svg>
     <h2 class="wonk">Ready to begin?</h2>
     <p>Find your level, then book a free call — we'll take it from there.</p>
     <div class="btns">
       <a href="level-test.html" class="btn btn-primary">Take the level check</a>
-      <a href="book.html" class="btn btn-ghost">Book a free call</a>
+      <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-ghost">Book a free call</a>
     </div>
   </div>
 </section>
@@ -301,7 +313,7 @@
     </div>
     <div class="foot-links">
       <div class="foot-col"><h4>Explore</h4><a href="start.html">How Lessons Work</a><a href="level-test.html">Find Your Level</a><a href="services.html">Services</a><a href="payments.html">Pay for Lessons</a><a href="samples.html">Sample Lessons</a><a href="about.html">Meet Your Coach</a></div>
-      <div class="foot-col"><h4>Get in touch</h4><a href="book.html">Book a free call</a><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:jana@englishmastered.org">Email</a><a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a></div>
+      <div class="foot-col"><h4>Get in touch</h4><a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html">Book a free call</a><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:jana@englishmastered.org">Email</a><a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a></div>
     </div>
   </div>
   <div class="copyright">© 2025–2026 English Mastered — Jana Malas · Online English coaching for Arabic speakers · Lebanon &amp; Worldwide</div>
@@ -317,5 +329,12 @@
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 
+
+<!-- Cal.com popup for Book buttons -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "free-discovery-call", {origin:"https://app.cal.com"});
+  Cal.ns["free-discovery-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#B87333"},"dark":{"cal-brand":"#D89B3A"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
 </body>
 </html>

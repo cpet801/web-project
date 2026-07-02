@@ -110,7 +110,7 @@
     --navy:#01426A; --navy-deep:#013049; --teal:#1E97A6; --teal-bright:#2BB7C4;
     --caramel:#B87333; --paper:#F7F3EC; --paper-2:#EFE7D7; --pearl:#FCFBF5; --gold:#E4A72C;
     --text:#2A2520; --muted:#6E6358; --border:#E3D9CA; --on-deep:#F2EBDD; --on-deep-mute:#9DA7B1;
-    --gen:#0C5C63; --ielts:#E4A72C; --toefl:#C8663F; --biz:#6E2742; --esp:#007BA7; --conv:#7D8252; --grp:#9E472A;
+    --gen:#0C5C63; --ielts:#E31837; --toefl:#C8663F; --biz:#6E2742; --esp:#007BA7; --conv:#7D8252; --grp:#9E472A;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -231,6 +231,11 @@
   .foot-col h4{font-family:'Public Sans';font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin:0 0 8px;}
   .foot-col a{display:block;color:var(--on-deep);margin-bottom:4px;}
   .copyright{border-top:1px solid #1a3247;padding:15.5px 28px;font-size:12px;color:#5f7385;text-align:center;}
+  .wa-btn{position:fixed;bottom:26px;right:26px;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.28);z-index:200;transition:transform .2s;}
+  .wa-btn:hover{transform:scale(1.1);}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
   @media(max-width:860px){
     .pricing{grid-template-columns:1fr;}
     .eml-grid{grid-template-columns:1fr;}
@@ -259,6 +264,18 @@
     .cta-band h2{white-space:normal;font-size:28px;}
   }
 </style>
+<style id="em-mobile-fix">
+/* mobile layout fixes */
+html,body{overflow-x:clip}
+@media(max-width:900px){ .step .crow::before{display:none!important} }
+@media(max-width:860px){
+  .section-head p,.cta-band h2,.page-hero p{white-space:normal!important}
+}
+@media(max-width:640px){
+  .brandbar .kc{display:none}
+  .brandbar .wrap{justify-content:center}
+}
+</style>
 </head>
 <body>
 
@@ -284,7 +301,7 @@
       <a href="start.html">How It Works</a>
       <a href="services.html" class="active">Services<svg viewBox="0 0 60 8" width="42" height="6"><path d="M2 5 C 16 2 44 2 58 5 C 44 7 18 7 2 6 Z" fill="#1E97A6"></path></svg></a>
       <a href="about.html">About</a>
-      <a href="book.html" class="nav-cta">Book Free Call</a>
+      <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="nav-cta">Book Free Call</a>
     </div>
   </div>
 </nav>
@@ -312,7 +329,7 @@
           <li>Fully personalised to your goals</li>
           <li>Pay as you go — no commitment</li>
         </ul>
-        <a href="book.html" class="btn btn-ghost btn-block">Book a Free Call</a>
+        <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-ghost btn-block">Book a Free Call</a>
       </div>
 
       <div class="price-card">
@@ -326,7 +343,7 @@
           <li>Structured plan across 5 sessions</li>
           <li>WhatsApp support between lessons</li>
         </ul>
-        <a href="book.html" class="btn btn-ghost btn-block">Book a Free Call</a>
+        <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-ghost btn-block">Book a Free Call</a>
       </div>
 
       <div class="price-card featured">
@@ -341,7 +358,7 @@
           <li>Structured plan across 10 sessions</li>
           <li>Priority scheduling</li>
         </ul>
-        <a href="book.html" class="btn btn-gold btn-block">Book a Free Call</a>
+        <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-gold btn-block">Book a Free Call</a>
       </div>
 
       <div class="price-card">
@@ -352,7 +369,7 @@
           <li>Homework &amp; written feedback</li>
           <li>Rolls month to month — cancel anytime</li>
         </ul>
-        <a href="book.html" class="btn btn-ghost btn-block">Book a Free Call</a>
+        <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-ghost btn-block">Book a Free Call</a>
       </div>
 
       <div class="price-card">
@@ -363,7 +380,7 @@
           <li>Conversation-focused speaking practice</li>
           <li>A lower-cost way to build fluency</li>
         </ul>
-        <a href="book.html" class="btn btn-ghost btn-block">Book a Free Call</a>
+        <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-ghost btn-block">Book a Free Call</a>
       </div>
     </div>
     <p class="note">Two prices, your choice: pay direct (Whish, Western Union/OMT, or USDT) for the lower price, or by card/PayPal at the standard price. Lessons can be rescheduled with 24 hours' notice; packages are valid for four months from purchase.</p>
@@ -374,7 +391,7 @@
 <!-- LEVELS + GOALS -->
 <section class="block alt">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#1E97A6"></path></svg>
       <h2>Every Level, Every Goal</h2>
       <p>From your very first words of English to exam-ready fluency — and whatever you need it for.</p>
@@ -417,14 +434,14 @@
 <!-- WHAT'S INCLUDED -->
 <section class="block">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#1E97A6"></path></svg>
       <h2>What Every Lesson Includes</h2>
     </div>
     <div class="cards">
       <div class="card-item" style="border-top-color:var(--ielts);">
-        <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="34"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#E4A72C"></path></svg>
-        <div class="card-icon" style="background:rgba(228,167,44,.16);color:var(--ielts);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 10h6M9 14h4"/></svg></div>
+        <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="34"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#E31837"></path></svg>
+        <div class="card-icon" style="background:rgba(227,24,55,.12);color:var(--ielts);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 10h6M9 14h4"/></svg></div>
         <h3>A Plan, Not a Textbook</h3><p>Lessons target your real weak spots and the goals you set on your free call — never a generic syllabus.</p>
       </div>
       <div class="card-item" style="border-top-color:var(--biz);">
@@ -450,7 +467,7 @@
 <!-- PAYMENT METHODS -->
 <section class="block alt" id="payment">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#1E97A6"></path></svg>
       <h2>Easy Ways to Pay</h2>
       <p>Pick whatever's simplest for you. Paying direct — Whish, Western Union/OMT, or USDT — gets you the lower price.</p>
@@ -495,7 +512,7 @@
     <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#2BB7C4"></path></svg>
     <h2 class="wonk">Not sure which is <span>f</span>or you?</h2>
     <p>Start with a free 15-minute call — Jana will recommend the right fit. No commitment, no payment.</p>
-    <a href="book.html" class="btn btn-primary">Book Your Free Call <span>→</span></a>
+    <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-primary">Book Your Free Call <span>→</span></a>
   </div>
 </section>
 
@@ -512,11 +529,28 @@
     </div>
     <div class="foot-links">
       <div class="foot-col"><h4>Explore</h4><a href="start.html">How Lessons Work</a><a href="level-test.html">Find Your Level</a><a href="services.html">Services</a><a href="payments.html">Pay for Lessons</a><a href="samples.html">Sample Lessons</a><a href="about.html">Meet Your Coach</a></div>
-      <div class="foot-col"><h4>Get in touch</h4><a href="book.html">Book a free call</a><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:jana@englishmastered.org">Email</a><a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a></div>
+      <div class="foot-col"><h4>Get in touch</h4><a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html">Book a free call</a><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:jana@englishmastered.org">Email</a><a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a></div>
     </div>
   </div>
   <div class="copyright">© 2025–2026 English Mastered — Jana Malas · Online English coaching for Arabic speakers · Lebanon &amp; Worldwide</div>
 </footer>
 
+<!-- WHATSAPP -->
+<a href="https://wa.me/96171500874" target="_blank" rel="noopener" class="wa-btn" aria-label="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28" fill="white"><path d="M16 0C7.16 0 0 7.16 0 16c0 2.82.74 5.47 2.03 7.77L0 32l8.47-2.02A16 16 0 1016 0zm0 29.33a13.27 13.27 0 01-6.78-1.86l-.49-.29-5.03 1.2 1.22-4.91-.32-.5A13.24 13.24 0 012.67 16C2.67 8.64 8.64 2.67 16 2.67S29.33 8.64 29.33 16 23.36 29.33 16 29.33z"/></svg>
+</a>
+
+<script>
+  const obs = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+
+<!-- Cal.com popup for Book buttons -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "free-discovery-call", {origin:"https://app.cal.com"});
+  Cal.ns["free-discovery-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#B87333"},"dark":{"cal-brand":"#D89B3A"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
 </body>
 </html>
