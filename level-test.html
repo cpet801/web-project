@@ -43,13 +43,22 @@
   .kicker{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);}
   /* brand bar */
   .brandbar{position:relative;background:#6E2940;color:#E7CDB4;overflow:hidden;}
-  .brandbar::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-burgundy-cta.svg) center/cover;}
+  
   .brandbar .wrap{position:relative;display:flex;justify-content:space-between;align-items:center;height:38px;font-size:11.5px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;}
   .brandbar .kc{color:var(--gold);}
   .brandbar a{color:#E7CDB4;}
   .brandbar .sep{margin:0 7px;opacity:.55;}
   /* nav */
-  nav{background:var(--paper);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
+  nav{background:var(--paper);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;transition:box-shadow .2s ease,border-color .2s ease;}
+  nav::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:3px;background:linear-gradient(90deg,#5E7689 0 30%,#1E97A6 30% 55%,#E4A72C 55% 75%,#B87333 75% 100%);transform:scaleX(0);transform-origin:left;transition:transform .8s cubic-bezier(.22,.61,.36,1);pointer-events:none;}
+  nav.scrolled::after{transform:scaleX(1);}
+  nav.scrolled{border-bottom-color:transparent;box-shadow:0 10px 26px rgba(1,48,73,.06);}
+  .nav-inner{transition:height .2s ease;}
+  nav.scrolled .nav-inner{height:68px;}
+  .brand img{transition:width .2s ease,height .2s ease,margin-top .2s ease;}
+  nav.scrolled .brand img{width:48px;height:48px;margin-top:-9px;}
+  .brand-text{transition:font-size .2s ease;}
+  nav.scrolled .brand-text{font-size:29px;}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:84px;}
   .brand{display:flex;align-items:center;gap:7px;}
   .brand img{display:block;width:62px;height:62px;margin-top:-13px;}
@@ -95,7 +104,7 @@
   .quiz-retake:hover{border-color:var(--caramel);transform:translateY(-2px);}
   /* footer */
   footer{position:relative;background:#013049;color:var(--on-deep-mute);overflow:hidden;}
-  footer::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-navy-footer.svg) center/cover;opacity:.6;}
+  
   footer>*{position:relative;z-index:1;}
   .foot-rule{height:4px;background:linear-gradient(90deg,#5E7689 0 30%,var(--teal) 30% 55%,var(--gold) 55% 75%,var(--caramel) 75% 100%);}
   .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding:25px 28px;}
@@ -216,7 +225,7 @@ html,body{overflow-x:clip}
 <body>
 
 <!-- BRAND BAR -->
-<div class="brandbar">
+<div class="brandbar" data-em-mosaic="surf-bar" data-em-color="#6E2940">
   <div class="wrap">
     <span class="kc">Online English Coaching</span>
     <span>Lebanon &amp; Worldwide<span class="sep">&middot;</span><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp +961 71 500 874</a></span>
@@ -261,7 +270,7 @@ html,body{overflow-x:clip}
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer data-em-mosaic="surf-footer" data-em-color="#013049">
   <div class="foot-rule"></div>
   <div class="wrap foot-inner">
     <div class="foot-brand-col">
@@ -567,7 +576,13 @@ html,body{overflow-x:clip}
       + '<h3 style="margin:24px 0 4px;font-size:14px;color:#101820;">Your answers</h3>'
       + rows
       + '<p style="font-size:12px;color:#999;margin-top:18px;line-height:1.6;">Taken ' + escq(when) + '. This is a quick, indicative check \u2014 not an official exam. Jana confirms your real level on your free call.</p>'
-      + '</div></body></html>';
+      + '</div><script src="assets/em-mosaic.js"></script>
+<script>
+  (function(){var nav=document.querySelector('nav');if(!nav)return;
+    function on(){nav.classList.toggle('scrolled',window.scrollY>38);}
+    addEventListener('scroll',on,{passive:true});on();})();
+</script>
+</body></html>';
   }
 
   function download(filename, html){
@@ -651,6 +666,12 @@ html,body{overflow-x:clip}
   (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
   Cal("init", "free-discovery-call", {origin:"https://app.cal.com"});
   Cal.ns["free-discovery-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#B87333"},"dark":{"cal-brand":"#D89B3A"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+<script src="assets/em-mosaic.js"></script>
+<script>
+  (function(){var nav=document.querySelector('nav');if(!nav)return;
+    function on(){nav.classList.toggle('scrolled',window.scrollY>38);}
+    addEventListener('scroll',on,{passive:true});on();})();
 </script>
 </body>
 </html>

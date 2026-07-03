@@ -26,7 +26,7 @@
 <link rel="icon" type="image/png" href="assets/em-mark-gold.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,10,1;1,9..144,400..700,10,1&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,10,1;1,9..144,400..700,10,1&family=Amiri:ital@0;1&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -169,7 +169,7 @@
   .brushwing{display:block;}
   /* brandbar */
   .brandbar{position:relative;background:#6E2940;color:#E7CDB4;overflow:hidden;}
-  .brandbar::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-burgundy-cta.svg) center/cover;}
+  
   .brandbar .wrap{position:relative;display:flex;justify-content:space-between;align-items:center;height:38px;font-size:11.5px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;}
   .brandbar .kc{color:var(--gold);}
   .brandbar a{color:#E7CDB4;}
@@ -187,6 +187,16 @@
   .nav-cta{background:var(--caramel)!important;color:#fff!important;padding:9px 20px!important;font-size:13px;border-radius:9px;}
   .nav-toggle-cb{display:none;}
   .nav-toggle{display:none;}
+  nav{transition:box-shadow .2s ease,border-color .2s ease;}
+  nav::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:3px;background:linear-gradient(90deg,#5E7689 0 30%,#1E97A6 30% 55%,#E4A72C 55% 75%,#B87333 75% 100%);transform:scaleX(0);transform-origin:left;transition:transform .8s cubic-bezier(.22,.61,.36,1);pointer-events:none;}
+  nav.scrolled::after{transform:scaleX(1);}
+  nav.scrolled{border-bottom-color:transparent;box-shadow:0 10px 26px rgba(1,48,73,.06);}
+  .nav-inner{transition:height .2s ease;}
+  nav.scrolled .nav-inner{height:68px;}
+  .brand img{transition:width .2s ease,height .2s ease,margin-top .2s ease;}
+  nav.scrolled .brand img{width:48px;height:48px;margin-top:-9px;}
+  .brand-text{transition:font-size .2s ease;}
+  nav.scrolled .brand-text{font-size:29px;}
   /* buttons */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:15px;font-weight:600;height:44px;padding:0 22px;box-sizing:border-box;white-space:nowrap;border-radius:10px;cursor:pointer;transition:transform .15s;}
   .btn:hover{transform:translateY(-2px);}
@@ -195,9 +205,18 @@
   .btn-block{display:flex;justify-content:center;width:100%;min-width:0;}
   /* hero */
   .hero{background:var(--paper);padding:70px 0 76px;}
-  .hero-grid{display:grid;grid-template-columns:1.15fr .92fr;gap:44px;align-items:center;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .92fr;gap:44px;align-items:center;position:relative;}
+  .hero-grid>div:first-child{position:relative;z-index:3;}
+  .hero-visual{z-index:2;}
+  .hero-sweep{position:absolute;left:0;top:164px;width:60%;height:14px;z-index:1;pointer-events:none;clip-path:inset(-20px 100% -20px 0);}
+  .hero-sweep.drawn{clip-path:inset(-20px 0 -20px 0);transition:clip-path 1.05s cubic-bezier(.19,.6,.28,1);}
+  .hero .rise{opacity:0;transform:translateY(14px);}
+  .hero.entered .rise{opacity:1;transform:none;transition:opacity .55s cubic-bezier(.22,.61,.36,1) var(--rd,0ms),transform .55s cubic-bezier(.22,.61,.36,1) var(--rd,0ms);}
+  @media(prefers-reduced-motion:reduce){.hero .rise{opacity:1;transform:none;}.hero-sweep{clip-path:none;}.hero-sweep.drawn{transition:none;}}
+  @media(max-width:860px){.hero-sweep{display:none;}}
+  .hero .kicker{margin-top:-3px;}
   .hero h1{font-size:70px;line-height:.98;margin:14px 0 0;letter-spacing:-.5px;}
-  .hero .sub{font-family:'Fraunces',serif;font-variation-settings:'wght' 500,'WONK' 1;font-size:23px;line-height:1.3;color:#B87333;max-width:32ch;margin:20px 0 0;text-wrap:balance;}
+  .hero .sub{font-family:'Fraunces',serif;font-variation-settings:'wght' 500,'WONK' 1;font-size:23px;line-height:1.3;color:#B87333;max-width:32ch;margin:23px 0 0;text-wrap:balance;}
   .hero .lead{font-size:17px;line-height:1.65;color:var(--text);max-width:28.5em;margin:20px 0 0;text-wrap:pretty;}
   .btns{display:flex;gap:13px;flex-wrap:wrap;margin-top:26px;}
   .hero-visual{position:relative;margin-top:30px;}
@@ -225,6 +244,49 @@
   .tagpill{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;padding:4px 11px;border-radius:20px;color:#fff;margin-bottom:12px;}
   .card-item h3{font-size:20px;margin:0 0 7px;}
   .card-item p{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;}
+  /* goal spotlight cards (v2 finals) */
+  .cards{display:flex;flex-direction:column;}
+  .grow-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;transition:grid-template-columns .73s cubic-bezier(.22,.61,.36,1);}
+  .grow-row+.grow-row{margin-top:16px;}
+  .gcard{position:relative;overflow:hidden;background:var(--pearl);border:1px solid var(--border);border-top:3px solid var(--c);border-radius:14px;padding:20px 22px;height:230px;cursor:pointer;transition:box-shadow .73s ease,border-color .73s ease,transform .73s ease;}
+  .gcard.on{border-color:var(--c);box-shadow:0 18px 40px color-mix(in srgb,var(--c) 25%,transparent);transform:translateY(-7.5px);}
+  @keyframes emTitleOn{0%{color:#01426A}15%{color:#2A5A80}30%{color:#4E7495}45%{color:#748FA6}60%{color:#9AAAB4}72%{color:#BCC2BE}84%{color:#D9D8CB}100%{color:#F2EBDD}}
+  @keyframes emChipOn{0%{color:var(--c)}14%{color:color-mix(in oklab,var(--c) 86%,#FFFFFF)}28%{color:color-mix(in oklab,var(--c) 71%,#FFFFFF)}42%{color:color-mix(in oklab,var(--c) 56%,#FFFFFF)}56%{color:color-mix(in oklab,var(--c) 41%,#FFFFFF)}70%{color:color-mix(in oklab,var(--c) 27%,#FFFFFF)}84%{color:color-mix(in oklab,var(--c) 13%,#FFFFFF)}100%{color:#FFFFFF}}
+  @keyframes emIconOn{0%{color:var(--c)}14%{color:color-mix(in oklab,var(--c) 86%,#F2EBDD)}28%{color:color-mix(in oklab,var(--c) 71%,#F2EBDD)}42%{color:color-mix(in oklab,var(--c) 56%,#F2EBDD)}56%{color:color-mix(in oklab,var(--c) 41%,#F2EBDD)}70%{color:color-mix(in oklab,var(--c) 27%,#F2EBDD)}84%{color:color-mix(in oklab,var(--c) 13%,#F2EBDD)}100%{color:#F2EBDD}}
+  .gcard .peek{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:24px;opacity:.2;transition:opacity .32s ease;z-index:0;pointer-events:none;}
+  .gcard.on .peek{opacity:0;}
+  .gcard .flood{position:absolute;inset:0;opacity:0;transition:opacity .32s ease;z-index:1;pointer-events:none;}
+  .gcard.on .flood{opacity:1;}
+  .gc-body{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;}
+  .gc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+  .gc-tag{align-self:flex-start;font-size:9px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;padding:4px 11px;border-radius:20px;color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);transition:background .66s ease,color .37s ease;}
+  .gcard.on .gc-tag{color:#fff;background:rgba(255,255,255,.18);animation:emChipOn .99s linear both;}
+  .gc-num{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 640,'WONK' 1;font-size:13px;line-height:1.6;color:color-mix(in srgb,var(--c) 50%,transparent);transition:color .32s ease;}
+  .gcard.on .gc-num{color:rgba(252,251,245,.55);}
+  .gc-head{display:flex;align-items:center;gap:12px;margin-top:12px;}
+  .gc-icon{width:40px;height:40px;flex:none;border-radius:11px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--c) 12%,transparent);color:var(--c);transition:background .66s ease,color .37s ease;}
+  .gc-icon svg{width:22px;height:22px;display:block;}
+  .gcard.on .gc-icon{background:rgba(255,255,255,.16);color:#F2EBDD;animation:emIconOn .99s linear both;}
+  .gcard h3{font-size:17px;line-height:1.15;margin:0;color:#01426A;transition:color .37s ease,font-size .73s cubic-bezier(.22,.61,.36,1);}
+  .gcard.on h3{font-size:21px;color:#F2EBDD;animation:emTitleOn .99s linear both;transition:color .37s ease,font-size .73s cubic-bezier(.22,.61,.36,1) .11s;}
+  .gc-ar{font-family:'Amiri',serif;font-size:22px;line-height:1.5;color:color-mix(in srgb,var(--c) 66%,transparent);margin:auto 0 0;text-align:right;}
+  .gcard.on .gc-ar{display:none;}
+  .gc-desc{font-size:16px;line-height:1.45;color:rgba(252,251,245,.92);margin:12px 0 0;display:none;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;opacity:0;}
+  .gcard.on .gc-desc{display:-webkit-box;opacity:1;transition:opacity .51s ease .26s;}
+  .gc-stat{display:flex;align-items:baseline;gap:8px;margin-top:auto;}
+  .gc-sv,.gc-sl{opacity:0;transform:translateY(8px);transition:opacity .44s ease,transform .44s ease;}
+  .gcard.on .gc-sv{opacity:1;transform:none;transition:opacity .44s ease .51s,transform .44s ease .51s;}
+  .gcard.on .gc-sl{opacity:1;transform:none;transition:opacity .44s ease .77s,transform .44s ease .77s;}
+  .gc-sv{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 660,'WONK' 1;font-size:20px;line-height:1.15;color:var(--gold);}
+  .gc-sv.small{font-size:20px;}
+  .gc-sl{font-size:11px;letter-spacing:1.3px;text-transform:uppercase;color:rgba(252,251,245,.75);}
+  @media(max-width:860px){
+    .grow-row{grid-template-columns:1fr!important;}
+    .gcard{height:auto;}
+    .gc-ar{display:none;}
+    .gc-desc{display:-webkit-box;opacity:1;color:var(--muted);}
+    .gcard.on .gc-desc{color:rgba(252,251,245,.92);}
+  }
   .gen .tagpill,.gen{--c:var(--gen);} 
   /* how it works */
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
@@ -236,7 +298,7 @@
   .step p{font-size:14px;line-height:1.55;color:var(--muted);margin:0;}
   /* stats band */
   .band{position:relative;overflow:hidden;background:var(--navy-deep);min-height:190px;display:flex;align-items:center;}
-  .band::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-navy-footer.svg) center/cover;}
+  
   .band::after{content:"";position:absolute;left:0;right:0;top:0;height:50%;}
   .band .hairline{position:absolute;left:28px;right:28px;top:16px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);z-index:2;}
   .band .em-wm{position:absolute;right:34px;top:50%;transform:translateY(-50%);z-index:2;}
@@ -245,14 +307,15 @@
   .stat .lbl{font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--on-deep-mute);margin-top:8px;}
   /* testimonials */
   .alt{background:var(--pearl);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-  .trotate{position:relative;max-width:760px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:18px;padding:25px 50px 25px;text-align:center;display:flex;flex-direction:column;justify-content:space-between;min-height:235px;}
-  .trot-mark{font-family:'Fraunces',serif;font-size:90px;line-height:.6;color:var(--teal-bright);opacity:.5;height:26px;}
-  .trot-quote{font-family:'Fraunces',serif;font-style:italic;font-variation-settings:'wght' 480,'WONK' 1;font-size:20px;line-height:1.4;color:var(--text);margin:0 0 12px;position:relative;top:-5px;}
-  .trot-meta{display:flex;align-items:center;justify-content:center;gap:12px;}
+  .trotate{position:relative;max-width:720px;margin:0 auto;text-align:center;display:flex;flex-direction:column;justify-content:space-between;min-height:250px;}
+  .trot-mark{font-family:'Fraunces',serif;font-size:120px;line-height:.55;color:var(--teal-bright);opacity:.5;height:44px;}
+  .trot-quote{font-family:'Fraunces',serif;font-style:italic;font-variation-settings:'wght' 480,'WONK' 1;font-size:29px;line-height:1.35;color:var(--text);margin:0 0 12px;}
+  .trot-meta{display:flex;align-items:center;justify-content:center;gap:12px;position:relative;padding-top:16px;margin-top:4px;}
+  .trot-meta::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
   .trot-name{font-weight:700;color:var(--navy);}
   .lvl-pill{display:inline-block;padding:4px 12px;border-radius:7px;color:#fff;font-family:'Fraunces',serif;font-variation-settings:'wght' 640;font-size:13px;}
   .lvl-pill.c1{background:#C2426A;} .lvl-pill.b2{background:#9A3F8C;} .lvl-pill.b1{background:#6A4FB0;}
-  .trot-stage{transition:opacity .5s ease;min-height:104px;}
+  .trot-stage{transition:opacity .5s ease;min-height:150px;}
   .trot-stage.fade{opacity:0;}
   .trot-item{display:none;} .trot-item.on{display:block;}
   .trot-dots{display:flex;gap:9px;justify-content:center;margin-top:0;}
@@ -260,12 +323,10 @@
   .trot-dot.on{background:var(--teal);transform:scale(1.25);}
   .wa-btn{position:fixed;bottom:26px;right:26px;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.28);z-index:200;transition:transform .2s;}
   .wa-btn:hover{transform:scale(1.1);}
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease;}
-  .reveal.in{opacity:1;transform:none;}
-  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+  
   /* cta */
   .cta-band{position:relative;overflow:hidden;background:#6E2940;color:var(--on-deep);text-align:center;min-height:190px;display:flex;align-items:center;}
-  .cta-band::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-burgundy-cta.svg) center/cover;}
+  
   .cta-band .btn{width:auto;min-width:0;height:46px;padding:0 32px;}
   .cta-inner{position:relative;z-index:1;padding:0 28px;width:100%;}
   .cta-band h2{color:var(--on-deep);font-size:38px;line-height:1.05;margin:8px 0 6px;white-space:nowrap;}
@@ -292,7 +353,7 @@
   }
   /* footer */
   footer{position:relative;background:#013049;color:var(--on-deep-mute);overflow:hidden;}
-  footer::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-navy-footer.svg) center/cover;opacity:.6;}
+  
   footer>*{position:relative;z-index:1;}
   .foot-rule{height:4px;background:linear-gradient(90deg,#5E7689 0 30%,var(--teal) 30% 55%,var(--gold) 55% 75%,var(--caramel) 75% 100%);}
   .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding:25px 28px;}
@@ -319,7 +380,8 @@
     .band .hairline{top:18px;}
     .band .em-wm{display:none;}
     .stats{gap:22px 44px;flex-wrap:wrap;}
-    .trotate{min-height:auto;padding:24px 24px 26px;}
+    .trotate{min-height:auto;}
+    .trot-quote{font-size:22px;}
     .trot-dots{margin-top:18px;}
     .cta-band{min-height:auto;padding:52px 0;}
     .cta-band h2{white-space:normal;font-size:28px;}
@@ -356,7 +418,7 @@ html,body{overflow-x:clip}
 <body>
 
 <!-- BRAND BAR -->
-<div class="brandbar">
+<div class="brandbar" data-em-mosaic="surf-bar" data-em-color="#6E2940">
   <div class="wrap">
     <span class="kc">Online English Coaching</span>
     <span>Lebanon &amp; Worldwide&nbsp;·&nbsp;<a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp +961 71 500 874</a></span>
@@ -386,13 +448,12 @@ html,body{overflow-x:clip}
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <p class="kicker">The Arabic Speaker's English Coach</p>
-      <h1 class="wonk">Speak English<br>with con<span>f</span>idence.</h1>
-      <svg class="brushwing" viewBox="0 0 220 16" width="150" height="11" style="margin:12px 0 0;"><path d="M3 10 C 60 4 150 4 217 8 C 150 13 70 14 5 14 C 3 13 3 11 3 10 Z" fill="#1E97A6"></path></svg>
-      <p class="sub">Most approaches to English teaching weren't designed for Arabic speakers. Mine are.</p>
-      <p class="lead">I'm <a class="tlink" href="about.html">Jana</a>, an English coach from Lebanon and a native Arabic speaker. I created English Mastered because I know what it feels like to study for years and still freeze when it's time to speak. That experience is what makes my coaching different.</p>
-      <p class="lead">My goal is simple: to get you using English with confidence. Whether you're behind on IELTS preparation, have an exam coming up fast, or need to ace a job interview, you don't need another app or a crowded class. You need a coach who builds a plan around you — your background, goals, and timeline.</p>
-      <div class="btns">
+      <p class="kicker rise" style="--rd:0ms">The Arabic Speaker's English Coach</p>
+      <h1 class="wonk rise" id="heroH1" style="--rd:80ms">Speak English<br>with confidence.</h1>
+      <p class="sub rise" style="--rd:160ms">Most approaches to English teaching weren't designed for Arabic speakers. Mine are.</p>
+      <p class="lead rise" style="--rd:240ms">I'm <a class="tlink" href="about.html">Jana</a>, an English coach from Lebanon and a native Arabic speaker. I created English Mastered because I know what it feels like to study for years and still freeze when it's time to speak. That experience is what makes my coaching different.</p>
+      <p class="lead rise" style="--rd:320ms">My goal is simple: to get you using English with confidence. Whether you're behind on IELTS preparation, have an exam coming up fast, or need to ace a job interview, you don't need another app or a crowded class. You need a coach who builds a plan around you — your background, goals, and timeline.</p>
+      <div class="btns rise" style="--rd:400ms">
         <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-primary">Book a Free Call <span>→</span></a>
         <a href="services.html" class="btn btn-ghost">See Packages</a>
       </div>
@@ -404,61 +465,97 @@ html,body{overflow-x:clip}
       <div class="chip chip-1"><div class="big">7+</div><div class="lbl">Avg. IELTS band</div></div>
       <div class="chip chip-2"><div class="big">5 yrs</div><div class="lbl">Teaching experience</div></div>
     </div>
+    <div class="hero-sweep" id="heroSweep"><svg viewBox="0 0 220 16" preserveAspectRatio="none" style="display:block;width:100%;height:100%"><defs><linearGradient id="sweepFade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1E97A6"></stop><stop offset=".68" stop-color="#1E97A6"></stop><stop offset=".9" stop-color="#1E97A6" stop-opacity=".38"></stop><stop offset="1" stop-color="#1E97A6" stop-opacity=".07"></stop></linearGradient></defs><path d="M3 10 C 60 4.3 148 4.7 217 9.3 C 148 11.6 70 13.7 5 14 C 3 13 3 11 3 10 Z" fill="url(#sweepFade)"></path></svg></div>
   </div>
 </header>
 
 <!-- STATS BAND -->
-<section class="band">
+<section class="band" data-em-mosaic="surf-band" data-em-color="#013049">
   <div class="hairline"></div>
   <img class="em-wm" src="assets/em-mark-gold.png" width="68" height="68" alt="">
   <div class="wrap stats">
-    <div class="stat"><div class="num">200+</div><div class="lbl">Students Taught</div></div>
-    <div class="stat"><div class="num">7+</div><div class="lbl">Average IELTS Band</div></div>
-    <div class="stat"><div class="num">5<span style="font-size:.5em;vertical-align:.34em;">★</span></div><div class="lbl">Student Rating</div></div>
+    <div class="stat"><div class="num"><span data-n="200">200</span>+</div><div class="lbl">Students Taught</div></div>
+    <div class="stat"><div class="num"><span data-n="7">7</span>+</div><div class="lbl">Average IELTS Band</div></div>
+    <div class="stat"><div class="num"><span data-n="5">5</span><span style="font-size:.5em;vertical-align:.34em;">★</span></div><div class="lbl">Student Rating</div></div>
   </div>
 </section>
 <section class="block" id="services">
   <div class="wrap">
-    <div class="section-head reveal">
+    <div class="section-head">
       <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#1E97A6"></path></svg>
       <h2>What Jana Helps With</h2>
       <p>Every plan is personalised. These are the most common reasons students come to her.</p>
     </div>
-    <div class="cards">
-      <div class="card-item" style="border-top-color:var(--gen);">
-        <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="36"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#0C5C63"></path></svg>
-        <span class="tagpill" style="background:var(--gen);">General English</span>
-        <div class="card-icon" style="background:rgba(12,92,99,.12);color:var(--gen);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 18l9 5 9-5"/></svg></div>
-        <h3>General English</h3>
-        <p>Your foundation: speaking, listening, reading, writing, grammar, and vocabulary. Structured around your CEFR level and the gaps that trip Arabic speakers up.</p>
+    <div class="cards" id="goalCards">
+      <div class="grow-row">
+      <div class="gcard" style="--c:#0C5C63">
+        <svg class="peek" viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#0C5C63"></path></svg>
+        <div class="flood" data-em-mosaic="goal" data-em-color="#0C5C63" data-em-idx="0"></div>
+        <div class="gc-body">
+          <div class="gc-top"><span class="gc-tag">General English</span></div>
+          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 18l9 5 9-5"/></svg></span><h3>General English</h3></div>
+          <div class="gc-ar" dir="rtl" lang="ar">الإنجليزية العامة</div>
+          <p class="gc-desc">Your foundation: speaking, listening, reading, writing, grammar, and vocabulary. Structured around your CEFR level and the gaps that trip Arabic speakers up.</p>
+          <div class="gc-stat"><span class="gc-sv">A1 &#8594; C2</span><span class="gc-sl">Every level welcome</span></div>
+        </div>
       </div>
-      <div class="card-item" style="border-top-color:var(--exam);">
-        <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="36"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#E31837"></path></svg>
-        <span class="tagpill" style="background:var(--exam);">Exams</span>
-        <div class="card-icon" style="background:rgba(227,24,55,.12);color:var(--exam);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 13l2 2 4-4"/></svg></div>
-        <h3>IELTS &amp; TOEFL Prep</h3>
-        <p>I know which IELTS traps catch Arabic speakers. We work on those directly. My students consistently reach Band 7+.</p>
+      <div class="gcard" style="--c:#E31837">
+        <svg class="peek" viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#E31837"></path></svg>
+        <div class="flood" data-em-mosaic="goal" data-em-color="#E31837" data-em-idx="1" data-em-card="ielts"></div>
+        <div class="gc-body">
+          <div class="gc-top"><span class="gc-tag">Exams &#183; IELTS</span></div>
+          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 13l2 2 4-4"/></svg></span><h3>IELTS Prep</h3></div>
+          <div class="gc-ar" dir="rtl" lang="ar">تحضير الآيلتس</div>
+          <p class="gc-desc">I know which IELTS traps catch Arabic speakers. We work on those directly. My students consistently reach Band 7+.</p>
+          <div class="gc-stat"><span class="gc-sv">7+</span><span class="gc-sl">Average IELTS band</span></div>
+        </div>
       </div>
-      <div class="card-item" style="border-top-color:var(--biz);">
-        <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="36"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#6E2742"></path></svg>
-        <span class="tagpill" style="background:var(--biz);">Business</span>
-        <div class="card-icon" style="background:rgba(110,39,66,.13);color:var(--biz);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
-        <h3>Business English</h3>
-        <p>Emails, meetings, interviews, presentations. The professional English you need to compete for Gulf and international roles.</p>
+      <div class="gcard" style="--c:#C8663F">
+        <svg class="peek" viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#C8663F"></path></svg>
+        <div class="flood" data-em-mosaic="goal" data-em-color="#C8663F" data-em-idx="2" data-em-card="toefl"></div>
+        <div class="gc-body">
+          <div class="gc-top"><span class="gc-tag">Exams &#183; TOEFL</span></div>
+          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9L12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c3.2 2.6 8.8 2.6 12 0v-4.5"/></svg></span><h3>TOEFL Prep</h3></div>
+          <div class="gc-ar" dir="rtl" lang="ar">تحضير التوفل</div>
+          <p class="gc-desc">Structured TOEFL iBT preparation &#8212; Reading, Listening, Speaking and Writing &#8212; for university admission and visa requirements.</p>
+          <div class="gc-stat"><span class="gc-sv">iBT</span><span class="gc-sl">University &amp; visa prep</span></div>
+        </div>
       </div>
-      <div class="card-item" style="border-top-color:var(--conv);">
-        <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="36"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#7D8252"></path></svg>
-        <span class="tagpill" style="background:var(--conv);">Fluency</span>
-        <div class="card-icon" style="background:rgba(125,130,82,.13);color:var(--conv);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        <h3>Conversation &amp; Fluency</h3>
-        <p>Stop freezing and stop translating from Arabic first. We build the reflex to think in English.</p>
       </div>
-      <div class="card-item" style="border-top-color:var(--grp);">
-        <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="36"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#9E472A"></path></svg>
-        <span class="tagpill" style="background:var(--grp);">Groups</span>
-        <div class="card-icon" style="background:rgba(158,71,42,.12);color:var(--grp);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 6a3 3 0 0 1 0 6M21 20a6 6 0 0 0-3-5.2"/></svg></div>
-        <h3>Group Classes</h3>
-        <p>Small-group conversation sessions (4 students max) at a lower price. A relaxed way to practise speaking with others.</p>
+      <div class="grow-row">
+      <div class="gcard" style="--c:#6E2742">
+        <svg class="peek" viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#6E2742"></path></svg>
+        <div class="flood" data-em-mosaic="goal" data-em-color="#6E2742" data-em-idx="3"></div>
+        <div class="gc-body">
+          <div class="gc-top"><span class="gc-tag">Business</span></div>
+          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span><h3>Business English</h3></div>
+          <div class="gc-ar" dir="rtl" lang="ar">إنجليزية الأعمال</div>
+          <p class="gc-desc">Emails, meetings, interviews, presentations. The professional English you need to compete for Gulf and international roles.</p>
+          <div class="gc-stat"><span class="gc-sv small">Meetings &#183; Email &#183; Interviews</span><span class="gc-sl">Professional English</span></div>
+        </div>
+      </div>
+      <div class="gcard" style="--c:#007BA7">
+        <svg class="peek" viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#007BA7"></path></svg>
+        <div class="flood" data-em-mosaic="goal" data-em-color="#007BA7" data-em-idx="4"></div>
+        <div class="gc-body">
+          <div class="gc-top"><span class="gc-tag">ESP</span></div>
+          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-1.8 5.2-5.2 1.8 1.8-5.2z"/></svg></span><h3>English for Specific Purposes</h3></div>
+          <div class="gc-ar" dir="rtl" lang="ar">الإنجليزية التخصصية</div>
+          <p class="gc-desc">Field-specific English for high-stakes work &#8212; precise vocabulary, real scenarios from your industry: maritime, medical, legal, aviation and more.</p>
+          <div class="gc-stat"><span class="gc-sv small">Maritime &#183; Medical &#183; Legal &#183; Aviation</span><span class="gc-sl">Specialist fields</span></div>
+        </div>
+      </div>
+      <div class="gcard" style="--c:#7D8252">
+        <svg class="peek" viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#7D8252"></path></svg>
+        <div class="flood" data-em-mosaic="goal" data-em-color="#7D8252" data-em-idx="5"></div>
+        <div class="gc-body">
+          <div class="gc-top"><span class="gc-tag">Fluency</span></div>
+          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><h3>Conversation &amp; Fluency</h3></div>
+          <div class="gc-ar" dir="rtl" lang="ar">المحادثة والطلاقة</div>
+          <p class="gc-desc">Stop freezing and stop translating from Arabic first. We build the reflex to think in English.</p>
+          <div class="gc-stat"><span class="gc-sv small">Stop translating</span><span class="gc-sl">Think in English instead</span></div>
+        </div>
+      </div>
       </div>
     </div>
   </div>
@@ -467,7 +564,7 @@ html,body{overflow-x:clip}
 <!-- HOW IT WORKS -->
 <section class="block alt" id="how">
   <div class="wrap">
-    <div class="section-head reveal">
+    <div class="section-head">
       <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#1E97A6"></path></svg>
       <h2>How It Works</h2>
     </div>
@@ -484,7 +581,7 @@ html,body{overflow-x:clip}
 <!-- TESTIMONIALS -->
 <section class="block">
   <div class="wrap">
-    <div class="section-head reveal">
+    <div class="section-head">
       <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#1E97A6"></path></svg>
       <h2>What students say</h2>
       <p>Real words from students Jana has coached, from first conversations to Band-7 IELTS.</p>
@@ -526,12 +623,12 @@ html,body{overflow-x:clip}
 <!-- FAQ -->
 <section class="block alt">
   <div class="wrap">
-    <div class="section-head reveal">
+    <div class="section-head">
       <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#1E97A6"></path></svg>
       <h2>Common questions</h2>
       <p>Everything you might want to know before your free call.</p>
     </div>
-    <div class="faq-wrap reveal">
+    <div class="faq-wrap">
       <details class="faq-item">
         <summary>Who is English Mastered for?<svg class="faq-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
         <div class="faq-body"><p>English Mastered is built for Arabic-speaking students and professionals who want to improve their English. Jana is a native Arabic speaker and ESL coach from Lebanon, so she understands the specific grammar, pronunciation, and fluency challenges Arabic speakers face — because she's been through them herself.</p></div>
@@ -562,8 +659,8 @@ html,body{overflow-x:clip}
 </section>
 
 <!-- FINAL CTA -->
-<section class="cta-band">
-  <div class="wrap cta-inner reveal">
+<section class="cta-band" data-em-mosaic="surf" data-em-color="#6E2940">
+  <div class="wrap cta-inner">
     <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#2BB7C4"></path></svg>
     <h2 class="wonk">Ready to <span>f</span>eel con<span>f</span>ident in English?</h2>
     <p>Start with a free 15-minute call.</p>
@@ -572,7 +669,7 @@ html,body{overflow-x:clip}
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer data-em-mosaic="surf-footer" data-em-color="#013049">
   <div class="foot-rule"></div>
   <div class="wrap foot-inner">
     <div class="foot-brand-col">
@@ -595,9 +692,51 @@ html,body{overflow-x:clip}
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28" fill="white"><path d="M16 0C7.16 0 0 7.16 0 16c0 2.82.74 5.47 2.03 7.77L0 32l8.47-2.02A16 16 0 1016 0zm0 29.33a13.27 13.27 0 01-6.78-1.86l-.49-.29-5.03 1.2 1.22-4.91-.32-.5A13.24 13.24 0 012.67 16C2.67 8.64 8.64 2.67 16 2.67S29.33 8.64 29.33 16 23.36 29.33 16 29.33z"/></svg>
 </a>
 
+<script src="assets/em-mosaic.js"></script>
 <script>
-  const obs = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.15});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  /* nav scrolled state */
+  (function(){var nav=document.querySelector('nav');if(!nav)return;
+    function on(){nav.classList.toggle('scrolled',window.scrollY>38);}
+    addEventListener('scroll',on,{passive:true});on();})();
+  /* hero entrance + sweep anchor */
+  (function(){var hero=document.querySelector('.hero');if(!hero)return;
+    var sw=document.getElementById('heroSweep'),h1=document.getElementById('heroH1'),grid=hero.querySelector('.hero-grid');
+    function place(){if(!sw||!h1||!grid)return false;
+      var hr=h1.getBoundingClientRect(),gr=grid.getBoundingClientRect();
+      if(hr.height<10||gr.height<10)return false;
+      sw.style.top=(Math.round(hr.bottom-gr.top)-4.5)+'px';return true;}
+    function placeRetry(n){if(!place()&&n>0)requestAnimationFrame(function(){placeRetry(n-1);});}
+    setTimeout(function(){hero.classList.add('entered');},60);
+    placeRetry(120);addEventListener('resize',place);
+    addEventListener('load',place);
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){place();});
+    setTimeout(function(){placeRetry(60);if(sw)sw.classList.add('drawn');},450);
+    setTimeout(place,1300);})();
+  /* stats count-up (once) */
+  (function(){var band=document.querySelector('.band');if(!band||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;var done=false;
+    var io=new IntersectionObserver(function(es){if(!es[0].isIntersecting||done)return;done=true;io.disconnect();
+      band.querySelectorAll('[data-n]').forEach(function(el){var n=+el.getAttribute('data-n'),t0=performance.now();
+        function f(t){var p=Math.min(1,(t-t0)/900);el.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f);}
+        requestAnimationFrame(f);});},{threshold:.4});
+    io.observe(band);})();
+  /* goal-card spotlight */
+  (function(){var wrap=document.getElementById('goalCards');if(!wrap)return;
+    var rows=[].slice.call(wrap.querySelectorAll('.grow-row'));
+    var cards=[].slice.call(wrap.querySelectorAll('.gcard'));
+    var interacted=false,cur=1;
+    function setOn(i){cur=i;
+      cards.forEach(function(c,x){c.classList.toggle('on',x===i);});
+      rows.forEach(function(rw){var local=-1;[].slice.call(rw.children).forEach(function(c,k){if(c===cards[i])local=k;});
+        rw.style.gridTemplateColumns=local<0?'':['2.05fr 1fr 1fr','1fr 2.05fr 1fr','1fr 1fr 2.05fr'][local];});}
+    cards.forEach(function(c,i){
+      c.addEventListener('mouseenter',function(){interacted=true;setOn(i);});
+      c.addEventListener('click',function(){interacted=true;setOn(i);});});
+    setOn(1);
+    /* pre-wrap descriptions at their final (expanded) width so text never re-wraps mid-grow */
+    function sizeDescs(){var rw=rows[0];if(!rw)return;var w=rw.getBoundingClientRect().width;if(w<400)return;
+      var dw=Math.max(200,Math.round((w-32)*2.05/4.05-44));
+      wrap.querySelectorAll('.gc-desc').forEach(function(d){d.style.width=dw+'px';});}
+    sizeDescs();addEventListener('resize',sizeDescs);addEventListener('load',sizeDescs);})();
   (function(){
     const stage=document.getElementById('trotStage'); if(!stage) return;
     const items=[...stage.querySelectorAll('.trot-item')];
