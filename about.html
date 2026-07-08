@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<title>Meet Jana Malas — English Coach for Arabic Speakers</title>
+<title>Meet Your Coach — English Mastered</title>
 <meta name="description" content="Meet Jana Malas — the Lebanese English coach behind English Mastered. One-to-one online lessons built for Arabic speakers, with zero judgement.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Meet Your Coach — English Mastered">
@@ -22,7 +22,10 @@
 <meta name="twitter:image" content="https://englishmastered.org/img/og-about.png">
 <meta name="theme-color" content="#01426A">
 <link rel="canonical" href="https://englishmastered.org/about.html">
-<link rel="icon" type="image/png" href="assets/em-mark-gold.png">
+<link rel="icon" href="assets/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,10,1;1,9..144,400..700,10,1&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -32,14 +35,10 @@
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://englishmastered.org/#jana",
       "name": "Jana Malas",
       "jobTitle": "English Coach",
-      "worksFor": { "@id": "https://englishmastered.org/#org" },
+      "worksFor": { "@type": "Organization", "name": "English Mastered", "url": "https://englishmastered.org/" },
       "description": "Lebanese English coach specialising in one-to-one online lessons for Arabic speakers.",
-      "nationality": { "@type": "Country", "name": "Lebanon" },
-      "knowsLanguage": ["en", "ar"],
-      "knowsAbout": ["IELTS preparation", "TOEFL preparation", "Business English", "English for Specific Purposes", "Conversational English"],
       "url": "https://englishmastered.org/about.html"
     },
     {
@@ -57,33 +56,24 @@
     --navy:#01426A; --navy-deep:#013049; --teal:#1E97A6; --teal-bright:#2BB7C4;
     --caramel:#B87333; --paper:#F7F3EC; --paper-2:#EFE7D7; --pearl:#FCFBF5; --gold:#E4A72C;
     --text:#2A2520; --muted:#6E6358; --border:#E3D9CA; --on-deep:#F2EBDD; --on-deep-mute:#9DA7B1;
-    --gen:#0C5C63; --ielts:#E31837; --toefl:#C8663F; --biz:#6E2742; --esp:#007BA7; --conv:#7D8252; --grp:#9E472A;
+    --gen:#0C5C63; --ielts:#E4A72C; --toefl:#C8663F; --biz:#6E2742; --esp:#007BA7; --conv:#7D8252; --grp:#9E472A;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{margin:0;font-family:'Public Sans',system-ui,sans-serif;color:var(--text);background:var(--paper);font-size:17px;line-height:1.6;}
   .wrap{max-width:1140px;margin:0 auto;padding:0 28px;}
   .fr,h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;font-variation-settings:'opsz' 144,'wght' 620,'SOFT' 10,'WONK' 1;color:var(--navy);margin:0;letter-spacing:-.01em;}
-  .wonk{font-variation-settings:'opsz' 144,'wght' 650,'SOFT' 10,'WONK' 1;}
+  .wonk{font-variation-settings:'opsz' 144,'wght' 620,'SOFT' 10,'WONK' 1;}
   a{color:inherit;text-decoration:none;}
   .tlink{color:#0066CC;font-weight:600;border-bottom:1.5px solid rgba(0,102,204,.3);}
-  .kicker{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);}
   /* brandbar / nav */
   .brandbar{position:relative;background:#6E2940;color:#E7CDB4;overflow:hidden;}
-  
+  .brandbar::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-burgundy-cta.svg) center/cover;}
   .brandbar .wrap{position:relative;display:flex;justify-content:space-between;align-items:center;height:38px;font-size:11.5px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;}
   .brandbar .kc{color:var(--gold);}
   .brandbar a{color:#E7CDB4;}
-  nav{background:var(--paper);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;transition:box-shadow .2s ease,border-color .2s ease;}
-  nav::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:3px;background:linear-gradient(90deg,#5E7689 0 30%,#1E97A6 30% 55%,#E4A72C 55% 75%,#B87333 75% 100%);transform:scaleX(0);transform-origin:left;transition:transform .8s cubic-bezier(.22,.61,.36,1);pointer-events:none;}
-  nav.scrolled::after{transform:scaleX(1);}
-  nav.scrolled{border-bottom-color:transparent;box-shadow:0 10px 26px rgba(1,48,73,.06);}
-  .nav-inner{transition:height .2s ease;}
-  nav.scrolled .nav-inner{height:68px;}
-  .brand img{transition:width .2s ease,height .2s ease,margin-top .2s ease;}
-  nav.scrolled .brand img{width:48px;height:48px;margin-top:-9px;}
-  .brand-text{transition:font-size .2s ease;}
-  nav.scrolled .brand-text{font-size:29px;}
+  nav{background:var(--paper);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:84px;}
   .brand{display:flex;align-items:center;gap:7px;}
   .brand img{display:block;width:62px;height:62px;margin-top:-13px;}
@@ -105,30 +95,40 @@
   /* page hero */
   .page-hero{position:relative;overflow:hidden;background:var(--paper-2);border-bottom:1px solid var(--border);color:var(--text);text-align:center;padding:42px 0;}
   .ph-inner{position:relative;z-index:1;width:100%;}
-  .page-hero .kicker{color:var(--teal);margin-bottom:8px;}
-  .page-hero h1{color:var(--navy);font-size:46px;line-height:1.05;margin:0 0 11px;}
+  .page-hero .kicker{color:var(--teal);margin-bottom:8px;font-size:12px;letter-spacing:2px;}
+  .page-hero h1{color:var(--navy);font-size:44px;line-height:1.05;margin:0 0 11px;}
   .page-hero p{color:var(--muted);max-width:56ch;margin:0 auto;font-size:16px;}
   .page-hero .brushwing{margin:16px auto 0;}
   /* sections */
   .block{padding:60px 0;}
   .alt{background:var(--paper-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
   .section-head{text-align:center;max-width:60ch;margin:0 auto 40px;}
-  .section-head h2{font-size:36px;margin:14px 0 10px;}
+  .section-head h2{font-size:34px;margin:14px 0 10px;}
   .section-head p{color:var(--muted);font-size:16px;margin:0;}
   .section-head .brushwing{margin:0 auto;}
-  .note{font-size:13px;color:var(--muted);text-align:center;max-width:80ch;margin:26px auto 0;line-height:1.55;}
+  .note{font-size:12px;color:var(--muted);text-align:center;max-width:80ch;margin:26px auto 0;line-height:1.55;}
   /* bio split */
   .bio-split{display:grid;grid-template-columns:.96fr 1.04fr;gap:44px;align-items:center;}
   .bio-photo{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 20px 44px rgba(1,66,106,.16);}
-  .bio-photo img{width:100%;height:auto;aspect-ratio:7/10;object-fit:cover;object-position:center;display:block;}
-  .bio-photo .ph-chip{position:absolute;right:18px;bottom:18px;background:#4A1A2A url(assets/mosaic-burgundy-cta.svg) center/cover;color:var(--on-deep);border-radius:11px;padding:5px 9px;box-shadow:0 6px 18px rgba(74,26,42,.4);}
-  .bio-photo .ph-chip .n{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 620,'WONK' 1;font-size:17.5px;line-height:1.05;}
-  .bio-photo .ph-chip .r{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-top:3px;}
-  .bio-photo .ph-wing{position:absolute;left:-10px;top:-14px;}
+  .bio-photo img{width:100%;aspect-ratio:733/1100;object-fit:cover;object-position:center;display:block;}
+  /* photo caption — bottom scrim (finalized Option D: text sits directly in a soft gradient, no box) */
+  /* photo caption — mosaic ribbon (finalized): 105px band of the footer mosaic, opacity .6, vertical fade from 60%, right-edge fade from 53% */
+  .cap-ribbon{position:absolute;left:0;right:0;bottom:0;height:105px;pointer-events:none;
+    -webkit-mask-image:linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.561) 66%, rgba(0,0,0,0.470) 72%, rgba(0,0,0,0.345) 78%, rgba(0,0,0,0.211) 84%, rgba(0,0,0,0.094) 90%, rgba(0,0,0,0.017) 96%, rgba(0,0,0,0) 100%),linear-gradient(to right, #000 0%, rgba(0,0,0,1) 53%, rgba(0,0,0,0.939) 60.1%, rgba(0,0,0,0.784) 67.1%, rgba(0,0,0,0.575) 74.2%, rgba(0,0,0,0.352) 81.2%, rgba(0,0,0,0.156) 88.3%, rgba(0,0,0,0.028) 95.3%, rgba(0,0,0,0) 100%);
+    -webkit-mask-composite:source-in;
+    mask-image:linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.561) 66%, rgba(0,0,0,0.470) 72%, rgba(0,0,0,0.345) 78%, rgba(0,0,0,0.211) 84%, rgba(0,0,0,0.094) 90%, rgba(0,0,0,0.017) 96%, rgba(0,0,0,0) 100%),linear-gradient(to right, #000 0%, rgba(0,0,0,1) 53%, rgba(0,0,0,0.939) 60.1%, rgba(0,0,0,0.784) 67.1%, rgba(0,0,0,0.575) 74.2%, rgba(0,0,0,0.352) 81.2%, rgba(0,0,0,0.156) 88.3%, rgba(0,0,0,0.028) 95.3%, rgba(0,0,0,0) 100%);
+    mask-composite:intersect;}
+  .cap-ribbon canvas{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;pointer-events:none;transform:scale(-1,-1);}
+  .cap-backing{position:absolute;left:0;right:0;bottom:0;height:58%;pointer-events:none;mix-blend-mode:multiply;background:radial-gradient(120% 130% at 0% 100%, rgba(1,48,73,0.30) 0%, rgba(1,48,73,0.18) 45%, rgba(1,48,73,0) 78%);}
+  .cap-block{position:absolute;left:0;right:0;bottom:0;padding:34px 20px 18px;text-align:left;text-shadow:0 1px 2px rgba(0,0,0,0.14),0 2px 14px rgba(0,0,0,0.22);z-index:1;}
+  .cap-block .cn{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 620,'WONK' 1;line-height:1.05;color:#E4A72C;}
+  .cap-block .cs{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;line-height:1.5;opacity:.9;margin-top:4px;}
+  .bio-photo .cap-block .cn{font-size:24px;}
+  .bio-photo .cap-block .cs{color:#F2EBDD;}
   .bio-text .kicker{display:block;margin-bottom:12px;}
-  .bio-text h1{font-size:62px;line-height:.98;letter-spacing:-.5px;margin:0 0 14px;}
+  .bio-text h2{font-size:60px;line-height:.98;letter-spacing:-.5px;margin:0 0 14px;}
   .bio-text .lead{font-family:'Fraunces',serif;font-variation-settings:'wght' 500,'WONK' 1;font-size:23px;line-height:1.3;color:#B87333;margin:0 0 18px;text-wrap:pretty;}
-  .bio-text p{margin:0 0 15px;color:#4a443c;font-size:16.5px;line-height:1.72;}
+  .bio-text p{margin:0 0 15px;color:#4a443c;font-size:16px;line-height:1.72;}
   .bio-sign{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 600,'WONK' 1;font-size:26px;color:var(--navy);margin-top:6px;}
   /* approach cards */
   .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
@@ -137,8 +137,8 @@
   .card-item>*{position:relative;z-index:1;}
   .card-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;background:rgba(30,151,166,.12);color:var(--teal);}
   .card-icon svg{width:22px;height:22px;}
-  .card-item h3{font-size:19px;margin:0 0 7px;}
-  .card-item p{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;}
+  .card-item h3{font-size:18px;margin:0 0 7px;}
+  .card-item p{font-size:14px;line-height:1.55;color:var(--muted);margin:0;}
   .btns{display:flex;gap:13px;flex-wrap:wrap;margin-top:24px;}
   /* qualifications */
   .cred-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:center;}
@@ -149,34 +149,33 @@
   .cred-list li{display:flex;flex-direction:column;padding:14px 0 14px 32px;position:relative;border-top:1px solid var(--border);}
   .cred-list li:first-child{border-top:none;}
   .cred-list li::before{content:"";position:absolute;left:2px;top:17px;width:13px;height:8px;border-left:2px solid var(--teal);border-bottom:2px solid var(--teal);transform:rotate(-45deg);}
-  .cred-list .deg{font-weight:600;font-size:15.5px;color:var(--text);line-height:1.3;}
-  .cred-list .meta{font-size:13px;color:var(--muted);margin-top:3px;letter-spacing:.01em;}
+  .cred-list .deg{font-weight:600;font-size:15px;color:var(--text);line-height:1.3;}
+  .cred-list .meta{font-size:12px;color:var(--muted);margin-top:3px;letter-spacing:.01em;}
   .langline{font-size:14px;color:var(--muted);margin:0;line-height:1.6;}
   .langline strong{color:var(--navy);}
-  .cred-photo{position:relative;}
-  .cred-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 30%;display:block;border-radius:16px;border:1px solid var(--border);box-shadow:0 20px 44px rgba(1,66,106,.16);}
-  .cred-photo .cap{position:absolute;right:16px;bottom:16px;max-width:145px;background:#4A1A2A url(assets/mosaic-burgundy-cta.svg) center/cover;color:var(--on-deep);border-radius:11px;padding:7px 10px 8px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15);}
-  .cred-photo .cap .t{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 620,'WONK' 1;font-size:18px;line-height:1.08;color:var(--on-deep);}
-  .cred-photo .cap .s{font-size:11.5px;line-height:1.4;color:#EAEFF1;margin-top:4px;}
+  .cred-photo{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 20px 44px rgba(1,66,106,.16);}
+  .cred-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 30%;display:block;}
+  .cred-photo .cap-block .cn{font-size:18px;margin-bottom:3px;}
+  .cred-photo .cap-block .cs{color:#FFFFFF;}
   /* cta + footer */
   .cta-band{position:relative;overflow:hidden;background:#6E2940;color:var(--on-deep);text-align:center;min-height:200px;display:flex;align-items:center;padding:0 0 12px;}
-  
+  .cta-band::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-burgundy-cta.svg) center/cover;}
   .cta-band .btn{width:auto;min-width:0;height:46px;padding:0 32px;}
   .cta-inner{position:relative;z-index:1;padding:0 28px;width:100%;}
-  .cta-band h2{color:var(--on-deep);font-size:38px;line-height:1.05;margin:0 0 12px;white-space:nowrap;}
+  .cta-band h2{color:var(--on-deep);font-size:34px;line-height:1.05;margin:0 0 12px;white-space:nowrap;}
   .cta-band p{color:var(--on-deep);margin:0 0 12px;font-size:15px;}
   .cta-band .brushwing{margin:0 auto 5px;}
   footer{position:relative;background:#013049;color:var(--on-deep-mute);overflow:hidden;}
-  
+  footer::before{content:"";position:absolute;inset:0;background:url(assets/mosaic-navy-footer.svg) center/cover;opacity:.6;}
   footer>*{position:relative;z-index:1;}
   .foot-rule{height:4px;background:linear-gradient(90deg,#5E7689 0 30%,var(--teal) 30% 55%,var(--gold) 55% 75%,var(--caramel) 75% 100%);}
   .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding:25px 28px;}
   .foot-brand-col{display:flex;flex-direction:column;max-width:24em;}
   .foot-brand{display:flex;align-items:center;gap:6px;}
   .foot-brand .b1{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 600,'WONK' 1;font-size:28px;color:var(--on-deep);line-height:1.02;letter-spacing:-.02em;}
-  .foot-tag{font-size:12.5px;line-height:1.4;color:var(--on-deep);margin:9px 0 0 55px;max-width:18.5em;}
-  .foot-links{display:flex;gap:30px;font-size:13.5px;}
-  .foot-col h4{font-family:'Public Sans';font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin:0 0 8px;}
+  .foot-tag{font-size:12px;line-height:1.4;color:var(--on-deep);margin:9px 0 0 7px;max-width:234px;}
+  .foot-links{display:flex;gap:30px;font-size:14px;}
+  .foot-col h4{font-family:'Public Sans';font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:0 0 8px;}
   .foot-col a{display:block;color:var(--on-deep);margin-bottom:4px;}
   .copyright{border-top:1px solid #1a3247;padding:15.5px 28px;font-size:12px;color:#5f7385;text-align:center;}
   .wa-btn{position:fixed;bottom:26px;right:26px;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.28);z-index:200;transition:transform .2s;}
@@ -211,23 +210,11 @@
     .cta-band{min-height:auto;padding:52px 0;}
   }
 </style>
-<style id="em-mobile-fix">
-/* mobile layout fixes */
-html,body{overflow-x:clip}
-@media(max-width:900px){ .step .crow::before{display:none!important} }
-@media(max-width:860px){
-  .section-head p,.cta-band h2,.page-hero p{white-space:normal!important}
-}
-@media(max-width:640px){
-  .brandbar .kc{display:none}
-  .brandbar .wrap{justify-content:center}
-}
-</style>
 </head>
 <body>
 
 <!-- BRAND BAR -->
-<div class="brandbar" data-em-mosaic="surf-bar" data-em-color="#6E2940">
+<div class="brandbar">
   <div class="wrap">
     <span class="kc">Online English Coaching</span>
     <span>Lebanon &amp; Worldwide&nbsp;·&nbsp;<a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp +961 71 500 874</a></span>
@@ -248,7 +235,7 @@ html,body{overflow-x:clip}
       <a href="start.html">How It Works</a>
       <a href="services.html">Services</a>
       <a href="about.html" class="active">About<svg viewBox="0 0 60 8" width="42" height="6"><path d="M2 5 C 16 2 44 2 58 5 C 44 7 18 7 2 6 Z" fill="#1E97A6"></path></svg></a>
-      <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="nav-cta">Book Free Call</a>
+      <a href="book.html" class="nav-cta">Book Free Call</a>
     </div>
   </div>
 </nav>
@@ -261,21 +248,23 @@ html,body{overflow-x:clip}
   <div class="wrap">
     <div class="bio-split">
       <div class="bio-photo reveal">
-        <img src="assets/jana-teaching.jpg" fetchpriority="high" alt="Jana Malas teaching an English class at the whiteboard">
-        <div class="ph-chip">
-          <div class="n">Jana Malas</div>
-          <div class="r">Founder &amp; Coach</div>
+        <img src="assets/jana-teaching.jpg" alt="Jana Malas teaching an English class at the whiteboard">
+        <div class="cap-ribbon" data-caption-mosaic></div>
+        <div class="cap-backing"></div>
+        <div class="cap-block">
+          <div class="cn">Jana Malas</div>
+          <div class="cs">Founder &amp; Coach</div>
         </div>
       </div>
       <div class="bio-text reveal">
         <span class="kicker">A little about me</span>
-        <h1 class="wonk">Hi, I'm Jana</h1>
-        <p class="lead">I'm an ESL coach from Lebanon, and I work one-to-one with Arabic speakers, online, anywhere in the world.</p>
+        <h2 class="wonk">Hi, I'm Jana</h2>
+        <p class="lead">I'm an ESL coach from Lebanon, and I work one-to-one with Arabic speakers — online, anywhere in the world.</p>
         <p>I've been teaching English for over five years in secondary schools, universities, and NGOs across Lebanon and Turkey. I founded English Mastered in 2021 because I kept meeting the same student: an Arabic speaker who had studied English for years and still froze the moment they had to use it.</p>
         <p>I know that freeze. Arabic is my first language, and I learned English exactly the way my students do. I know the sound your mouth defaults to, the word order your brain reaches for, and the rule that <em>should</em> work but doesn't — and that's the whole reason English Mastered exists.</p>
-        <p>Whether you're preparing for IELTS, writing emails at work, or you just want to hold a conversation without panicking, I'll meet you exactly where you are and build a clear path from there.</p>
+        <p>Whether you're preparing for IELTS, writing emails at work, or you just want to hold a conversation without panicking — I'll meet you exactly where you are and build a clear path from there.</p>
         <div class="btns">
-          <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-primary">Book a Free Call <span>→</span></a>
+          <a href="book.html" class="btn btn-primary">Book a Free Call <span>→</span></a>
           <a href="samples.html" class="btn btn-ghost">See Sample Lessons</a>
         </div>
       </div>
@@ -299,10 +288,10 @@ html,body{overflow-x:clip}
         <p>Every lesson targets your real weak spots, and the goals you set on day one shape the whole plan.</p>
       </div>
       <div class="card-item reveal" style="border-top-color:var(--ielts);">
-        <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="34"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#E31837"></path></svg>
-        <div class="card-icon" style="background:rgba(227,24,55,.12);color:var(--ielts);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="34"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#E4A72C"></path></svg>
+        <div class="card-icon" style="background:rgba(228,167,44,.16);color:var(--ielts);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
         <h3>Arabic-speaker aware</h3>
-        <p>I know the exact grammar, sounds, and habits that trip up Arabic speakers, because I've been through all of that myself.</p>
+        <p>I know the exact grammar, sounds, and habits that trip up Arabic speakers — because I've been through it myself.</p>
       </div>
       <div class="card-item reveal" style="border-top-color:var(--conv);">
         <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="34"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#7D8252"></path></svg>
@@ -314,7 +303,7 @@ html,body{overflow-x:clip}
         <svg class="wing" viewBox="0 0 300 50" preserveAspectRatio="none" width="100%" height="34"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#1E97A6"></path></svg>
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg></div>
         <h3>Flexible &amp; online</h3>
-        <p>Sessions over Zoom, Teams, or Webex on a schedule that works around your job or your studies.</p>
+        <p>Sessions over Zoom, Teams, or Webex — on a schedule that works around your job or your studies.</p>
       </div>
     </div>
   </div>
@@ -327,7 +316,7 @@ html,body{overflow-x:clip}
       <div class="cred-text reveal">
         <span class="kicker">Qualifications &amp; Training</span>
         <h2 class="wonk">Years of study behind every lesson</h2>
-        <p class="intro">Formal training in English and language teaching.</p>
+        <p class="intro">Formal training in English and language teaching — and I keep learning.</p>
         <ul class="cred-list">
           <li><span class="deg">M.A., English Language &amp; Literature — Linguistics Track</span><span class="meta">Lebanese University · 2022</span></li>
           <li><span class="deg">Teaching Diploma, Teaching of English</span><span class="meta">Lebanese University · 2021</span></li>
@@ -337,8 +326,10 @@ html,body{overflow-x:clip}
         <p class="langline"><strong>Languages:</strong> Arabic (native) · English (fluent) · French (intermediate)</p>
       </div>
       <div class="cred-photo reveal">
-        <img src="assets/jana-tesol.jpg" loading="lazy" alt="Jana Malas at the TESOL 2024 International Convention">
-        <div class="cap"><div class="t">TESOL 2024</div><div class="s">Staying current with the latest in English language teaching.</div></div>
+        <img src="assets/jana-tesol.jpg" alt="Jana Malas at the TESOL 2024 International Convention">
+        <div class="cap-ribbon" data-caption-mosaic></div>
+        <div class="cap-backing"></div>
+        <div class="cap-block"><div class="cn">TESOL 2024</div><div class="cs">Staying current with the latest in English language teaching.</div></div>
       </div>
     </div>
     <p class="note">Curious how a lesson actually runs? <a class="tlink" href="start.html">See how it works step by step →</a> &nbsp;·&nbsp; <a class="tlink" href="samples.html">Look inside real lessons →</a></p>
@@ -346,17 +337,17 @@ html,body{overflow-x:clip}
 </section>
 
 <!-- FINAL CTA -->
-<section class="cta-band" data-em-mosaic="surf" data-em-color="#6E2940">
+<section class="cta-band">
   <div class="wrap cta-inner reveal">
     <svg class="brushwing" viewBox="0 0 120 14" width="58" height="7"><path d="M3 9 C 30 4 90 4 117 7 C 90 12 36 13 5 13 C 3 12 3 10 3 9 Z" fill="#2BB7C4"></path></svg>
     <h2 class="wonk">Let's have a quick chat</h2>
     <p>Book a free 15-minute call and tell me what you're working toward. No commitment, no payment — just a conversation.</p>
-    <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="btn btn-primary">Book Your Free Call <span>→</span></a>
+    <a href="book.html" class="btn btn-primary">Book Your Free Call <span>→</span></a>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer data-em-mosaic="surf-footer" data-em-color="#013049">
+<footer>
   <div class="foot-rule"></div>
   <div class="wrap foot-inner">
     <div class="foot-brand-col">
@@ -368,7 +359,7 @@ html,body{overflow-x:clip}
     </div>
     <div class="foot-links">
       <div class="foot-col"><h4>Explore</h4><a href="start.html">How Lessons Work</a><a href="level-test.html">Find Your Level</a><a href="services.html">Services</a><a href="payments.html">Pay for Lessons</a><a href="samples.html">Sample Lessons</a><a href="about.html">Meet Your Coach</a></div>
-      <div class="foot-col"><h4>Get in touch</h4><a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html">Book a free call</a><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:jana@englishmastered.org">Email</a><a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a></div>
+      <div class="foot-col"><h4>Get in touch</h4><a href="book.html">Book a free call</a><a href="https://wa.me/96171500874" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:jana@englishmastered.org">Email</a><a href="https://instagram.com/english_mastered" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=100077407694745" target="_blank" rel="noopener">Facebook</a></div>
     </div>
   </div>
   <div class="copyright">© 2025–2026 English Mastered — Jana Malas · Online English coaching for Arabic speakers · Lebanon &amp; Worldwide</div>
@@ -384,18 +375,42 @@ html,body{overflow-x:clip}
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 
-
-<!-- Cal.com popup for Book buttons -->
-<script type="text/javascript">
-  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-  Cal("init", "free-discovery-call", {origin:"https://app.cal.com"});
-  Cal.ns["free-discovery-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#B87333"},"dark":{"cal-brand":"#D89B3A"}},"hideEventTypeDetails":false,"layout":"month_view"});
-</script>
 <script src="assets/em-mosaic.js"></script>
 <script>
-  (function(){var nav=document.querySelector('nav');if(!nav)return;
-    function on(){nav.classList.toggle('scrolled',window.scrollY>38);}
-    addEventListener('scroll',on,{passive:true});on();})();
+  /* photo caption mosaic ribbon — footer engine (SPEC_SURF + surf-footer overrides, seed 7), finalized dialed spec */
+  (function(){
+    var SPEC_SURF={facets:52,jitter:0.76,warp:0.7,warpSize:1.65,diagMix:0,coherence:0.7,waveSize:0.96,waveStretch:1,waveAngle:31,relief:0.26,depthLum:0.1,angle:240,strength:0.15,floor:0.87,ceil:1.15,sheen:0.125,sheenW:55,burnish:0.19,brush:0.11,edge:0,toneJit:0.03,vignette:0.6,focalX:0.4,focalY:0.3,focalDim:0,bright:0.95,blend:0.8,bloom:0.4,wave2:0.1,wave2Angle:140};
+    var FOOTER_OVER={blend:0.5,bloom:0.175,vignette:0.6,focalDim:0.18};
+    var FOOTER_SEED=7, FOOTER_MINH=220;
+    var SHARD=2.25, DEF=1.1, COLOR='#013049';
+    function paint(){
+      if(!window.EMMosaic||!window.EMMosaic.render7){setTimeout(paint,120);return;}
+      document.querySelectorAll('[data-caption-mosaic]').forEach(function(el){
+        var cv=el.querySelector('canvas');
+        if(!cv){cv=document.createElement('canvas');cv.setAttribute('aria-hidden','true');
+          cv.style.cssText='position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;pointer-events:none;transform:scale(-1,-1);';
+          el.insertBefore(cv,el.firstChild);}
+        var rc=el.getBoundingClientRect();
+        var wCss=Math.max(320,rc.width||1200), hCss=Math.max(60,rc.height||FOOTER_MINH);
+        var w=1200, h=Math.max(FOOTER_MINH,Math.round(hCss*(w/wCss)));
+        var key=['v4',w,h,SHARD,DEF,COLOR].join('|');
+        if(cv.__key===key)return; cv.__key=key;
+        var P=Object.assign({},SPEC_SURF,FOOTER_OVER);
+        P.blend=FOOTER_OVER.blend*Math.max(0,1-2*DEF);
+        P.bloom=FOOTER_OVER.bloom*Math.max(0,1-DEF);
+        P.strength=SPEC_SURF.strength+0.65*DEF;
+        P.floor=Math.max(0.35,SPEC_SURF.floor-0.32*DEF);
+        P.ceil=SPEC_SURF.ceil+0.35*DEF;
+        P.toneJit=SPEC_SURF.toneJit+0.12*DEF;
+        P.brush=SPEC_SURF.brush*Math.max(0,1-0.5*DEF);
+        P.facets=Math.max(8,Math.round(SPEC_SURF.facets*(w*h)/(1200*420)*SHARD));
+        window.EMMosaic.render7(cv,w,h,P,COLOR,FOOTER_SEED);
+      });
+    }
+    paint();
+    var rt; addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(paint,180);},{passive:true});
+  })();
 </script>
+
 </body>
 </html>
