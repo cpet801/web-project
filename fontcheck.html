@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Mastered — rendering check</title>
+<!-- em-fix:skip - apply-fixes.py must not touch this file. It needs to keep
+     its `opsz 144` sample in order to demonstrate the bug next to the fix. -->
+<!-- NOTE: deliberately no color-scheme meta. This page needs Auto Dark
+     Theme to stay ON so test 2 can detect it. Do not add "only light" here. -->
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,10,1&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;padding:20px 16px 60px;background:#F7F3EC;color:#2A2520;
+       font-family:'Public Sans',system-ui,sans-serif;font-size:15px;line-height:1.55;}
+  h1{font-size:19px;margin:0 0 4px;font-weight:700;}
+  .sub{color:#6E6358;font-size:13px;margin:0 0 22px;}
+  section{border:1px solid #E3D9CA;border-radius:12px;padding:16px;margin:0 0 16px;background:#FCFBF5;}
+  h2{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#B87333;
+     margin:0 0 12px;font-weight:700;}
+  .verdict{font-weight:700;font-size:15px;margin:12px 0 0;padding:9px 12px;border-radius:8px;}
+  .pass{background:#E4F1E6;color:#1F5B2E;} .fail{background:#FBE3DC;color:#8A2C14;}
+  .info{background:#EAF1F6;color:#134B6B;}
+  dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:13px;}
+  dt{color:#6E6358;} dd{margin:0;word-break:break-word;font-family:ui-monospace,monospace;font-size:12px;}
+  .swatches{display:flex;gap:0;align-items:stretch;height:74px;border-radius:9px;overflow:hidden;
+            border:1px solid #E3D9CA;}
+  .sw-css{flex:1;background:#F7F3EC;display:flex;align-items:center;justify-content:center;
+          font-size:11px;color:#6E6358;text-align:center;}
+  .swatches canvas{flex:1;display:block;height:74px;width:100%;}
+  .cap{font-size:12px;color:#6E6358;margin:8px 0 0;}
+  .spec{font-family:'Fraunces',Georgia,serif;color:#01426A;white-space:nowrap;
+        letter-spacing:-.02em;display:block;margin:2px 0 10px;}
+  .pinned{font-variation-settings:'opsz' 144,'wght' 640,'SOFT' 10,'WONK' 1;}
+  .auto{font-optical-sizing:auto;font-weight:640;font-variation-settings:'SOFT' 10,'WONK' 1;}
+  .s28{font-size:28px;} .s36{font-size:36px;}
+  .lbl{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#6E6358;
+       font-family:'Public Sans',sans-serif;font-weight:700;}
+  .ab{display:flex;gap:14px;flex-wrap:wrap;}
+  .ab div{flex:1 1 220px;}
+  .georgia{font-family:Georgia,serif;font-size:28px;color:#01426A;}
+</style>
+</head>
+<body>
+
+<h1>Rendering check</h1>
+<p class="sub">Open this page in each browser on your phone and screenshot the whole thing. It answers all three questions without guesswork.</p>
+
+<section>
+  <h2>1 · What browser is this</h2>
+  <dl>
+    <dt>User agent</dt><dd id="ua">—</dd>
+    <dt>Viewport</dt><dd id="vp">—</dd>
+    <dt>Pixel ratio</dt><dd id="dpr">—</dd>
+    <dt>OS colour scheme</dt><dd id="os">—</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>2 · Is the browser forcing dark mode</h2>
+  <div class="swatches">
+    <div class="sw-css">painted by CSS</div>
+    <canvas id="cv" width="200" height="74"></canvas>
+  </div>
+  <p class="cap">Both halves are the same colour (#F7F3EC, the site's paper cream). Auto Dark Theme rewrites CSS colours but never touches canvas pixels.</p>
+  <div class="verdict info" id="darkverdict">If the two halves <b>match</b> → normal rendering. If the left half is <b>dark</b> and the right is <b>cream</b> → the browser is force-darkening the site.</div>
+</section>
+
+<section>
+  <h2>3 · Did Fraunces actually load</h2>
+  <div class="ab">
+    <div>
+      <span class="lbl">Fraunces</span>
+      <span class="spec auto s28">English Mastered</span>
+    </div>
+    <div>
+      <span class="lbl">Georgia (fallback)</span>
+      <span class="georgia">English Mastered</span>
+    </div>
+  </div>
+  <p class="cap">These should look clearly different. If they look the same, the webfont didn't load.</p>
+  <div class="verdict" id="fontverdict">checking…</div>
+</section>
+
+<section>
+  <h2>4 · The "e" crossbar test</h2>
+  <span class="lbl">opsz pinned at 144 — what the site does now</span>
+  <span class="spec pinned s36">English Mastered</span>
+  <span class="spec pinned s28">English Mastered</span>
+
+  <span class="lbl">opsz auto — the fix</span>
+  <span class="spec auto s36">English Mastered</span>
+  <span class="spec auto s28">English Mastered</span>
+
+  <p class="cap">Look at the two <b>e</b>s in "Mastered". In the top pair the horizontal bar is a hairline and may vanish, turning the e into a c. In the bottom pair it should be solid.</p>
+  <dl style="margin-top:10px">
+    <dt>Resolved opsz (pinned)</dt><dd id="opsz-p">—</dd>
+    <dt>Resolved opsz (auto)</dt><dd id="opsz-a">—</dd>
+  </dl>
+</section>
+
+<script>
+(function(){
+  var d = document;
+  function set(id, fn){
+    var el = d.getElementById(id);
+    if (!el) return;
+    try { el.textContent = fn(); } catch(e){ el.textContent = 'unavailable (' + e.message + ')'; }
+  }
+
+  set('ua',  function(){ return navigator.userAgent; });
+  set('vp',  function(){ return innerWidth + ' × ' + innerHeight + ' css px'; });
+  set('dpr', function(){ return String(devicePixelRatio); });
+  set('os',  function(){
+    return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
+
+  // Canvas is exempt from Auto Dark Theme, so it shows the true colour.
+  try {
+    var ctx = d.getElementById('cv').getContext('2d');
+    ctx.fillStyle = '#F7F3EC';
+    ctx.fillRect(0, 0, 200, 74);
+    ctx.fillStyle = '#6E6358';
+    ctx.font = '11px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('painted by canvas', 100, 41);
+  } catch(e){}
+
+  // Report what the browser actually resolved for the variation axes.
+  var pinned = d.querySelector('.pinned.s28'), auto = d.querySelector('.auto.s28');
+  set('opsz-p', function(){
+    var s = getComputedStyle(pinned);
+    return s.fontVariationSettings + '  ·  size ' + s.fontSize;
+  });
+  set('opsz-a', function(){
+    var s = getComputedStyle(auto);
+    return 'optical-sizing: ' + s.fontOpticalSizing + '  ·  size ' + s.fontSize;
+  });
+
+  function report(){
+    var el = d.getElementById('fontverdict');
+    if (!el) return;
+    var ok = false;
+    try { ok = d.fonts.check('28px Fraunces'); } catch(e){}
+    el.className = 'verdict ' + (ok ? 'pass' : 'fail');
+    el.textContent = ok
+      ? 'Fraunces loaded. Google Fonts is reachable in this browser.'
+      : 'Fraunces did NOT load — this browser is blocking Google Fonts. Self-hosting fixes it.';
+  }
+  try { d.fonts.ready.then(report); } catch(e){}
+  setTimeout(report, 3000);
+})();
+</script>
+</body>
+</html>
