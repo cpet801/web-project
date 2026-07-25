@@ -1,0 +1,67 @@
+/* ============================================================
+   English Mastered — self-hosted webfonts
+   Replaces: https://fonts.googleapis.com/css2?family=Fraunces...
+
+   Why self-hosted: privacy browsers (DuckDuckGo, Brave, Firefox
+   with strict ETP, uBlock Origin, and most content blockers)
+   block fonts.googleapis.com and fonts.gstatic.com as Google
+   endpoints. When that happens the page silently falls back to
+   the device serif/sans and the brand typography disappears.
+   Serving from englishmastered.org is first-party, so nothing
+   blocks it — and it removes two DNS + TLS handshakes.
+
+   Files are variable fonts. Fraunces has SOFT pinned at 10 and
+   WONK at 1 to match exactly what Google Fonts was serving, so
+   this swap is visually identical to the old <link>.
+   ============================================================ */
+
+/* Fraunces — variable: opsz 9–144, wght 400–700 */
+@font-face {
+  font-family: 'Fraunces';
+  src: url('fonts/Fraunces-var.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+/* Public Sans — variable: wght 300–800 */
+@font-face {
+  font-family: 'Public Sans';
+  src: url('fonts/PublicSans-var.woff2') format('woff2');
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Public Sans';
+  src: url('fonts/PublicSans-Italic-var.woff2') format('woff2');
+  font-weight: 300 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ------------------------------------------------------------
+   Metric-matched fallbacks. These only ever render during the
+   swap window, or if a webfont fails outright. Without them the
+   fallback serif is noticeably wider than Fraunces and the
+   header visibly reflows when the real font arrives.
+   ------------------------------------------------------------ */
+@font-face {
+  font-family: 'Fraunces Fallback';
+  src: local('Georgia'), local('Times New Roman'), local('Noto Serif'), local('serif');
+  size-adjust: 96%;          /* tune by eye: Fraunces x-height is 48.2% of em */
+  ascent-override: 97.8%;    /* measured from Fraunces */
+  descent-override: 25.5%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Public Sans Fallback';
+  src: local('Helvetica Neue'), local('Arial'), local('Roboto'), local('sans-serif');
+  size-adjust: 100%;         /* Public Sans x-height is 51.7% of em */
+  ascent-override: 95%;      /* measured from Public Sans */
+  descent-override: 22.5%;
+  line-gap-override: 0%;
+}
