@@ -27,6 +27,11 @@
 <link rel="preload" href="assets/fonts/Fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/PublicSans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
+<!-- Amiri is still served by Google Fonts. It is a static font with no
+     variable axes, so it is unaffected by the opsz problem that made
+     self-hosting necessary for Fraunces. Used by .gc-ar for Arabic. -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -159,6 +164,7 @@
   html{scroll-behavior:smooth}
   body{margin:0;font-family:'Public Sans',system-ui,sans-serif;color:var(--text);background:var(--paper);font-size:17px;line-height:1.6;}
   .wrap{max-width:1140px;margin:0 auto;padding:0 28px;}
+  #services .wrap{max-width:1160px;}
   .fr{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;font-variation-settings:'opsz' 144,'wght' 620,'SOFT' 10,'WONK' 1;}
   h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto;font-variation-settings:'opsz' 144,'wght' 620,'SOFT' 10,'WONK' 1;color:var(--navy);margin:0;letter-spacing:-.01em;}
   .wonk{font-variation-settings:'opsz' 144,'wght' 620,'SOFT' 10,'WONK' 1;}
@@ -248,30 +254,33 @@
   .cards{display:flex;flex-direction:column;}
   .grow-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;transition:grid-template-columns .73s cubic-bezier(.22,.61,.36,1);}
   .grow-row+.grow-row{margin-top:16px;}
-  .gcard{position:relative;overflow:hidden;background:var(--pearl);border:1px solid var(--border);border-top:3px solid var(--c);border-radius:14px;padding:20px 22px;height:230px;cursor:pointer;transition:box-shadow .73s ease,border-color .73s ease,transform .73s ease;}
-  .gcard.on{border-color:var(--c);box-shadow:0 18px 40px color-mix(in srgb,var(--c) 25%,transparent);transform:translateY(-7.5px);}
-  @keyframes emTitleOn{0%{color:#01426A}15%{color:#2A5A80}30%{color:#4E7495}45%{color:#748FA6}60%{color:#9AAAB4}72%{color:#BCC2BE}84%{color:#D9D8CB}100%{color:#F2EBDD}}
-  @keyframes emChipOn{0%{color:var(--c)}14%{color:color-mix(in oklab,var(--c) 86%,#FFFFFF)}28%{color:color-mix(in oklab,var(--c) 71%,#FFFFFF)}42%{color:color-mix(in oklab,var(--c) 56%,#FFFFFF)}56%{color:color-mix(in oklab,var(--c) 41%,#FFFFFF)}70%{color:color-mix(in oklab,var(--c) 27%,#FFFFFF)}84%{color:color-mix(in oklab,var(--c) 13%,#FFFFFF)}100%{color:#FFFFFF}}
-  @keyframes emIconOn{0%{color:var(--c)}14%{color:color-mix(in oklab,var(--c) 86%,#F2EBDD)}28%{color:color-mix(in oklab,var(--c) 71%,#F2EBDD)}42%{color:color-mix(in oklab,var(--c) 56%,#F2EBDD)}56%{color:color-mix(in oklab,var(--c) 41%,#F2EBDD)}70%{color:color-mix(in oklab,var(--c) 27%,#F2EBDD)}84%{color:color-mix(in oklab,var(--c) 13%,#F2EBDD)}100%{color:#F2EBDD}}
+  .gcard{position:relative;overflow:hidden;background:var(--pearl);border:1px solid var(--border);border-top:3px solid var(--c);border-radius:14px;padding:20px 22px;height:230px;cursor:pointer;transition:box-shadow .73s ease,border-color .73s ease,transform .73s ease,padding .73s cubic-bezier(.22,.61,.36,1);}
+  .gcard.on{border-color:var(--c);box-shadow:0 18px 40px color-mix(in srgb,var(--c) 25%,transparent);transform:translateY(-7.5px);padding:20px 27px;}
   .gcard .peek{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:24px;opacity:.2;transition:opacity .32s ease;z-index:0;pointer-events:none;}
   .gcard.on .peek{opacity:0;}
   .gcard .flood{position:absolute;inset:0;opacity:0;transition:opacity .32s ease;z-index:1;pointer-events:none;}
   .gcard.on .flood{opacity:1;}
   .gc-body{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;}
   .gc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
-  .gc-tag{align-self:flex-start;font-size:9px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;padding:4px 11px;border-radius:20px;color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);transition:background .66s ease,color .37s ease;}
-  .gcard.on .gc-tag{color:#fff;background:rgba(255,255,255,.18);animation:emChipOn .99s linear both;}
+  .gc-tag{align-self:flex-start;position:relative;font-size:9px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;padding:4px 11px;border-radius:20px;color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);transition:background .66s ease;}
+  .gcard.on .gc-tag{background:rgba(255,255,255,.18);}
   .gc-num{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 640,'WONK' 1;font-size:13px;line-height:1.6;color:color-mix(in srgb,var(--c) 50%,transparent);transition:color .32s ease;}
   .gcard.on .gc-num{color:rgba(252,251,245,.55);}
   .gc-head{display:flex;align-items:center;gap:12px;margin-top:12px;}
-  .gc-icon{width:40px;height:40px;flex:none;border-radius:11px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--c) 12%,transparent);color:var(--c);transition:background .66s ease,color .37s ease;}
+  .gc-icon{width:40px;height:40px;flex:none;position:relative;border-radius:11px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--c) 12%,transparent);color:var(--c);transition:background .66s ease;}
   .gc-icon svg{width:22px;height:22px;display:block;}
-  .gcard.on .gc-icon{background:rgba(255,255,255,.16);color:#F2EBDD;animation:emIconOn .99s linear both;}
-  .gcard h3{font-size:18px;line-height:1.15;margin:0;color:#01426A;transition:color .37s ease,font-size .73s cubic-bezier(.22,.61,.36,1);}
-  .gcard.on h3{font-size:21px;color:#F2EBDD;animation:emTitleOn .99s linear both;transition:color .37s ease,font-size .73s cubic-bezier(.22,.61,.36,1) .11s;}
+  .gc-ov{position:absolute;inset:0;color:#F2EBDD;pointer-events:none;opacity:0;-webkit-mask-image:linear-gradient(105deg,#000 40%,rgba(0,0,0,0) 60%);mask-image:linear-gradient(105deg,#000 40%,rgba(0,0,0,0) 60%);-webkit-mask-size:250% 100%;mask-size:250% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:100% 0%;mask-position:100% 0%;transition:opacity .3s ease,-webkit-mask-position 1ms linear .35s,mask-position 1ms linear .35s;}
+  .gc-tag .gc-ov{padding:4px 11px;box-sizing:border-box;color:#fff;}
+  .gc-icon .gc-ov{display:flex;align-items:center;justify-content:center;}
+  .gcard.on .gc-ov{opacity:1;-webkit-mask-position:0% 0%;mask-position:0% 0%;transition:opacity 1ms,-webkit-mask-position 1.25s cubic-bezier(.4,0,.2,1),mask-position 1.25s cubic-bezier(.4,0,.2,1);}
+  .gcard.on h3 .gc-ov{transition:opacity 1ms,-webkit-mask-position 1.25s cubic-bezier(.4,0,.2,1) .12s,mask-position 1.25s cubic-bezier(.4,0,.2,1) .12s;}
+  .gcard.on .gc-icon .gc-ov{transition:opacity 1ms,-webkit-mask-position 1.25s cubic-bezier(.4,0,.2,1) .24s,mask-position 1.25s cubic-bezier(.4,0,.2,1) .24s;}
+  .gcard.on .gc-icon{background:rgba(255,255,255,.16);}
+  .gcard h3{font-size:18px;line-height:1.15;margin:0;color:#01426A;position:relative;flex-shrink:0;transform-origin:left center;transition:transform .73s cubic-bezier(.22,.61,.36,1);}
+  .gcard.on h3{transform:scale(1.3);}
   .gc-ar{font-family:'Amiri',serif;font-size:22px;line-height:1.5;color:color-mix(in srgb,var(--c) 66%,transparent);margin:auto 0 0;text-align:right;}
   .gcard.on .gc-ar{display:none;}
-  .gc-desc{font-size:16px;line-height:1.45;color:rgba(252,251,245,.92);margin:12px 0 0;display:none;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;opacity:0;}
+  .gc-desc{font-size:16px;line-height:1.45;text-wrap:pretty;flex-shrink:0;color:rgba(252,251,245,.92);margin:12px 0 0;display:none;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;opacity:0;}
   .gcard.on .gc-desc{display:-webkit-box;opacity:1;transition:opacity .51s ease .26s;}
   .gc-stat{display:flex;align-items:baseline;gap:8px;margin-top:auto;}
   .gc-sv,.gc-sl{opacity:0;transform:translateY(8px);transition:opacity .44s ease,transform .44s ease;}
@@ -492,8 +501,8 @@ html,body{overflow-x:clip}
         <svg class="peek" viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#0C5C63"></path></svg>
         <div class="flood" data-em-mosaic="goal" data-em-color="#0C5C63" data-em-idx="0"></div>
         <div class="gc-body">
-          <div class="gc-top"><span class="gc-tag">General English</span></div>
-          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 18l9 5 9-5"/></svg></span><h3>General English</h3></div>
+          <div class="gc-top"><span class="gc-tag"><span>General English</span><span class="gc-ov" aria-hidden="true">General English</span></span></div>
+          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 18l9 5 9-5"/></svg><span class="gc-ov" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 18l9 5 9-5"/></svg></span></span><h3><span>General English</span><span class="gc-ov" aria-hidden="true">General English</span></h3></div>
           <div class="gc-ar" dir="rtl" lang="ar">الإنجليزية العامة</div>
           <p class="gc-desc">Your foundation: speaking, listening, reading, writing, grammar, and vocabulary. Structured around your CEFR level and the gaps that trip Arabic speakers up.</p>
           <div class="gc-stat"><span class="gc-sv">A1 &#8594; C2</span><span class="gc-sl">Every level welcome</span></div>
@@ -503,8 +512,8 @@ html,body{overflow-x:clip}
         <svg class="peek" viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#E31837"></path></svg>
         <div class="flood" data-em-mosaic="goal" data-em-color="#E31837" data-em-idx="1" data-em-card="ielts"></div>
         <div class="gc-body">
-          <div class="gc-top"><span class="gc-tag">Exams &#183; IELTS</span></div>
-          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 13l2 2 4-4"/></svg></span><h3>IELTS Prep</h3></div>
+          <div class="gc-top"><span class="gc-tag"><span>Exams &#183; IELTS</span><span class="gc-ov" aria-hidden="true">Exams &#183; IELTS</span></span></div>
+          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 13l2 2 4-4"/></svg><span class="gc-ov" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 13l2 2 4-4"/></svg></span></span><h3><span>IELTS Prep</span><span class="gc-ov" aria-hidden="true">IELTS Prep</span></h3></div>
           <div class="gc-ar" dir="rtl" lang="ar">تحضير الآيلتس</div>
           <p class="gc-desc">I know which IELTS traps catch Arabic speakers. We work on those directly. My students consistently reach Band 7+.</p>
           <div class="gc-stat"><span class="gc-sv">7+</span><span class="gc-sl">Average IELTS band</span></div>
@@ -514,8 +523,8 @@ html,body{overflow-x:clip}
         <svg class="peek" viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#C8663F"></path></svg>
         <div class="flood" data-em-mosaic="goal" data-em-color="#C8663F" data-em-idx="2" data-em-card="toefl"></div>
         <div class="gc-body">
-          <div class="gc-top"><span class="gc-tag">Exams &#183; TOEFL</span></div>
-          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9L12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c3.2 2.6 8.8 2.6 12 0v-4.5"/></svg></span><h3>TOEFL Prep</h3></div>
+          <div class="gc-top"><span class="gc-tag"><span>Exams &#183; TOEFL</span><span class="gc-ov" aria-hidden="true">Exams &#183; TOEFL</span></span></div>
+          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9L12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c3.2 2.6 8.8 2.6 12 0v-4.5"/></svg><span class="gc-ov" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9L12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c3.2 2.6 8.8 2.6 12 0v-4.5"/></svg></span></span><h3><span>TOEFL Prep</span><span class="gc-ov" aria-hidden="true">TOEFL Prep</span></h3></div>
           <div class="gc-ar" dir="rtl" lang="ar">تحضير التوفل</div>
           <p class="gc-desc">Structured TOEFL iBT preparation &#8212; Reading, Listening, Speaking and Writing &#8212; for university admission and visa requirements.</p>
           <div class="gc-stat"><span class="gc-sv">iBT</span><span class="gc-sl">University &amp; visa prep</span></div>
@@ -527,8 +536,8 @@ html,body{overflow-x:clip}
         <svg class="peek" viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#6E2742"></path></svg>
         <div class="flood" data-em-mosaic="goal" data-em-color="#6E2742" data-em-idx="3"></div>
         <div class="gc-body">
-          <div class="gc-top"><span class="gc-tag">Business</span></div>
-          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span><h3>Business English</h3></div>
+          <div class="gc-top"><span class="gc-tag"><span>Business</span><span class="gc-ov" aria-hidden="true">Business</span></span></div>
+          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span class="gc-ov" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span></span><h3><span>Business English</span><span class="gc-ov" aria-hidden="true">Business English</span></h3></div>
           <div class="gc-ar" dir="rtl" lang="ar">إنجليزية الأعمال</div>
           <p class="gc-desc">Emails, meetings, interviews, presentations. The professional English you need to compete for Gulf and international roles.</p>
           <div class="gc-stat"><span class="gc-sv small">Meetings &#183; Email &#183; Interviews</span><span class="gc-sl">Professional English</span></div>
@@ -538,8 +547,8 @@ html,body{overflow-x:clip}
         <svg class="peek" viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#007BA7"></path></svg>
         <div class="flood" data-em-mosaic="goal" data-em-color="#007BA7" data-em-idx="4"></div>
         <div class="gc-body">
-          <div class="gc-top"><span class="gc-tag">ESP</span></div>
-          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-1.8 5.2-5.2 1.8 1.8-5.2z"/></svg></span><h3>English for Specific Purposes</h3></div>
+          <div class="gc-top"><span class="gc-tag"><span>ESP</span><span class="gc-ov" aria-hidden="true">ESP</span></span></div>
+          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-1.8 5.2-5.2 1.8 1.8-5.2z"/></svg><span class="gc-ov" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-1.8 5.2-5.2 1.8 1.8-5.2z"/></svg></span></span><h3><span>English for Specific Purposes</span><span class="gc-ov" aria-hidden="true">English for Specific Purposes</span></h3></div>
           <div class="gc-ar" dir="rtl" lang="ar">الإنجليزية التخصصية</div>
           <p class="gc-desc">Field-specific English for high-stakes work &#8212; precise vocabulary, real scenarios from your industry: maritime, medical, legal, aviation and more.</p>
           <div class="gc-stat"><span class="gc-sv small">Maritime &#183; Medical &#183; Legal &#183; Aviation</span><span class="gc-sl">Specialist fields</span></div>
@@ -549,8 +558,8 @@ html,body{overflow-x:clip}
         <svg class="peek" viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 50 C 90 22 210 20 300 34 L300 50 Z" fill="#7D8252"></path></svg>
         <div class="flood" data-em-mosaic="goal" data-em-color="#7D8252" data-em-idx="5"></div>
         <div class="gc-body">
-          <div class="gc-top"><span class="gc-tag">Fluency</span></div>
-          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><h3>Conversation &amp; Fluency</h3></div>
+          <div class="gc-top"><span class="gc-tag"><span>Fluency</span><span class="gc-ov" aria-hidden="true">Fluency</span></span></div>
+          <div class="gc-head"><span class="gc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="gc-ov" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span></span><h3><span>Conversation &amp; Fluency</span><span class="gc-ov" aria-hidden="true">Conversation &amp; Fluency</span></h3></div>
           <div class="gc-ar" dir="rtl" lang="ar">المحادثة والطلاقة</div>
           <p class="gc-desc">Stop freezing and stop translating from Arabic first. We build the reflex to think in English.</p>
           <div class="gc-stat"><span class="gc-sv small">Stop translating</span><span class="gc-sl">Think in English instead</span></div>
@@ -719,24 +728,38 @@ html,body{overflow-x:clip}
         function f(t){var p=Math.min(1,(t-t0)/900);el.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f);}
         requestAnimationFrame(f);});},{threshold:.4});
     io.observe(band);})();
-  /* goal-card spotlight */
+  /* goal-card spotlight — wipe-reveal finals (EXPAND 1.8, GROW 1.3, PAD 27) */
   (function(){var wrap=document.getElementById('goalCards');if(!wrap)return;
+    var EXPAND=1.8,GROW=1.3,PAD_ON=27,cur=1,h3W=0,h3Wr=0;
     var rows=[].slice.call(wrap.querySelectorAll('.grow-row'));
     var cards=[].slice.call(wrap.querySelectorAll('.gcard'));
-    var interacted=false,cur=1;
-    function setOn(i){cur=i;
-      cards.forEach(function(c,x){c.classList.toggle('on',x===i);});
-      rows.forEach(function(rw){var local=-1;[].slice.call(rw.children).forEach(function(c,k){if(c===cards[i])local=k;});
-        rw.style.gridTemplateColumns=local<0?'':['2.05fr 1fr 1fr','1fr 2.05fr 1fr','1fr 1fr 2.05fr'][local];});}
+    /* pre-wrap titles and descriptions at their final widths so text never re-wraps mid-grow */
+    function measure(){var rw=rows[0];if(!rw)return;var w=rw.getBoundingClientRect().width;if(w<400)return;
+      var dw=Math.max(200,Math.round((w-32)*EXPAND/(EXPAND+2)-PAD_ON*2));
+      var mob=matchMedia('(max-width:860px)').matches;
+      h3W=mob?0:Math.round((dw-52)/GROW);h3Wr=mob?0:Math.max(80,Math.round((w-32)/(EXPAND+2)-44-52));
+      var clamp=dw<400?3:4;
+      wrap.querySelectorAll('.gc-desc').forEach(function(d){d.style.width=dw+'px';d.style.webkitLineClamp=clamp;});}
+    function paint(){cards.forEach(function(c,x){c.classList.toggle('on',x===cur);
+        var h=c.querySelector('h3'),tw=x===cur?h3W:h3Wr;if(h)h.style.width=tw?tw+'px':'';});
+      rows.forEach(function(rw){var local=-1;[].slice.call(rw.children).forEach(function(c,k){if(c===cards[cur])local=k;});
+        rw.style.gridTemplateColumns=local<0?'':[EXPAND+'fr 1fr 1fr','1fr '+EXPAND+'fr 1fr','1fr 1fr '+EXPAND+'fr'][local];});}
+    function setOn(i){cur=i;paint();}
     cards.forEach(function(c,i){
-      c.addEventListener('mouseenter',function(){interacted=true;setOn(i);});
-      c.addEventListener('click',function(){interacted=true;setOn(i);});});
-    setOn(1);
-    /* pre-wrap descriptions at their final (expanded) width so text never re-wraps mid-grow */
-    function sizeDescs(){var rw=rows[0];if(!rw)return;var w=rw.getBoundingClientRect().width;if(w<400)return;
-      var dw=Math.max(200,Math.round((w-32)*2.05/4.05-44));
-      wrap.querySelectorAll('.gc-desc').forEach(function(d){d.style.width=dw+'px';});}
-    sizeDescs();addEventListener('resize',sizeDescs);addEventListener('load',sizeDescs);})();
+      c.addEventListener('mouseenter',function(){setOn(i);});
+      c.addEventListener('click',function(){setOn(i);});});
+    function refresh(){measure();paint();}
+    refresh();addEventListener('resize',refresh);addEventListener('load',refresh);
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){refresh();});
+    /* fluency card: force the rich goal mosaic spec (auto 'bright' variant washes out on olive) */
+    var GOAL={facets:80,jitter:0.6,warp:0.72,warpSize:1.1,diagMix:1,coherence:0.6,waveSize:0.7,waveStretch:1.4,waveAngle:31,relief:0.22,depthLum:0.065,angle:240,strength:0.3,floor:0.8,ceil:1.2,sheen:0.1,sheenW:31,burnish:0.1,brush:0.09,edge:0,toneJit:0.02,vignette:0.24,focalX:0.5,focalY:0.42,focalDim:0,bright:1.01,blend:0.85,bloom:0.32,wave2:0,wave2Angle:115};
+    function fixOlive(n){var fl=document.querySelector('[data-em-idx="5"]');if(!fl||!window.EMMosaic)return;
+      var cv=fl.querySelector('canvas');if(!cv){if(n>0)setTimeout(function(){fixOlive(n-1);},150);return;}
+      var rc=fl.getBoundingClientRect();
+      var w=Math.round(Math.max(320,rc.width||300)*1.6),h=Math.max(230,Math.round(rc.height||230));
+      var P=Object.assign({},GOAL);P.facets=Math.max(8,Math.round(80*(w*h)/(1200*420)));
+      window.EMMosaic.render7(cv,w,h,P,'#7D8252',1944626171);cv.__emW=w;cv.__emH=h;}
+    fixOlive(40);addEventListener('resize',function(){setTimeout(function(){fixOlive(3);},650);});})();
   (function(){
     const stage=document.getElementById('trotStage'); if(!stage) return;
     const items=[...stage.querySelectorAll('.trot-item')];
