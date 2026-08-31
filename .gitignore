@@ -1,3 +1,7 @@
 .fix-backup/
 apply-fixes.py
 .DS_Store
+
+# Local-only reference material. Never commit, never publish.
+_local/
+CLAUDE.md
