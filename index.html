@@ -26,12 +26,13 @@
 <link rel="icon" type="image/png" href="assets/em-mark-gold.png">
 <link rel="preload" href="assets/fonts/Fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/PublicSans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/MarkaziText-Arabic-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
-<!-- Markazi Text (Arabic) is still served by Google Fonts. Its only axis
-     is wght, so it is unaffected by the opsz problem that made self-hosting
-     necessary for Fraunces. Used by .gc-ar on the goal cards. -->
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&display=swap" rel="stylesheet">
+<!-- Markazi Text (Arabic, used by .gc-ar on the goal cards) is now
+     self-hosted too, Arabic-only subset — see assets/fonts.css. It was
+     still on fonts.googleapis.com/fonts.gstatic.com after the Fraunces/
+     Public Sans self-host below, same privacy-browser breakage. Do not
+     re-add a Google Fonts <link> here. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
