@@ -66,15 +66,31 @@
   nav.scrolled{border-bottom-color:transparent;box-shadow:0 10px 26px rgba(1,48,73,.06);}
   .nav-inner{transition:height .2s ease;}
   nav.scrolled .nav-inner{height:68px;}
+  /* lockup - scrolled: light_desktop at F=29 (cap 20.30). Geometry scales x 29/36.
+     .brand-sub margin-right is NOT scaled - recomputed for "with Jana Malas" via
+     constants.subline.x_align.formula at F=29: -0.42050 - 2.93658 + 0.20300 = -3.15408.
+     Scoped to >=861px: "nav.scrolled .brand img" (0,2,2) outranks the mobile
+     ".brand img" (0,1,1) even from inside the max-width:860px block, so unscoped it
+     would drag F=29 desktop geometry onto phones. Mobile is light_mobile at F=28
+     in every scroll position. */
+  .brand{transition:gap .2s ease;}
   .brand img{transition:width .2s ease,height .2s ease,margin-top .2s ease;}
-  nav.scrolled .brand img{width:48px;height:48px;margin-top:-9px;}
   .brand-text{transition:font-size .2s ease;}
-  nav.scrolled .brand-text{font-size:29px;}
+  .brand-sub{transition:font-size .2s ease,margin-top .2s ease,margin-right .2s ease;}
+  @media(min-width:861px){
+    nav.scrolled .brand{gap:6.53px;}
+    nav.scrolled .brand img{width:36.01px;height:28.83px;margin-top:3.63px;}
+    nav.scrolled .brand-text{font-size:29px;}
+    nav.scrolled .brand-sub{font-size:8.42px;margin-top:-0.34px;margin-right:-3.15px;}
+  }
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:84px;}
-  .brand{display:flex;align-items:center;gap:3px;}
-  .brand img{display:block;width:60px;height:60px;margin-top:-14px;}
-  .brand-text{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 640,'WONK' 1;font-size:36px;color:var(--navy);white-space:nowrap;letter-spacing:-.02em;display:inline-block;line-height:1.02;}
-  .brand-sub{display:block;font-family:'Public Sans',sans-serif;font-variation-settings:normal;font-weight:700;font-size:11px;letter-spacing:3.3px;text-transform:uppercase;color:#C4921B;text-align:right;margin-top:3px;margin-right:-3px;}
+  /* lockup - EM-wordmark-spec v6.2 - light_desktop, F=36. Colours are the frozen spec
+     literals (#01426A / #C4921B), deliberately not --navy/--gold, so the lockup cannot
+     drift if a token changes. Geometry is derived - do not round or tidy. */
+  .brand{display:flex;align-items:flex-start;gap:8.10px;}
+  .brand img{display:block;flex:none;width:44.71px;height:35.78px;margin-top:4.50px;filter:none;}
+  .brand-text{font-family:'Fraunces',serif;font-weight:640;font-variation-settings:'opsz' 144,'SOFT' 10,'WONK' 1;font-size:36px;line-height:1;letter-spacing:-.02em;color:#01426A;white-space:nowrap;display:inline-block;}
+  .brand-sub{display:block;font-family:'Public Sans',sans-serif;font-variation-settings:normal;font-weight:700;font-size:10.46px;letter-spacing:.30em;text-transform:uppercase;color:#C4921B;text-align:right;margin-top:-0.42px;margin-right:-3.92px;line-height:1;}
   .nav-links{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:600;}
   .nav-links a{color:#3a352e;position:relative;padding:6px 0;}
   .nav-links a.active{color:var(--teal);}
@@ -162,8 +178,13 @@
   .foot-rule{height:4px;background:linear-gradient(90deg,#5E7689 0 30%,var(--teal) 30% 55%,var(--gold) 55% 75%,var(--caramel) 75% 100%);}
   .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding:25px 28px;}
   .foot-brand-col{display:flex;flex-direction:column;max-width:24em;}
-  .foot-brand{display:flex;align-items:center;gap:3px;}
-  .foot-brand .b1{font-family:'Fraunces',serif;font-variation-settings:'opsz' 144,'wght' 640,'WONK' 1;font-size:28px;color:var(--on-deep);line-height:1.02;letter-spacing:-.02em;}
+  /* lockup - spec v6.2 `dark`, F=28 (cap 19.60), mapped onto the footer's own class
+     names: .brand -> .foot-brand, .brand img -> .foot-brand img, .brand-text -> .b1.
+     Mark is the cream cut and carries the x0.94 reversed compensation (26.16 vs the
+     light 27.83 at the same F). Wordmark weight is 615, not 640. No subline on dark. */
+  .foot-brand{display:flex;align-items:flex-start;gap:6.29px;}
+  .foot-brand img{display:block;flex:none;width:32.68px;height:26.16px;margin-top:3.51px;filter:none;}
+  .foot-brand .b1{font-family:'Fraunces',serif;font-weight:615;font-variation-settings:'opsz' 144,'SOFT' 10,'WONK' 1;font-size:28px;line-height:1;letter-spacing:-.02em;color:#F2EBDD;white-space:nowrap;display:inline-block;}
   .foot-tag{font-size:12px;line-height:1.4;color:var(--on-deep);margin:9px 0 0 7px;max-width:234px;}
   .foot-links{display:flex;gap:30px;font-size:14px;}
   .foot-col h4{font-family:'Public Sans';font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:0 0 8px;}
@@ -182,9 +203,15 @@
     .page-hero .brushwing{margin:14px auto 0;}
     .steps{grid-template-columns:1fr;}
     .fee-grid{grid-template-columns:1fr;}
-    .brand img{width:46px;height:46px;margin-top:-10px;}
-    .brand-text{font-size:28px;font-variation-settings:'opsz' 80,'wght' 640,'WONK' 1;}
-    .brand-sub{font-size:8.5px;letter-spacing:2.4px;}
+    /* lockup - spec v6.2 light_mobile, F=28 (cap 19.60). Recipe is identical on every
+       page; only this page's trigger width differs (860px here). font-variation-settings
+       is non-additive so it is restated in full to keep SOFT 10. letter-spacing stays
+       .30em from the base rule. margin-right is the spec's published value - see the
+       opsz caveat in the handover notes. */
+    .brand{gap:6.29px;}
+    .brand img{width:34.77px;height:27.83px;margin-top:3.50px;}
+    .brand-text{font-size:28px;font-variation-settings:'opsz' 80,'SOFT' 10,'WONK' 1;}
+    .brand-sub{font-size:8.13px;margin-top:-0.33px;margin-right:-3.05px;}
     .brandbar .wrap{flex-direction:column;height:auto;gap:1px;padding-top:5px;padding-bottom:5px;font-size:9.5px;letter-spacing:.4px;text-align:center;line-height:1.35;justify-content:center;}
     .nav-toggle{display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;cursor:pointer;margin-right:-6px;}
     .nav-toggle span{display:block;width:26px;height:2px;background:var(--navy);border-radius:2px;transition:transform .25s ease,opacity .2s ease;}
@@ -233,7 +260,7 @@ html,body{overflow-x:clip}
 <nav>
   <div class="wrap nav-inner">
     <a class="brand" href="index.html">
-      <img src="assets/em-mark-gold.png" alt="English Mastered" style="filter:drop-shadow(.35px 0 0 #C8941F) drop-shadow(-.35px 0 0 #C8941F);">
+      <img src="assets/mono-gold-d12@3x.png" alt="">
       <span class="brand-text">English Mastered<span class="brand-sub">with Jana Malas</span></span>
     </a>
     <input type="checkbox" id="navtoggle" class="nav-toggle-cb" aria-label="Open menu">
@@ -413,7 +440,7 @@ html,body{overflow-x:clip}
   <div class="wrap foot-inner">
     <div class="foot-brand-col">
       <div class="foot-brand">
-        <img src="assets/em-mark-white.png" width="43" height="43" alt="" style="margin:0;margin-top:-2px;">
+        <img src="assets/mono-cream-d12@3x.png" alt="">
         <div><div class="b1">English Mastered</div></div>
       </div>
       <p class="foot-tag">Personalised online English coaching with Jana Malas. For Arabic speakers who are ready to master the language.</p>
