@@ -4,4 +4,4 @@ apply-fixes.py
 
 # Local-only reference material. Never commit, never publish.
 _local/
-CLAUDE.md
+CLAUDE.local.md
