@@ -273,7 +273,7 @@ html,body{overflow-x:clip}
       <a href="start.html">How It Works</a>
       <a href="services.html">Services</a>
       <a href="about.html">About</a>
-      <a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config='{"layout":"month_view"}' href="book.html" class="nav-cta">Book Free Call</a>
+      <a href="book.html" class="nav-cta">Book Free Call</a>
     </div>
   </div>
 </nav>
@@ -533,7 +533,7 @@ html,body{overflow-x:clip}
       + '<p>' + r[2] + '</p>'
       + '<p style="color:var(--muted);font-size:14px;">You answered ' + score + ' of ' + Q.length + ' correctly.</p>'
       + '<div class="quiz-actions">'
-      + '<a data-cal-namespace="free-discovery-call" data-cal-link="englishmastered/free-discovery-call" data-cal-config=\'{"layout":"month_view"}\' class="btn btn-primary" href="book.html">Book a free call to confirm</a>'
+      + '<a class="btn btn-primary" href="book.html">Book a free call to confirm</a>'
       + '<button class="quiz-retake" type="button" id="retake">Retake the check</button>'
       + '</div>'
       + '<div class="result-tools">'
@@ -686,12 +686,6 @@ html,body{overflow-x:clip}
 </script>
 
 
-<!-- Cal.com popup for Book buttons -->
-<script type="text/javascript">
-  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-  Cal("init", "free-discovery-call", {origin:"https://app.cal.com"});
-  Cal.ns["free-discovery-call"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#B87333"},"dark":{"cal-brand":"#D89B3A"}},"hideEventTypeDetails":false,"layout":"month_view"});
-</script>
 <script src="assets/em-mosaic.js"></script>
 <script>
   (function(){var nav=document.querySelector('nav');if(!nav)return;
